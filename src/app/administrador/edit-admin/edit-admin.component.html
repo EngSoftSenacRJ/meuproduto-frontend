@@ -1,0 +1,49 @@
+<mat-card class="container">
+    <mat-card-header class="card-admin-header">
+        <div mat-card-avatar><mat-icon>account_circle</mat-icon></div>
+        <mat-card-title class="card-admin-title">Editar Dados</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+  <mat-card-content> 
+<mat-tab-group>
+    <mat-tab label="Dados Pessoais "> 
+        <div class="form-row" style="margin: 35px;">
+            <div class="form-group col-md-4">
+                <mat-form-field>
+                    <input matInput placeholder="Nome Completo">
+                </mat-form-field>
+            </div> 
+            <div class="form-group col-md-4">
+                <mat-form-field>
+                    <input matInput placeholder="CPF">
+                </mat-form-field>
+            </div> 
+            <div class="form-group col-md-4">
+                <mat-form-field>
+                    <input matInput [min]="" [max]="" [matDatepicker]="picker" placeholder="Data de nascimento">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <span matPrefix>+1 &nbsp;</span>
+                    <input type="tel" matInput placeholder="Telefone">
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Endereço"> 
+        
+    </mat-tab>
+    <mat-tab label="Segurança">  
+
+    </mat-tab>
+  </mat-tab-group>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions>
+    <button mat-button routerLink="/">Cancelar</button>
+    <button mat-button class="btn-info">Alterar</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,47 @@
+<nav fxFlexFill class="home">
+    <mat-toolbar>
+        <!-- <mat-icon style="color: red;"> location_on</mat-icon> <span class="title"><span style="color: black;">Meu</span>Produto</span> -->
+        <img src="../../../assets/meuproduto.png"  width="240px" height="60px"/>
+        <!-- This fills the remaining space of the current row -->
+        <span class="example-fill-remaining-space"></span>
+        <span class="example-spacer"></span>
+        <div *ngIf="!IsLogado">
+            <button mat-raised-button color="primary" type="button" routerLink="../home/login" routerLinkActive="router-link-active" >Login</button>
+            &nbsp;ou&nbsp; 
+            <button mat-raised-button color="primary" type="button" routerLink="../home/cadastro" routerLinkActive="router-link-active" >Cadastrar</button>
+        </div>
+        <div *ngIf="IsLogado">
+            Bem-vindo, fulano! &nbsp; <button mat-raised-button color="primary" type="button" routerLink="../home" routerLinkActive="router-link-active" (click)="logout()" >Logout</button>
+        </div>           
+        <!-- <a routerLink="../cadastro" class="nodecoration">Login</a> 
+       <a routerLink="../cadastro" class="nodecoration">Cadastro</a>  -->
+    </mat-toolbar>
+    <div id="divmenu">
+        <button mat-button routerLink="../home/pesquisar" routerLinkActive="router-link-active"  >Pesquisar</button>
+        <button mat-button *ngIf="IsFuncionario || IsAdmin" [matMenuTriggerFor]="menuFuncionario">Gerência Loja </button>
+        <mat-menu #menuFuncionario="matMenu" color="primary">
+            <button mat-menu-item color="primary">Catalogo da Loja</button>
+            <button mat-menu-item color="primary">Atualizar Preços</button>
+        </mat-menu>
+        <button mat-button  *ngIf="IsAdmin" [matMenuTriggerFor]="menuAdm">Gerencia Adm.</button>
+        <mat-menu #menuAdm="matMenu" color="primary">
+            <button mat-menu-item color="primary">Lojas</button>
+            <button mat-menu-item color="primary">Funcionários</button>
+            <button mat-menu-item color="primary">Categorias</button> 
+            <button mat-menu-item color="primary">Marcas</button>
+            <button mat-menu-item color="primary">Produtos</button>  
+        </mat-menu>
+        <button mat-button  *ngIf="IsAdmin" [matMenuTriggerFor]="menuVis">Visibilidade</button>
+        <mat-menu #menuVis="matMenu" color="primary">
+            <button mat-menu-item color="primary">Histórico de alterações do produto</button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="menuSobre">Ajuda</button>
+        <mat-menu #menuSobre="matMenu" color="primary">
+            <button mat-menu-item color="primary">Sobre nós</button>
+            <!-- <button mat-menu-item color="primary">Fale conosco</button> -->
+        </mat-menu>
+    </div>
+    <router-outlet></router-outlet>
+</nav>
+
+

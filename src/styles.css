@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: Roboto, Arial, sans-serif;
+    margin: 0;
+    background-color:#E5E5E5;
+  }
+  .basic-container {
+    padding: 30px;
+  }
+
+  .title{
+    color:#FFFFFF;
+    font-family: cursive;
+  }
+  .nodecoration{
+    text-decoration: none;
+  }
+  .container{
+    margin: 25px;
+  }

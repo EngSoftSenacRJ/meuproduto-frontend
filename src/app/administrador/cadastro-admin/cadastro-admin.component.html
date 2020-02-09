@@ -1,0 +1,104 @@
+<mat-card class="container">
+        <mat-card-header class="card-admin-header">
+            <div mat-card-avatar><mat-icon>account_circle</mat-icon></div>
+            <mat-card-title class="card-admin-title">Cadastro</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+          <mat-card-content class="barra">
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Dados Pessoais
+        </mat-panel-title>
+        <mat-icon>account_circle</mat-icon>
+      </mat-expansion-panel-header>
+  
+      <mat-form-field>
+        <input matInput placeholder="Nome completo">
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput type="number" maxlength="14" placeholder="CPF">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="number" placeholder="Telefone de contato">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [min]="" [max]="" [matDatepicker]="picker" placeholder="Data de nascimento">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Próximo</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Endereço Residencial
+        </mat-panel-title>
+        <mat-icon>map</mat-icon>
+      </mat-expansion-panel-header>
+  
+      <mat-form-field>
+        <input matInput placeholder="Nome da rua">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" placeholder="Cep">
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>Cidade</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="Selecione a cidade">
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+        <button mat-button color="primary" (click)="nextStep()">Próximo</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+         Dados de Acesso
+        </mat-panel-title>
+        <mat-icon>date_range</mat-icon>
+      </mat-expansion-panel-header>
+  
+        <mat-form-field>
+          <input matInput placeholder="Email" [formControl]="email" required>
+          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Confirmar senha" [type]="hide ? 'password' : 'text'" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field> 
+  
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+        <button mat-button color="primary" (click)="nextStep()">Concluir</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card-content>
+</mat-card>
