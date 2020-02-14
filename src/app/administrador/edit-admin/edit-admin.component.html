@@ -34,10 +34,44 @@
         </div>
     </mat-tab>
     <mat-tab label="Endereço"> 
-        
+        <div class="form-row" style="margin: 35px;">
+        <mat-form-field>
+            <input matInput placeholder="Nome da rua">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Cep">
+          </mat-form-field>
+          
+          <mat-form-field>
+            <mat-label>Cidade</mat-label>
+            <mat-select [(ngModel)]="selectedValue" name="Selecione a cidade">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div> 
     </mat-tab>
     <mat-tab label="Segurança">  
-
+        <div class="form-row" style="margin: 35px;">
+            <mat-form-field>
+                <input matInput placeholder="Email" [formControl]="email" required>
+              </mat-form-field>
+      
+              <mat-form-field>
+                  <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'" required>
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                </mat-form-field>
+      
+                <mat-form-field>
+                  <input matInput placeholder="Confirmar senha" [type]="hide ? 'password' : 'text'" required>
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                </mat-form-field> 
+        </div>
     </mat-tab>
   </mat-tab-group>
   </mat-card-content>

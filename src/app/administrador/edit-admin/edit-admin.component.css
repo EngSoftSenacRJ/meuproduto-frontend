@@ -2,3 +2,7 @@
     background-color: #007BFF;
     color: white;
 }
+
+mat-form-field {
+    margin-right: 12px;
+  }
