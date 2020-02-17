@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-cadastro-admin',
@@ -11,6 +12,12 @@ export class CadastroAdminComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  usuario = {} as Usuario;
+
+  CPFmask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  Telmask = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/,/\d/,/\d/, '-',/\d/, /\d/, /\d/, /\d/,];
+
 
   step = 0;
   hide = true;

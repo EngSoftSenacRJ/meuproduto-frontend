@@ -7,8 +7,6 @@ import { EditAdminComponent } from './administrador/edit-admin/edit-admin.compon
 import { LoginAdminComponent } from './administrador/login-admin/login-admin.component';
 import { PesquisarComponent } from './pesquisa/pesquisar/pesquisar.component';
 
-
-
 const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: "full"},
   {path: "home", component: HomeComponent,

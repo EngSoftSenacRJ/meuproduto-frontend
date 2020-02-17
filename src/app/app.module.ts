@@ -10,7 +10,10 @@ import { AdministradorModule } from './administrador/administrador.module';
 import { HomeComponent } from './home/home/home.component';
 import { HomeModule } from './home/home.module';
 import { PesquisarComponent } from './pesquisa/pesquisar/pesquisar.component';
+import { TextMaskModule } from 'angular2-text-mask';
 
+/* HTTP  */
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,8 @@ import { PesquisarComponent } from './pesquisa/pesquisar/pesquisar.component';
     ErrorsModule,
     AdministradorModule,
     HomeModule,
+    TextMaskModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

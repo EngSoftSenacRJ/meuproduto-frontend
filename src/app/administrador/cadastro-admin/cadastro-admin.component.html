@@ -13,17 +13,21 @@
         </mat-panel-title>
         <mat-icon>account_circle</mat-icon>
       </mat-expansion-panel-header>
-  
+      
+      <form class="example-form"  #f="ngForm"> 
+
       <mat-form-field>
-        <input matInput placeholder="Nome completo">
-      </mat-form-field>
-  
-      <mat-form-field>
-        <input matInput type="number" maxlength="14" placeholder="CPF">
+        <input matInput placeholder="Nome completo" id="nome" name="nome" [(ngModel)]="usuario.Nome" #name="ngModel"  required> 
+        <mat-error *ngIf="email.invalid">Nome é obrigatório.</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="number" placeholder="Telefone de contato">
+        <input matInput placeholder="CPF" [textMask]="{mask: CPFmask}" required>
+        <mat-error *ngIf="email.invalid">CPF é obrigatório.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput  placeholder="Telefone de contato" [textMask]="{mask: Telmask}">
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
@@ -33,8 +37,11 @@
       </mat-form-field>
       
       <mat-action-row>
-        <button mat-button color="primary" (click)="nextStep()">Próximo</button>
+        <button mat-button color="primary" (click)=" nextStep()">Próximo</button>
       </mat-action-row>
+
+    </form>
+
     </mat-expansion-panel>
   
     <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
@@ -54,10 +61,7 @@
       
       <mat-form-field>
         <mat-label>Cidade</mat-label>
-        <mat-select [(ngModel)]="selectedValue" name="Selecione a cidade">
-          <mat-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
-          </mat-option>
+        <mat-select name="Selecione a cidade">
         </mat-select>
       </mat-form-field>
   
@@ -92,6 +96,7 @@
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
+            
           </mat-form-field> 
   
       <mat-action-row>

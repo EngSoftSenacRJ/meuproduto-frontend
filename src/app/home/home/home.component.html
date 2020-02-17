@@ -8,7 +8,7 @@
         <div *ngIf="!IsLogado">
             <button mat-raised-button color="primary" type="button" routerLink="../home/login" routerLinkActive="router-link-active" >Login</button>
             &nbsp;ou&nbsp; 
-            <button mat-raised-button color="primary" type="button" routerLink="../home/cadastro" routerLinkActive="router-link-active" >Cadastrar</button>
+            <button mat-raised-button color="primary" type="button" routerLink="../home/cadastro" routerLinkActive="router-link-active" (click)="logout()" >Cadastrar</button>
         </div>
         <div *ngIf="IsLogado">
             Bem-vindo, fulano! &nbsp; <button mat-raised-button color="primary" type="button" routerLink="../home" routerLinkActive="router-link-active" (click)="logout()" >Logout</button>

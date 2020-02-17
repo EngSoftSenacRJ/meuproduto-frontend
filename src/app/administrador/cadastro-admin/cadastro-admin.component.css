@@ -35,3 +35,5 @@ mat-form-field {
   border-style: solid;
   border-width: 1px;
 }
+
+.div-erro {font-size: small; color: red;}

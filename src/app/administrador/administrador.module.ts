@@ -5,6 +5,7 @@ import {MaterialModule} from '../material-module';
 import { RouterModule } from '@angular/router';
 import { EditAdminComponent } from './edit-admin/edit-admin.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 
@@ -13,7 +14,8 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    TextMaskModule
   ]
 })
 export class AdministradorModule { }

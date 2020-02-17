@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TesteService} from '../../service/teste/teste.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,9 @@ export class HomeComponent implements OnInit {
   IsAdmin = true;
   IsFuncionario = false;
   IsLogado = true;  
-  constructor() { }
+  constructor(
+    private testeService: TesteService
+  ) { }
 
   ngOnInit() {
   }
@@ -19,6 +22,17 @@ export class HomeComponent implements OnInit {
     this.IsLogado = false;
     this.IsFuncionario = false;
     this.IsAdmin = false;  
+
+    //Validar Usuario e senha
+    this.testeService.teste().subscribe( data =>  {
+      console.log(data);     
+      
+      }, err => { 
+        console.log(err);
+       }    
+     );
   }
 
 }
+
+
