@@ -1,0 +1,24 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    left: 2%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+
+  .container-table {
+      margin: 2%;
+      background-color: white;
+
+  }
+
+  #btn-add{
+      margin: 5px;
+      float: right;
+  }

@@ -7,18 +7,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material-module';
 import { ErrorsModule } from './errors/errors.module';
 import { AdministradorModule } from './administrador/administrador.module';
-import { HomeComponent } from './home/home/home.component';
 import { HomeModule } from './home/home.module';
 import { PesquisarComponent } from './pesquisa/pesquisar/pesquisar.component';
 import { TextMaskModule } from 'angular2-text-mask';
 
 /* HTTP  */
 import { HttpClientModule } from '@angular/common/http';
+import { LojaModule } from './loja/loja.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PesquisarComponent
+    PesquisarComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     AdministradorModule,
     HomeModule,
     TextMaskModule,
-    HttpClientModule
+    HttpClientModule,
+    LojaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

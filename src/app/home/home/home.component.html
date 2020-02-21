@@ -25,7 +25,7 @@
         </mat-menu>
         <button mat-button  *ngIf="IsAdmin" [matMenuTriggerFor]="menuAdm">Gerencia Adm.</button>
         <mat-menu #menuAdm="matMenu" color="primary">
-            <button mat-menu-item color="primary">Lojas</button>
+            <button mat-menu-item color="primary" routerLink="lojas">Lojas</button>
             <button mat-menu-item color="primary">Funcionários</button>
             <button mat-menu-item color="primary">Categorias</button> 
             <button mat-menu-item color="primary">Marcas</button>
