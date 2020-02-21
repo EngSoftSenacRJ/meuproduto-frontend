@@ -1,33 +1,55 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { Appconstants } from 'src/app/helpers/appconstants';
+import { Usuarioadministrador } from 'src/app/model/usuarioadministrador';
+
 
 @Injectable({
   providedIn: 'root'
 })
+export class LoginService {
 
-export class TesteService {
- 
+
+  IsAuthenticate: boolean;
+  token: String;
+  
   // injetando o HttpClient
   constructor(private httpClient: HttpClient) { }
 
+  // Headers
+  httpOptionsLogin = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/x-www-form-urlencoded'
+    }),
+};
+
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json', 
+      'Content-Type':  'application/json'
     }),
   };
 
-  // Teste
-  teste(): Observable<any> {
-
-    return this.httpClient.post('http://localhost:8080/authenticate',{"username":"javainuse","password":"password"},this.httpOptions)
+  // Fazer Login
+  Logar(userName: String, password: String): Observable<any> {
+//{"username":"javainuse","password":"password"}
+    return this.httpClient.post<any>(Appconstants.baseAPIURL + 'authenticate', {"username":userName,"password":password},this.httpOptions)
       .pipe(
         retry(0),
         catchError(this.handleError)
       )
   }
 
+  logout() {
+    this.token = null;
+    this.IsAuthenticate = false;
+    return this.httpClient.post(Appconstants.baseAPIURL + 'Logout',this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
 
   // Manipulação de erros
   handleError(error: HttpErrorResponse) {
@@ -49,4 +71,5 @@ export class TesteService {
     console.log(errorMessage);
     return throwError(errorMessage);
   };
+
 }

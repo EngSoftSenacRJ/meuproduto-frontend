@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/service/login/login.service';
 
 @Component({
   selector: 'app-login-admin',
@@ -11,10 +12,14 @@ export class LoginAdminComponent implements OnInit {
 
   //login = {} as Login;
   retornoErro = new String();
+  loginForm = ({
+    username: '',
+    password: '',
+  });
   
   constructor(
     private router: Router,
-    //private loginService: LoginService
+    private loginService: LoginService
   ) {}
 
   ngOnInit() {
@@ -23,6 +28,18 @@ export class LoginAdminComponent implements OnInit {
   Acessar(form: NgForm) {
     
     //Validar Usuario e senha
+       //Validar Usuario e senha
+       this.loginService.Logar(this.loginForm.username, this.loginForm.password).subscribe( data =>  {
+
+        console.log(data)
+        this.loginService.token = data;
+          this.loginService.IsAuthenticate = true;
+          this.router.navigate(["home"]);
+        }, err => { 
+          this.retornoErro = err;
+          this.loginService.IsAuthenticate = false;
+         }    
+       );
     
   }
 

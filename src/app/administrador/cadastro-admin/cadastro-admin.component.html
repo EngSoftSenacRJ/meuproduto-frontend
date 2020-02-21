@@ -1,109 +1,136 @@
 <mat-card class="container">
-        <mat-card-header class="card-admin-header">
-            <div mat-card-avatar><mat-icon>account_circle</mat-icon></div>
-            <mat-card-title class="card-admin-title">Cadastro</mat-card-title>
-        </mat-card-header>
-        <mat-divider></mat-divider>
-          <mat-card-content class="barra">
-<mat-accordion class="example-headers-align">
-    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Dados Pessoais
-        </mat-panel-title>
-        <mat-icon>account_circle</mat-icon>
-      </mat-expansion-panel-header>
-      
-      <form class="example-form"  #f="ngForm"> 
+  <mat-card-header class="card-admin-header">
+    <div mat-card-avatar>
+      <mat-icon>account_circle</mat-icon>
+    </div>
+    <mat-card-title class="card-admin-title">Cadastro</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content class="barra">
 
-      <mat-form-field>
-        <input matInput placeholder="Nome completo" id="nome" name="nome" [(ngModel)]="usuario.Nome" #name="ngModel"  required> 
-        <mat-error *ngIf="email.invalid">Nome é obrigatório.</mat-error>
-      </mat-form-field>
+    <form class="example-form" #f="ngForm">
+      <mat-accordion class="example-headers-align">
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Dados Pessoais
+            </mat-panel-title>
+            <mat-icon>account_circle</mat-icon>
+          </mat-expansion-panel-header>
 
-      <mat-form-field>
-        <input matInput placeholder="CPF" [textMask]="{mask: CPFmask}" required>
-        <mat-error *ngIf="email.invalid">CPF é obrigatório.</mat-error>
-      </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Nome completo" id="nome" name="nome" [(ngModel)]="usuarioAdm.nome"
+              #name="ngModel" required>
+            <mat-error *ngIf="email.invalid">Nome é obrigatório.</mat-error>
+          </mat-form-field>
 
-      <mat-form-field>
-        <input matInput  placeholder="Telefone de contato" [textMask]="{mask: Telmask}">
-      </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="CPF" name="cpf" [textMask]="{mask: CPFmask}" [(ngModel)]="usuarioAdm.cpf" #name="ngModel"
+              required>
+            <mat-error *ngIf="email.invalid">CPF é obrigatório.</mat-error>
+          </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <input matInput [min]="" [max]="" [matDatepicker]="picker" placeholder="Data de nascimento">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      
-      <mat-action-row>
-        <button mat-button color="primary" (click)=" nextStep()">Próximo</button>
-      </mat-action-row>
+          <mat-form-field>
+            <input matInput placeholder="Telefone de contato" name="telefone_contato" [textMask]="{mask: Telmask}"
+              [(ngModel)]="usuarioAdm.telefone_contato" #name="ngModel">
+          </mat-form-field>
 
-    </form>
+          <mat-form-field class="example-full-width">
+            <input matInput [min]="" [max]="" name="dt_nascimento" [matDatepicker]="picker" placeholder="Data de nascimento"
+              [(ngModel)]="usuarioAdm.dt_nascimento" #name="ngModel">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
 
-    </mat-expansion-panel>
-  
-    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Endereço Residencial
-        </mat-panel-title>
-        <mat-icon>map</mat-icon>
-      </mat-expansion-panel-header>
-  
-      <mat-form-field>
-        <input matInput placeholder="Nome da rua">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="number" placeholder="Cep">
-      </mat-form-field>
-      
-      <mat-form-field>
-        <mat-label>Cidade</mat-label>
-        <mat-select name="Selecione a cidade">
-        </mat-select>
-      </mat-form-field>
-  
-      <mat-action-row>
-        <button mat-button color="warn" (click)="prevStep()">Anterior</button>
-        <button mat-button color="primary" (click)="nextStep()">Próximo</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-  
-    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-         Dados de Acesso
-        </mat-panel-title>
-        <mat-icon>date_range</mat-icon>
-      </mat-expansion-panel-header>
-  
-        <mat-form-field>
-          <input matInput placeholder="Email" [formControl]="email" required>
-          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
+          <mat-action-row>
+            <button mat-button color="primary" (click)=" nextStep()">Próximo</button>
+          </mat-action-row>
+        </mat-expansion-panel>
 
-        <mat-form-field>
-            <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'" required>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Endereço Residencial
+            </mat-panel-title>
+            <mat-icon>map</mat-icon>
+          </mat-expansion-panel-header>
+
+          <mat-form-field>
+            <input matInput placeholder="Nome da rua" name="rua_endereco_pessoal" [(ngModel)]="usuarioAdm.rua_endereco_pessoal" #name="ngModel">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Numero</mat-label>
+            <input matInput placeholder="Numero" name="numero_endereco_pessoal" [(ngModel)]="usuarioAdm.numero_endereco_pessoal"
+              #name="ngModel">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Cep" name="cep_endereco_pessoal" [(ngModel)]="usuarioAdm.cep_endereco_pessoal" #name="ngModel">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Bairro</mat-label>
+            <input matInput placeholder="Numero" name="bairro_endereco_pessoal" [(ngModel)]="usuarioAdm.bairro_endereco_pessoal"
+              #name="ngModel">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Cidade</mat-label>
+            <input matInput placeholder="Cidade" name="cidade_endereco_pessoal" [(ngModel)]="usuarioAdm.cidade_endereco_pessoal"
+              #name="ngModel">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Estado</mat-label>
+            <input matInput placeholder="Cidade" name="estado_endereco_pessoal" [(ngModel)]="usuarioAdm.estado_endereco_pessoal"
+              #name="ngModel">
+          </mat-form-field>
+
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+            <button mat-button color="primary" (click)="nextStep()">Próximo</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Dados de Acesso
+            </mat-panel-title>
+            <mat-icon>date_range</mat-icon>
+          </mat-expansion-panel-header>
+
+          <mat-form-field>
+            <input matInput placeholder="Email" name="email" [(ngModel)]="usuarioAdm.email" #name="ngModel" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Senha" name="senha" [type]="hide ? 'password' : 'text'" [(ngModel)]="usuarioAdm.senha"
+              #name="ngModel" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Confirmar senha" [type]="hide ? 'password' : 'text'" required>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <input matInput placeholder="Confirmar senha" [type]="hide ? 'password' : 'text'"
+              [(ngModel)]="usuarioAdm.senha" #name="ngModel" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            
-          </mat-form-field> 
-  
-      <mat-action-row>
-        <button mat-button color="warn" (click)="prevStep()">Anterior</button>
-        <button mat-button color="primary" (click)="nextStep()">Concluir</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-  </mat-accordion>
-</mat-card-content>
+
+          </mat-form-field>
+
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+            <button mat-button color="primary" (click)="Cadastrar(f)">Concluir</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </form>
+  </mat-card-content>
 </mat-card>

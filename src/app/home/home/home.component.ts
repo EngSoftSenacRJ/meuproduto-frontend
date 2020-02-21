@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TesteService} from '../../service/teste/teste.service';
+import { LoginService } from 'src/app/service/login/login.service';
 
 @Component({
   selector: 'app-home',
@@ -8,29 +9,41 @@ import {TesteService} from '../../service/teste/teste.service';
 })
 export class HomeComponent implements OnInit {
  
-  IsAdmin = true;
+  IsAdmin = false;
   IsFuncionario = false;
-  IsLogado = true;  
+  IsLogado = false;  
+
   constructor(
-    private testeService: TesteService
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
+    if (this.loginService.IsAuthenticate) {
+      //TODO: Validar perfil
+      this.IsAdmin = true;
+      this.IsFuncionario = false;
+      this.IsLogado = true;
+    } else {
+      this.IsAdmin = false;
+      this.IsFuncionario = false;
+      this.IsLogado = false;
+    }      
+
   }
 
   logout() {
-    this.IsLogado = false;
-    this.IsFuncionario = false;
-    this.IsAdmin = false;  
+     this.IsLogado = false;
+     this.IsFuncionario = false;
+     this.IsAdmin = false;  
 
-    //Validar Usuario e senha
-    this.testeService.teste().subscribe( data =>  {
-      console.log(data);     
-      
-      }, err => { 
-        console.log(err);
-       }    
-     );
+    //TODO: Fazer chamada logout
+    this.loginService.logout().subscribe( data =>  {  
+       alert('Usuario saiu do sistema!')
+       }, err => { 
+        alert('Ocorreu um erro ao efetuar logout!')
+         console.log(err);
+        }    
+    );
   }
 
 }
