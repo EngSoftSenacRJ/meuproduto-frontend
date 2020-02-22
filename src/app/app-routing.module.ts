@@ -14,7 +14,6 @@ const routes: Routes = [
   {path: "home", component: HomeComponent,
   children: [
     // { path: '', component:  AComponent },
-    { path: 'login', component:  LoginAdminComponent }, 
     { path: 'cadastro', component: CadastroAdminComponent },
     { path: 'editaradmin', component: EditAdminComponent },
     { path: 'pesquisar', component: PesquisarComponent },
@@ -22,6 +21,7 @@ const routes: Routes = [
     { path: 'cadastroloja', component: CadastroLojaComponent},
     { path: '', redirectTo: 'home', pathMatch: 'full'}
     ] },
+    { path: 'login', component:  LoginAdminComponent },
    { path: '**', component: NotFoundComponent }
 ];
 
