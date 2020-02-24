@@ -13,6 +13,7 @@ export class LoginService {
 
 
   IsAuthenticate: boolean;
+  username: String;
   token: String;
   
   // injetando o HttpClient
@@ -32,24 +33,24 @@ export class LoginService {
   };
 
   // Fazer Login
-  Logar(userName: String, password: String): Observable<any> {
+  Logar(userName: String, password: String): Observable<{"token":string}> {
 //{"username":"javainuse","password":"password"}
-    return this.httpClient.post<any>(Appconstants.baseAPIURL + 'authenticate', {"username":userName,"password":password},this.httpOptions)
+    return this.httpClient.post<{"token":string}>(Appconstants.baseAPIURL + 'authenticate', {"username":userName,"password":password},this.httpOptions)
       .pipe(
         retry(0),
         catchError(this.handleError)
       )
   }
 
-  logout() {
-    this.token = null;
-    this.IsAuthenticate = false;
-    return this.httpClient.post(Appconstants.baseAPIURL + 'Logout',this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
+  // logout() {
+  //   this.token = null;
+  //   this.IsAuthenticate = false;
+  //   return this.httpClient.post(Appconstants.baseAPIURL + 'Logout',this.httpOptions)
+  //     .pipe(
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
 
   // Manipulação de erros
   handleError(error: HttpErrorResponse) {

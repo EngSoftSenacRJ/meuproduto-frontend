@@ -25,19 +25,19 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="CPF" name="cpf" [textMask]="{mask: CPFmask}" [(ngModel)]="usuarioAdm.cpf" #name="ngModel"
-              required>
+            <input matInput placeholder="CPF" name="cpf"  [(ngModel)]="usuarioAdm.cpf" #name="ngModel"
+             required>
             <mat-error *ngIf="email.invalid">CPF é obrigatório.</mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Telefone de contato" name="telefone_contato" [textMask]="{mask: Telmask}"
-              [(ngModel)]="usuarioAdm.telefone_contato" #name="ngModel">
+            <input matInput type="number" placeholder="Telefone de contato" name="telefone_contato"
+              [(ngModel)]="usuarioAdm.telefonecontato" #name="ngModel">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [min]="" [max]="" name="dt_nascimento" [matDatepicker]="picker" placeholder="Data de nascimento"
-              [(ngModel)]="usuarioAdm.dt_nascimento" #name="ngModel">
+            <input matInput [min]="" [max]="" name="dataAniversario" [matDatepicker]="picker" placeholder="Data de nascimento"
+              [(ngModel)]="usuarioAdm.dataAniversario" #name="ngModel">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -56,34 +56,34 @@
           </mat-expansion-panel-header>
 
           <mat-form-field>
-            <input matInput placeholder="Nome da rua" name="rua_endereco_pessoal" [(ngModel)]="usuarioAdm.rua_endereco_pessoal" #name="ngModel">
+            <input matInput placeholder="Nome da rua" name="ruaEnderecoPessoal" [(ngModel)]="usuarioAdm.ruaEnderecoPessoal" #name="ngModel">
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Numero</mat-label>
-            <input matInput placeholder="Numero" name="numero_endereco_pessoal" [(ngModel)]="usuarioAdm.numero_endereco_pessoal"
+            <input matInput type="number" placeholder="Numero" name="numeroEnderecoPessoal" [(ngModel)]="usuarioAdm.numeroEnderecoPessoal"
               #name="ngModel">
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Cep" name="cep_endereco_pessoal" [(ngModel)]="usuarioAdm.cep_endereco_pessoal" #name="ngModel">
+            <input matInput type="number" placeholder="Cep" name="cepEnderecoPessoal" [(ngModel)]="usuarioAdm.cepEnderecoPessoal" #name="ngModel">
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Bairro</mat-label>
-            <input matInput placeholder="Numero" name="bairro_endereco_pessoal" [(ngModel)]="usuarioAdm.bairro_endereco_pessoal"
+            <input matInput placeholder="Numero" name="bairroEnderecoPessoal" [(ngModel)]="usuarioAdm.bairroEnderecoPessoal"
               #name="ngModel">
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Cidade</mat-label>
-            <input matInput placeholder="Cidade" name="cidade_endereco_pessoal" [(ngModel)]="usuarioAdm.cidade_endereco_pessoal"
+            <input matInput placeholder="Cidade" name="cidadeEnderecoPessoal" [(ngModel)]="usuarioAdm.cidadeEnderecoPessoal"
               #name="ngModel">
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Estado</mat-label>
-            <input matInput placeholder="Cidade" name="estado_endereco_pessoal" [(ngModel)]="usuarioAdm.estado_endereco_pessoal"
+            <input matInput placeholder="Cidade" name="estadoEnderecoPessoal" [(ngModel)]="usuarioAdm.estadoEnderecoPessoal"
               #name="ngModel">
           </mat-form-field>
 
@@ -102,12 +102,12 @@
           </mat-expansion-panel-header>
 
           <mat-form-field>
-            <input matInput placeholder="Email" name="email" [(ngModel)]="usuarioAdm.email" #name="ngModel" required>
+            <input matInput placeholder="Email" name="username" [(ngModel)]="usuarioAdm.username" #name="ngModel" required>
             <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Senha" name="senha" [type]="hide ? 'password' : 'text'" [(ngModel)]="usuarioAdm.senha"
+            <input matInput placeholder="Senha" name="senha" [type]="hide ? 'password' : 'text'" [(ngModel)]="usuarioAdm.password"
               #name="ngModel" required>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hide">
@@ -117,7 +117,7 @@
 
           <mat-form-field>
             <input matInput placeholder="Confirmar senha" [type]="hide ? 'password' : 'text'"
-              [(ngModel)]="usuarioAdm.senha" #name="ngModel" required>
+              [(ngModel)]="usuarioAdm.password" #name="ngModel" required>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -127,7 +127,7 @@
 
           <mat-action-row>
             <button mat-button color="warn" (click)="prevStep()">Anterior</button>
-            <button mat-button color="primary" (click)="Cadastrar(f)">Concluir</button>
+            <button mat-button color="primary" (click)="Salvar(f)">Concluir</button>
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>

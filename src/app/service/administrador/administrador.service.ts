@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Usuarioadministrador } from 'src/app/model/usuarioadministrador';
+import { LoginService } from '../login/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,9 @@ export class AdministradorService {
 
    
   // injetando o HttpClient
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    private loginService: LoginService ) { }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -22,7 +25,7 @@ export class AdministradorService {
   // Chama API de Cadastro do Administrador
   Cadastrar(usuarioAdm: Usuarioadministrador): Observable<any> {
 
-    return this.httpClient.post('http://localhost:8080/administradores',usuarioAdm,this.httpOptions)
+    return this.httpClient.post('http://localhost:8080/register',usuarioAdm,this.httpOptions)
       .pipe(
         retry(0),
         catchError(this.handleError)
@@ -33,6 +36,26 @@ export class AdministradorService {
   Editar(usuarioAdm: Usuarioadministrador): Observable<Usuarioadministrador> {
 
     return this.httpClient.put<Usuarioadministrador>('http://localhost:8080/administradores',usuarioAdm,this.httpOptions)
+      .pipe(
+        retry(0),
+        catchError(this.handleError)
+      )
+  }
+
+
+  // Carregar Administrador por username
+  CarregarporUsernameLogado(username: String, token: String): Observable<any> {
+
+    var strToken = 'Bearer ' + token
+
+    var httpOptionsToken = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': strToken
+      }),
+    };
+  
+    return this.httpClient.get('http://localhost:8080/administradores/administrador?username='+ this.loginService.username, httpOptionsToken)
       .pipe(
         retry(0),
         catchError(this.handleError)
