@@ -8,6 +8,7 @@ import { LoginService } from '../login/login.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AdministradorService {
 
    
@@ -22,6 +23,17 @@ export class AdministradorService {
     }),
   };
 
+  ConstroiHeader(): any {
+
+    return {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + this.loginService.token
+      }),
+    };
+
+  }
+
   // Chama API de Cadastro do Administrador
   Cadastrar(usuarioAdm: Usuarioadministrador): Observable<any> {
 
@@ -33,9 +45,9 @@ export class AdministradorService {
   }
 
   // Chama API de Edição do Administrador
-  Editar(usuarioAdm: Usuarioadministrador): Observable<Usuarioadministrador> {
+  Editar(usuarioAdm: Usuarioadministrador): Observable<any> {
 
-    return this.httpClient.put<Usuarioadministrador>('http://localhost:8080/administradores',usuarioAdm,this.httpOptions)
+    return this.httpClient.put<any>('http://localhost:8080/administradores',usuarioAdm, this.ConstroiHeader())
       .pipe(
         retry(0),
         catchError(this.handleError)
@@ -44,18 +56,11 @@ export class AdministradorService {
 
 
   // Carregar Administrador por username
-  CarregarporUsernameLogado(username: String, token: String): Observable<any> {
+  CarregarporUsernameLogado(): Observable<any> {
 
-    var strToken = 'Bearer ' + token
+    console.log('Token:' + this.loginService.token.valueOf());
 
-    var httpOptionsToken = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': strToken
-      }),
-    };
-  
-    return this.httpClient.get('http://localhost:8080/administradores/administrador?username='+ this.loginService.username, httpOptionsToken)
+    return this.httpClient.get('http://localhost:8080/administradores/administrador?username='+ this.loginService.username, this.ConstroiHeader())
       .pipe(
         retry(0),
         catchError(this.handleError)
@@ -87,5 +92,7 @@ export class AdministradorService {
     console.log(errorMessage);
     return throwError(errorMessage);
   };
+
+
 
 }

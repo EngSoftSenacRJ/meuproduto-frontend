@@ -29,7 +29,7 @@ export class CadastroAdminComponent implements OnInit {
   ngOnInit() {
     
     if (this.loginService.IsAuthenticate == true) {
-      this.administradorService.CarregarporUsernameLogado(this.loginService.username, this.loginService.token).subscribe( data =>  {
+      this.administradorService.CarregarporUsernameLogado().subscribe( data =>  {
         console.log(data);    
         this.usuarioAdm = data;
         }, err => { 
