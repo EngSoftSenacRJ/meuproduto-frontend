@@ -31,9 +31,10 @@ export class LoginAdminComponent implements OnInit {
        //Validar Usuario e senha
        this.loginService.Logar(this.loginForm.username, this.loginForm.password).subscribe( data =>  {
 
-        console.log(data)
-        this.loginService.token = data;
+          console.log(data.token)
+          this.loginService.token = data.token;
           this.loginService.IsAuthenticate = true;
+          this.loginService.username = this.loginForm.username;
           this.router.navigate(["home"]);
         }, err => { 
           this.retornoErro = err;

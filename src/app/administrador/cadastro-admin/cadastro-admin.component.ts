@@ -4,6 +4,7 @@ import { Usuario } from 'src/app/model/usuario';
 import { Usuarioadministrador } from 'src/app/model/usuarioadministrador';
 import { AdministradorService } from 'src/app/service/administrador/administrador.service';
 import { formatDate } from '@angular/common';
+import { LoginService } from 'src/app/service/login/login.service';
 
 @Component({
   selector: 'app-cadastro-admin',
@@ -22,9 +23,23 @@ export class CadastroAdminComponent implements OnInit {
 
   constructor(
     private administradorService: AdministradorService,
+    private loginService: LoginService,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+    if (this.loginService.IsAuthenticate == true) {
+      this.administradorService.CarregarporUsernameLogado().subscribe( data =>  {
+        console.log(data);    
+        this.usuarioAdm = data;
+        }, err => { 
+          alert('Ocorreu um erro ao carregar usuário!');
+          console.error(err);                    
+         }    
+       );
+    }
+
+  }
 
   setStep(index: number) {
     this.step = index;
@@ -46,16 +61,32 @@ export class CadastroAdminComponent implements OnInit {
             '';
   }
 
-  Cadastrar(form: NgForm) {
-    this.usuarioAdm.dt_nascimento = formatDate(this.usuarioAdm.dt_nascimento,"MM-dd-yyyy","en-US");
-    this.usuarioAdm.data_criacao = formatDate(Date.now(),"MM-dd-yyyy","en-US")
+  Salvar(form: NgForm) {
+    this.usuarioAdm.dataAniversario = "10/02/2019";
+    this.usuarioAdm.usuarioType = "ADMINISTRADOR"
     console.log(this.usuarioAdm);
-     this.administradorService.Cadastrar(this.usuarioAdm).subscribe( data =>  {
-       alert('Usuário cadastrado com sucesso!');    
-       }, err => { 
-         alert('Ocorreu um erro ao cadastrar usuário!');
-         console.error(err);                    
-        }    
-      );
+
+    if (this.usuarioAdm.id == undefined) {
+
+      this.administradorService.Cadastrar(this.usuarioAdm).subscribe( data =>  {
+        alert('Usuário cadastrado com sucesso!');    
+        }, err => { 
+          alert('Ocorreu um erro ao cadastrar usuário!');
+          console.error(err);                    
+         }    
+       );
+
+    } else {
+      
+      this.administradorService.Editar(this.usuarioAdm).subscribe( data =>  {
+        alert('Usuário alterado com sucesso!');    
+        }, err => { 
+          alert('Ocorreu um erro ao alterar usuário!');
+          console.error(err);                    
+         }    
+       );
+
+    }
+     
   }
 }

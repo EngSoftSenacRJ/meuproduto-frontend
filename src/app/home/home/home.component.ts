@@ -37,13 +37,13 @@ export class HomeComponent implements OnInit {
      this.IsAdmin = false;  
 
     //TODO: Fazer chamada logout
-    this.loginService.logout().subscribe( data =>  {  
-       alert('Usuario saiu do sistema!')
-       }, err => { 
-        alert('Ocorreu um erro ao efetuar logout!')
-         console.log(err);
-        }    
-    );
+    // this.loginService.logout().subscribe( data =>  {  
+    //    alert('Usuario saiu do sistema!')
+    //    }, err => { 
+    //     alert('Ocorreu um erro ao efetuar logout!')
+    //      console.log(err);
+    //     }    
+    // );
   }
 
 }

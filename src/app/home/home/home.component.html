@@ -26,15 +26,14 @@
         <button mat-button  *ngIf="IsAdmin" [matMenuTriggerFor]="menuAdm">Gerencia Adm.</button>
         <mat-menu #menuAdm="matMenu" color="primary">
             <button mat-menu-item color="primary" routerLink="lojas">Lojas</button>
-            <button mat-menu-item color="primary">Funcionários</button>
-            <button mat-menu-item color="primary">Categorias</button> 
+            <button mat-menu-item color="primary">Funcionários</button> 
             <button mat-menu-item color="primary">Marcas</button>
             <button mat-menu-item color="primary">Produtos</button>
             <button mat-menu-item color="primary" [matMenuTriggerFor]="menuDados">Gerenciar dados</button>   
         </mat-menu>
 
         <mat-menu #menuDados="matMenu" color="primary">
-            <button mat-menu-item routerLink="../home/editaradmin" color="primary">Editar dados pessoais</button>
+            <button mat-menu-item routerLink="../home/cadastro" color="primary">Editar dados pessoais</button>
         </mat-menu>
         <button mat-button  *ngIf="IsAdmin" [matMenuTriggerFor]="menuVis">Visibilidade</button>
         <mat-menu #menuVis="matMenu" color="primary">

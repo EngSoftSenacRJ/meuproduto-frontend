@@ -14,6 +14,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 /* HTTP  */
 import { HttpClientModule } from '@angular/common/http';
 import { LojaModule } from './loja/loja.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { LojaModule } from './loja/loja.module';
     HomeModule,
     TextMaskModule,
     HttpClientModule,
-    LojaModule
+    LojaModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
