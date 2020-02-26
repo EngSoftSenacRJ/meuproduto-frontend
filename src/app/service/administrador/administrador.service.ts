@@ -45,9 +45,8 @@ export class AdministradorService {
   }
 
   // Chama API de Edição do Administrador
-  Editar(usuarioAdm: Usuarioadministrador): Observable<any> {
-
-    return this.httpClient.put<any>('http://localhost:8080/administradores',usuarioAdm, this.ConstroiHeader())
+  Editar(id: number, usuarioAdm: Usuarioadministrador): Observable<any> {
+    return this.httpClient.put<any>('http://localhost:8080/administradores/' + id, usuarioAdm, this.ConstroiHeader())
       .pipe(
         retry(0),
         catchError(this.handleError)
@@ -57,8 +56,6 @@ export class AdministradorService {
 
   // Carregar Administrador por username
   CarregarporUsernameLogado(): Observable<any> {
-
-    console.log('Token:' + this.loginService.token.valueOf());
 
     return this.httpClient.get('http://localhost:8080/administradores/administrador?username='+ this.loginService.username, this.ConstroiHeader())
       .pipe(

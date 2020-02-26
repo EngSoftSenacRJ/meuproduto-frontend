@@ -5,6 +5,7 @@ import { Usuarioadministrador } from 'src/app/model/usuarioadministrador';
 import { AdministradorService } from 'src/app/service/administrador/administrador.service';
 import { formatDate } from '@angular/common';
 import { LoginService } from 'src/app/service/login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-admin',
@@ -13,10 +14,12 @@ import { LoginService } from 'src/app/service/login/login.service';
 })
 export class CadastroAdminComponent implements OnInit {
 
-  usuarioAdm = {} as Usuarioadministrador;
+  usuarioAdm  = {} as Usuarioadministrador;
+  usuarioLogado = {} as Usuarioadministrador;
 
   CPFmask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   Telmask = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/,/\d/,/\d/, '-',/\d/, /\d/, /\d/, /\d/,];
+  CEPmask = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/,];
 
   step = 0;
   hide = true;
@@ -24,6 +27,7 @@ export class CadastroAdminComponent implements OnInit {
   constructor(
     private administradorService: AdministradorService,
     private loginService: LoginService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -31,7 +35,19 @@ export class CadastroAdminComponent implements OnInit {
     if (this.loginService.IsAuthenticate == true) {
       this.administradorService.CarregarporUsernameLogado().subscribe( data =>  {
         console.log(data);    
-        this.usuarioAdm = data;
+        this.usuarioLogado = data;
+
+        this.usuarioAdm.nome = this.usuarioLogado.nome;
+        this.usuarioAdm.cpf = this.usuarioLogado.cpf;
+        this.usuarioAdm.dataAniversario = this.usuarioLogado.dataAniversario;
+        this.usuarioAdm.ruaEnderecoPessoal = this.usuarioLogado.ruaEnderecoPessoal;
+        this.usuarioAdm.numeroEnderecoPessoal = this.usuarioLogado.numeroEnderecoPessoal;
+        this.usuarioAdm.cepEnderecoPessoal = this.usuarioLogado.cepEnderecoPessoal;
+        this.usuarioAdm.bairroEnderecoPessoal = this.usuarioLogado.bairroEnderecoPessoal;
+        this.usuarioAdm.cidadeEnderecoPessoal = this.usuarioLogado.cidadeEnderecoPessoal;
+        this.usuarioAdm.estadoEnderecoPessoal = this.usuarioLogado.estadoEnderecoPessoal;
+        this.usuarioAdm.username = this.usuarioLogado.username;
+        this.usuarioAdm.password = this.usuarioLogado.password; 
         }, err => { 
           alert('Ocorreu um erro ao carregar usuário!');
           console.error(err);                    
@@ -53,23 +69,24 @@ export class CadastroAdminComponent implements OnInit {
     this.step--;
   }
 
-  email = new FormControl('', [Validators.required, Validators.email]);
+  // email = new FormControl('', [Validators.required, Validators.email]);
 
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('email') ? 'Not a valid email' :
-            '';
-  }
+  // getErrorMessage() {
+  //   return this.email.hasError('required') ? 'You must enter a value' :
+  //       this.email.hasError('email') ? 'Not a valid email' :
+  //           '';
+  // }
 
   Salvar(form: NgForm) {
     this.usuarioAdm.dataAniversario = formatDate(this.usuarioAdm.dataAniversario,"dd/MM/yyyy","en-US");
-    this.usuarioAdm.usuarioType = "ADMINISTRADOR"
+    this.usuarioAdm.usuarioType = "ADMINISTRADOR";
     console.log(this.usuarioAdm);
 
-    if (this.usuarioAdm.id == undefined) {
+    if (this.usuarioLogado.id == undefined) {
 
       this.administradorService.Cadastrar(this.usuarioAdm).subscribe( data =>  {
-        alert('Usuário cadastrado com sucesso!');    
+        alert('Usuário cadastrado com sucesso! \n Acesse sua caixa de entrada para validar o cadastro!');  
+        this.router.navigate(["/home"]);
         }, err => { 
           alert('Ocorreu um erro ao cadastrar usuário!');
           console.error(err);                    
@@ -77,9 +94,10 @@ export class CadastroAdminComponent implements OnInit {
        );
 
     } else {
-      
-      this.administradorService.Editar(this.usuarioAdm).subscribe( data =>  {
+      console.log(this.usuarioAdm);
+      this.administradorService.Editar(this.usuarioLogado.id, this.usuarioAdm).subscribe( data =>  {
         alert('Usuário alterado com sucesso!');    
+        this.router.navigate(["/home"]);
         }, err => { 
           alert('Ocorreu um erro ao alterar usuário!');
           console.error(err);                    

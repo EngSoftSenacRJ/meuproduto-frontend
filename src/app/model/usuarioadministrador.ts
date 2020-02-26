@@ -10,7 +10,7 @@ export interface Usuarioadministrador {
     "nome": string,
     "numeroEnderecoPessoal": string,
     "ruaEnderecoPessoal": string,
-    "telefonecontato": string,
+    "telefoneContato": number,
     "dataAniversario": string,
     "password": string
 }
