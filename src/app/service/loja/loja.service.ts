@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Appconstants } from 'src/app/helpers/appconstants';
 import { Loja } from 'src/app/model/loja';
-import { tap, retry, catchError } from 'rxjs/operators';
+import { tap, retry, catchError, map } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { tokenName } from '@angular/compiler';
 import { LoginService } from '../login/login.service';
@@ -42,10 +42,10 @@ export class LojaService {
     )
   }
 
-  listar(){
+  listar(): Observable<Loja[]>{
     return this.http.get<Loja[]>(Appconstants.baseAPIURL + 'lojas',this.ConstroiHeader())
     .pipe(
-      tap(console.log)
+      map(data => data['_embedded']['lojaResources'])   
     );
   }
 

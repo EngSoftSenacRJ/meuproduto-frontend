@@ -1,22 +1,23 @@
 <div class="container-table">
-    <div class="mat-elevation-z8">
-      <table class="table table-hover">
+  <div class="mat-elevation-z8">
+      <table class="table table-bordered table-hover">
         <thead>
           <tr>
-            <!--<th scope="col">#</th>-->
-            <th scope="col">Nome da Loja</th>
-            <th scope="col">Endereco</th>
-            <th scope="col">Ações</th>
+            <th id="id">#</th>
+            <th>Nome da Loja</th>
+            <th>Endereco</th>
+            <th>Telefone Contato</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let loja of lojas">
-            <th scope="row">1</th>
-            <!--<td>{{loja.id}}</td>-->
+            <td>{{loja.id}}</td>
             <td>{{loja.nome}}</td>
             <td>{{loja.ruaEnderecoComercial}}</td>
-            <td><button type="button" class="btn btn-primary">Primary</button></td>
-            
+            <td>{{loja.telefoneContato}}</td>
+            <td><button mat-raised-button color="primary">Detalhar</button>
+            {{' '}}<button mat-raised-button color="warn">Excluir</button></td>
           </tr>
          
         </tbody>
