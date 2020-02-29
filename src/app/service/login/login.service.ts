@@ -61,7 +61,7 @@ export class LoginService {
     } else {
       // Erro ocorreu no lado do servidor
       
-      if (error.status == 400) {
+      if (error.status == 401) {
         errorMessage = 'Usuário não encontrado ou senha incorreta.';
       } else {
         errorMessage = 'Ocorreu um erro ao efetuar operação.';

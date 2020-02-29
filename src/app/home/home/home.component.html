@@ -34,6 +34,7 @@
 
         <mat-menu #menuDados="matMenu" color="primary">
             <button mat-menu-item routerLink="../home/cadastro" color="primary">Editar dados pessoais</button>
+            <button mat-menu-item routerLink="../home/cadastro" color="primary">Excluir dados pessoais</button>
         </mat-menu>
         <button mat-button  *ngIf="IsAdmin" [matMenuTriggerFor]="menuVis">Visibilidade</button>
         <mat-menu #menuVis="matMenu" color="primary">
