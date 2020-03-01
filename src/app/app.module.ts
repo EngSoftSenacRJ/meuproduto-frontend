@@ -10,11 +10,13 @@ import { AdministradorModule } from './administrador/administrador.module';
 import { HomeModule } from './home/home.module';
 import { PesquisarComponent } from './pesquisa/pesquisar/pesquisar.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { ModalModule } from 'ngx-bootstrap';
 
 /* HTTP  */
 import { HttpClientModule } from '@angular/common/http';
 import { LojaModule } from './loja/loja.module';
-
+import { FormsModule } from '@angular/forms';
+import { ListaLojasComponent } from './loja/lista-lojas/lista-lojas.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,9 @@ import { LojaModule } from './loja/loja.module';
     HomeModule,
     TextMaskModule,
     HttpClientModule,
-    LojaModule
+    LojaModule,
+    FormsModule,
+    ModalModule.forRoot()   
   ],
   providers: [],
   bootstrap: [AppComponent]

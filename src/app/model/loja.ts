@@ -1,12 +1,14 @@
 export interface Loja {
-    nome : String;
-    razaoSocial : String;
-    cnpj : String;
-    rua: String;
-    numero: String;
-    bairro : String;
-    cidade : String;
-    estado : String;
-    cep : String;
-    telefoneContato: String;
+    id:number;
+    nome: string;
+    razaoSocial: string;
+    cnpj: string;
+    ruaEnderecoComercial: string;
+    numeroEnderecoComercial: string;
+    bairroEnderecoComercial: string;
+    cidadeEnderecoComercial: string;
+    estadoEnderecoComercial: string;
+    cepEnderecoComercial: string;
+    telefoneContato: string;
+    emailUsuarioCriadorLoja: string;
 }

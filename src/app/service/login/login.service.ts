@@ -13,7 +13,7 @@ export class LoginService {
 
 
   IsAuthenticate: boolean;
-  username: String;
+  username: string;
   token: String;
   
   // injetando o HttpClient

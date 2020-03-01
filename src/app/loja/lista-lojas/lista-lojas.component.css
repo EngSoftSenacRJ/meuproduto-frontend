@@ -7,10 +7,6 @@ table {
     width: 100%;
     left: 2%;
   }
-  
-  td, th {
-    width: 25%;
-  }
 
   .container-table {
       margin: 2%;
@@ -21,4 +17,8 @@ table {
   #btn-add{
       margin: 5px;
       float: right;
+  }
+
+  #id th{
+    width: 10px;
   }
