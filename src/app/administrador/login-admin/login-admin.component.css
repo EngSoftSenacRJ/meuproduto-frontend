@@ -1,4 +1,10 @@
-.login-wrapper{height:100%;}
+.login-wrapper{height:100%;width:100%;
+    background-image: url(../../../assets/login-background.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;}
 .positronx{text-decoration:none;color:#ffffff;}
 .box{position:relative;top:0;opacity:1;float:left;padding:60px 50px 40px 50px;width:100%;background:#fff;border-radius:10px;max-width:330px; border-style: groove;border-color: #003e7e;}
 .box.back{transform:scale(.95);-webkit-transform:scale(.95);-ms-transform:scale(.95);top:-20px;opacity:.8;z-index:-1;}

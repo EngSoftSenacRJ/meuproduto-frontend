@@ -52,45 +52,55 @@ export class LojaService {
       )
   }
 
+  
   editar(id,loja: Loja){
     return this.http.put<any>(Appconstants.baseAPIURL + 'lojas/'+id,loja,this.ConstroiHeader())
-      .pipe(
-        take(1),
-        retry(0),
-        catchError(this.handleError)
-      )
-  }
-
-  listar(): Observable<Loja[]>{
-    return this.http.get<Loja[]>(Appconstants.baseAPIURL + 'lojas',this.ConstroiHeader())
-    .pipe(
-      map(data => data['_embedded']['lojaResources'])   
-    );
-  }
-
-  remover(id){
-    console.log("service id é:"+id);
-    return this.http.delete(Appconstants.baseAPIURL + 'lojas/'+id,this.ConstroiHeader())
     .pipe(
       take(1),
       retry(0),
       catchError(this.handleError)
-    )
-  }
-
-  // Manipulação de erros
-  handleError(error: HttpErrorResponse) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Erro ocorreu no lado do client
-      errorMessage = error.error.message;
-      console.log("Erro lado cliente: "+errorMessage);
-    } else {
-      // Erro ocorreu no lado do servidor
-      errorMessage = 'Ocorreu um erro ao efetuar operação.';
-      console.log(`Código do erro: ${error.status}, ` + `menssagem: ${error.message}, `);          
+      )
     }
-    console.log(errorMessage);
-    return throwError(errorMessage);
-  };
-}
+    
+    listar(): Observable<Loja[]>{
+      return this.http.get<Loja[]>(Appconstants.baseAPIURL + 'lojas',this.ConstroiHeader())
+      .pipe(
+        map(data => data['_embedded']['lojaResources'])   
+        );
+      }
+      
+      remover(id){
+        console.log("service id é:"+id);
+        return this.http.delete(Appconstants.baseAPIURL + 'lojas/'+id,this.ConstroiHeader())
+        .pipe(
+          take(1),
+          retry(0),
+          catchError(this.handleError)
+          )
+        }
+        
+        // Manipulação de erros
+        handleError(error: HttpErrorResponse) {
+          let errorMessage = '';
+          if (error.error instanceof ErrorEvent) {
+            // Erro ocorreu no lado do client
+            errorMessage = error.error.message;
+            console.log("Erro lado cliente: "+errorMessage);
+          } else {
+            // Erro ocorreu no lado do servidor
+            errorMessage = 'Ocorreu um erro ao efetuar operação.';
+            console.log(`Código do erro: ${error.status}, ` + `menssagem: ${error.message}, `);          
+          }
+          console.log(errorMessage);
+          return throwError(errorMessage);
+        };
+
+        // getEstados(): Observable<any>{
+        //   return this.http.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
+        //     .pipe(
+        //       retry(0),
+        //       catchError(this.handleError)
+        //     )
+        // }
+      }
+      

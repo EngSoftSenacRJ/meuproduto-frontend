@@ -16,7 +16,7 @@ import { ModalModule } from 'ngx-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { LojaModule } from './loja/loja.module';
 import { FormsModule } from '@angular/forms';
-import { ListaLojasComponent } from './loja/lista-lojas/lista-lojas.component';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +34,7 @@ import { ListaLojasComponent } from './loja/lista-lojas/lista-lojas.component';
     HttpClientModule,
     LojaModule,
     FormsModule,
+    SharedModule,
     ModalModule.forRoot()   
   ],
   providers: [],

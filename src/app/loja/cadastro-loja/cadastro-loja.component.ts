@@ -5,6 +5,8 @@ import { NgForm } from '@angular/forms';
 import { LoginService } from 'src/app/service/login/login.service';
 import { Router } from '@angular/router';
 import { ListaLojasComponent } from '../lista-lojas/lista-lojas.component';
+import { BsModalRef } from 'ngx-bootstrap';
+import { AlertModalService } from 'src/app/shared/alert-modal.service';
 
 @Component({
   selector: 'app-cadastro-loja',
@@ -14,12 +16,18 @@ import { ListaLojasComponent } from '../lista-lojas/lista-lojas.component';
 export class CadastroLojaComponent implements OnInit {
 
   loja = {} as Loja;
-
   listaLoja: ListaLojasComponent;
+  bsModalRef: BsModalRef;
+
+  maskCnpj = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  maskTel = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  maskCep = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+
   constructor(
     private lojaService: LojaService,
     private loginService: LoginService,
-    private router: Router) { }
+    private router: Router,
+   private alertService: AlertModalService) { }
 
   ngOnInit() {
     if (this.lojaService.lojaSelecionada != undefined){
@@ -30,7 +38,7 @@ export class CadastroLojaComponent implements OnInit {
       },
       err => { 
         alert('Ocorreu um erro ao carregar usuário!');
-        console.error(err);                    
+        console.error(err);
        });
 
     }
@@ -42,17 +50,19 @@ export class CadastroLojaComponent implements OnInit {
       console.log("entrou no salvar parte edição");
       console.log("Loja selecionada: "+this.lojaService.lojaSelecionada)
       this.lojaService.editar(this.lojaService.lojaSelecionada,this.loja).subscribe(
-        success => alert("Dados da loja alterados") 
+        success =>{this.handleInfo();
+          this.retornar(form);}
+        //alert("Dados da loja alterados") 
       )
     }else{
     this.loja.emailUsuarioCriadorLoja = this.loginService.username;
     console.log("Loja "+this.loja.nome);
     this.lojaService.cadastrar(this.loja).subscribe( data => {
       this.retornar(form);
-      alert("Loja cadastrada!");
+      this.handleSucesso();
       
     }, err =>{
-      alert("Erro no cadastro!");
+      this.handleError();
       console.error("Esse é o erro: "+err);
     }
   );
@@ -64,4 +74,16 @@ export class CadastroLojaComponent implements OnInit {
     this.router.navigate(["home/lojas"]);
   }
 
+
+  handleError() {
+    this.alertService.showAlertDanger("Erro ao carregar os cursos");
+  };
+
+  handleSucesso() {
+    this.alertService.showAlertSucces("Loja cadastrada com sucesso");
+  };
+
+  handleInfo() {
+    this.alertService.showAlertInfo("Edição da loja realizada!");
+  };
 }

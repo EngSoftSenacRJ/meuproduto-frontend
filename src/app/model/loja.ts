@@ -11,4 +11,6 @@ export interface Loja {
     cepEnderecoComercial: string;
     telefoneContato: string;
     emailUsuarioCriadorLoja: string;
+    latitude: string;
+    longitude: string;
 }

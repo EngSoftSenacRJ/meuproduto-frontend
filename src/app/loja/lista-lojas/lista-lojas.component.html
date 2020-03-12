@@ -16,8 +16,10 @@
             <td>{{loja.nome}}</td>
             <td>{{loja.ruaEnderecoComercial}}</td>
             <td>{{loja.telefoneContato}}</td>
-            <td><button mat-raised-button color="primary" (click)="editar(loja.id)">Detalhar</button>
-            {{' '}}<button mat-raised-button color="warn" (click)="deletar(loja.id)">Excluir</button></td>
+            <td><button mat-raised-button color="primary"  (click)="editar(loja.id)"><mat-icon aria-hidden="false" aria-label="Detalhar">description</mat-icon>
+            </button>
+            {{' '}}<button mat-raised-button color="warn" (click)="deletar(loja.id)"><mat-icon aria-hidden="false" aria-label="Excluir loja">delete</mat-icon>
+            </button></td>
           </tr>
          
         </tbody>
