@@ -64,10 +64,10 @@ export class AdministradorService {
       )
   }
 
-  // Chama API de Exclusão do Administrador
+  // Chama API de Exclusão logica do Administrador
   Excluir(usuarioAdm: Usuarioadministrador): Observable<any> {
-
-    return this.httpClient.delete('http://localhost:8080/administradores/' + usuarioAdm.id,this.httpOptions)
+    console.log("service admin: "+usuarioAdm.id);
+    return this.httpClient.delete('http://localhost:8080/administradores/' + usuarioAdm.id,this.ConstroiHeader())
       .pipe(
         retry(0),
         catchError(this.handleError)

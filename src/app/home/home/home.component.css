@@ -8,3 +8,10 @@
   background-color:#003e7e;
   color: white;
 }
+
+.modal-content{
+  width: 400px;
+  right: 60px;
+  top: 40px;
+  
+}

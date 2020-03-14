@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {TesteService} from '../../service/teste/teste.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoginService } from 'src/app/service/login/login.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { Usuarioadministrador } from 'src/app/model/usuarioadministrador';
+import { AdministradorService } from 'src/app/service/administrador/administrador.service';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +15,15 @@ export class HomeComponent implements OnInit {
   IsFuncionario = false;
   IsLogado = false;  
 
+ dadosAdministrador: Usuarioadministrador;
+
+  deleteModalRef: BsModalRef;
+  @ViewChild('deleteModal', { static: true }) deleteModal;
+
   constructor(
-    private loginService: LoginService
-  ) { }
+    private loginService: LoginService,
+    private modalService: BsModalService,
+    private administradorService: AdministradorService) { }
 
   ngOnInit() {
     if (this.loginService.IsAuthenticate) {
@@ -23,6 +31,8 @@ export class HomeComponent implements OnInit {
       this.IsAdmin = true;
       this.IsFuncionario = false;
       this.IsLogado = true;
+
+      
     } else {
       this.IsAdmin = false;
       this.IsFuncionario = false;
@@ -30,6 +40,29 @@ export class HomeComponent implements OnInit {
     }      
 
   }
+
+  desativarAdmin(){
+    this.deleteModalRef = this.modalService.show(this.deleteModal, {class: 'modal-md'});
+    this.administradorService.CarregarporUsernameLogado().subscribe( data =>  {
+      console.log(data);    
+      this.dadosAdministrador = data;
+      console.log("Dados do admin: "+this.dadosAdministrador.nome);
+    })
+    console.log("dados admin: "+this.dadosAdministrador.id);
+  }
+
+  confirm(){
+    this.administradorService.Excluir(this.dadosAdministrador).subscribe(
+      success => {alert("Sua conta foi desativada")  
+      this.deleteModalRef.hide();
+      this.logout();
+
+      });
+  }
+
+  decline(){
+      this.deleteModalRef.hide();
+      }
 
   logout() {
      this.IsLogado = false;
@@ -47,5 +80,3 @@ export class HomeComponent implements OnInit {
   }
 
 }
-
-

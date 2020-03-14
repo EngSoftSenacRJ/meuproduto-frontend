@@ -34,7 +34,7 @@
 
         <mat-menu #menuDados="matMenu" color="primary">
             <button mat-menu-item routerLink="../home/cadastro" color="primary">Editar dados pessoais</button>
-            <button mat-menu-item routerLink="../home/cadastro" color="primary">Excluir dados pessoais</button>
+            <button mat-menu-item (click)="desativarAdmin()" color="primary">Excluir dados pessoais</button>
         </mat-menu>
         <button mat-button  *ngIf="IsAdmin" [matMenuTriggerFor]="menuVis">Visibilidade</button>
         <mat-menu #menuVis="matMenu" color="primary">
@@ -47,6 +47,25 @@
         </mat-menu>
     </div>
     <router-outlet></router-outlet>
+    <ng-template #deleteModal>
+        <!-- <div class="modal-content"> -->
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Desativar Conta</h4>
+          </div>
+          <div class="modal-body">
+            <p>Ao Confirmar, sua conta será desativada permanentemente. Deseja Continuar?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" (click)="confirm()">Sim, desejo excluir</button>
+            <button type="button" class="btn btn-danger" (click)="decline()">Não</button>
+          </div>
+        <!-- </div>       -->
+        <!-- <div class="modal-body text-center">
+          <p>Tem certeza que deseja excuir a sua conta?</p>
+          <button type="button" class="btn btn-default" (click)="confirm()">Sim, desejo excluir</button>
+          <button type="button" class="btn btn-danger" (click)="decline()">Não</button>
+        </div> -->
+      </ng-template>
 </nav>
 
 
