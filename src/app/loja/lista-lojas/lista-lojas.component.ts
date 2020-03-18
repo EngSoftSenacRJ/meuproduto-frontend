@@ -12,10 +12,11 @@ import { Router } from '@angular/router';
 export class ListaLojasComponent implements OnInit {
 
   lojas : Loja[];
-  deleteModalRef: BsModalRef;
+  modalRef: BsModalRef;
 
 
   @ViewChild('deleteModal', { static: true }) deleteModal;
+  @ViewChild('viewModal', { static: true }) viewModal;
 
   constructor(private service : LojaService,
     private modalService: BsModalService,
@@ -34,22 +35,26 @@ export class ListaLojasComponent implements OnInit {
   deletar(loja : Loja){
     this.service.lojaSelecionada = loja;
     console.log("Loja selecionada: "+this.service.lojaSelecionada)
-    this.deleteModalRef = this.modalService.show(this.deleteModal, {class: 'modal-sm'});
+    this.modalRef = this.modalService.show(this.deleteModal, {class: 'modal-sm'});
+  }
+
+  detalhar(loja: Loja){
+    this.service.lojaSelecionada = loja;
+    console.log("loja q pegou: "+this.service.lojaSelecionada)
+    this.modalRef = this.modalService.show(this.viewModal, {class: 'modal-lg'});
   }
 
   confirm(){
     console.log("selecionada Confirm: "+this.service.lojaSelecionada)
     this.service.remover(this.service.lojaSelecionada).subscribe(
       success => {alert("Loja Removida")  
-      this.deleteModalRef.hide();
+      this.modalRef.hide();
       this.service.listar().subscribe(dados => this.lojas = dados);
-
-
     }
     );
   }
  
   decline(): void {
-   this.deleteModalRef.hide();
+   this.modalRef.hide();
   }
 }

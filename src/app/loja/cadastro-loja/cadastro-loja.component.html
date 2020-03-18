@@ -75,7 +75,7 @@
         </div>
         <div class="form-group col-md-4">
           <mat-form-field>
-            <input matInput placeholder="CEP" [(ngModel)]="loja.cepEnderecoComercial" name="cep" [textMask]="{mask: maskCep}" required>
+            <input matInput placeholder="CEP" [(ngModel)]="loja.cepEnderecoComercial" name="cep" (blur)="consultaCEP($event.target.value, f)" [textMask]="{mask: maskCep}" required>
             <mat-error *ngIf="f.invalid">CEP é obrigatório.</mat-error>
           </mat-form-field>
         </div>

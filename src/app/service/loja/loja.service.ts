@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Appconstants } from 'src/app/helpers/appconstants';
 import { Loja } from 'src/app/model/loja';
-import { tap, retry, catchError, map, take } from 'rxjs/operators';
+import { retry, catchError, map, take } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
-import { tokenName } from '@angular/compiler';
 import { LoginService } from '../login/login.service';
 
 @Injectable({
@@ -18,10 +17,21 @@ export class LojaService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization' : 'Bearer ' + tokenName
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET',
+      'Accept': 'application/json',
+      'Authorization': 'Token token=a16284d038304b5a486525f907387fd6'
     }),
   };
+
+  ConstructHeader(): any {
+    return {
+      headers: new HttpHeaders({
+      'Accept': 'application/json',
+      'Authorization': 'Token token=a16284d038304b5a486525f907387fd6'
+      }),
+    };
+  }
 
   ConstroiHeader(): any {
     return {
@@ -78,6 +88,16 @@ export class LojaService {
           catchError(this.handleError)
           )
         }
+
+        cepService(cep){
+          return this.http.get("https://maps.googleapis.com/maps/api/geocode/json?&address="+cep+"&key=AIzaSyADyhSCsRJanNut7UWRfAvhtBdErrRf8Vc")
+          .pipe(
+            map((result:any)=>{
+              console.log(result);
+              // console.log("2: "+result.results[0].geometry.location.lat)
+              return result.results[0];
+           }));
+   }
         
         // Manipulação de erros
         handleError(error: HttpErrorResponse) {

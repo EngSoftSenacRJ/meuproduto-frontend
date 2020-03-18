@@ -19,6 +19,10 @@ export class CadastroLojaComponent implements OnInit {
   listaLoja: ListaLojasComponent;
   bsModalRef: BsModalRef;
 
+
+  cepInfos: any;
+
+
   maskCnpj = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   maskTel = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   maskCep = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
@@ -42,6 +46,42 @@ export class CadastroLojaComponent implements OnInit {
        });
 
     }
+  }
+
+  consultaCEP(cep, form){
+    console.log(cep)
+    cep = cep.replace(/\D/g, '');
+
+    if(cep !=""){
+      var validacep = /^[0-9]{8}$/;
+
+      if(validacep.test(cep)){
+        this.lojaService.cepService(cep).subscribe(data => {
+          this.populaDadosForm(data, form)
+          this.loja.latitude = data.geometry.location.lat;
+          this.loja.longitude = data.geometry.location.lng;
+          console.log(data)
+          console.log("latitude: "+data.geometry.location.lat);
+          console.log("latitude: "+data.geometry.location.lng);
+        });
+        
+      }
+    }
+  }
+
+  populaDadosForm(data, form){
+    form.setValue({
+      nome: null,
+      razaoSocial: null,
+      cnpj: null,
+      rua: null,
+      numero: null,
+      bairro: data.address_components[1].long_name,
+      cidade: data.address_components[2].long_name,
+      estado: data.address_components[3].long_name,
+      cep: data.address_components[0].long_name,
+      telefone: null,
+    })
   }
 
   salvar(form: NgForm){
