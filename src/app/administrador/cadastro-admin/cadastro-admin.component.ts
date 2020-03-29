@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, NgForm } from '@angular/forms';
-import { Usuario } from 'src/app/model/usuario';
+import { NgForm } from '@angular/forms';
 import { Usuarioadministrador } from 'src/app/model/usuarioadministrador';
 import { AdministradorService } from 'src/app/service/administrador/administrador.service';
 import { formatDate } from '@angular/common';
@@ -15,11 +14,12 @@ import { Router } from '@angular/router';
 export class CadastroAdminComponent implements OnInit {
 
   usuarioAdm  = {} as Usuarioadministrador;
-  usuarioLogado = {} as Usuarioadministrador;
+  usuarioLogado: number;
+  dataSelecionada;
 
   CPFmask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   Telmask = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/,/\d/,/\d/, '-',/\d/, /\d/, /\d/, /\d/,];
-  CEPmask = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/,];
+  CEPmask = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
 
   step = 0;
   hide = true;
@@ -31,23 +31,18 @@ export class CadastroAdminComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    
+
     if (this.loginService.IsAuthenticate == true) {
       this.administradorService.CarregarporUsernameLogado().subscribe( data =>  {
-        console.log(data);    
-        this.usuarioLogado = data;
 
-        this.usuarioAdm.nome = this.usuarioLogado.nome;
-        this.usuarioAdm.cpf = this.usuarioLogado.cpf;
-        this.usuarioAdm.dataAniversario = this.usuarioLogado.dataAniversario;
-        this.usuarioAdm.ruaEnderecoPessoal = this.usuarioLogado.ruaEnderecoPessoal;
-        this.usuarioAdm.numeroEnderecoPessoal = this.usuarioLogado.numeroEnderecoPessoal;
-        this.usuarioAdm.cepEnderecoPessoal = this.usuarioLogado.cepEnderecoPessoal;
-        this.usuarioAdm.bairroEnderecoPessoal = this.usuarioLogado.bairroEnderecoPessoal;
-        this.usuarioAdm.cidadeEnderecoPessoal = this.usuarioLogado.cidadeEnderecoPessoal;
-        this.usuarioAdm.estadoEnderecoPessoal = this.usuarioLogado.estadoEnderecoPessoal;
-        this.usuarioAdm.username = this.usuarioLogado.username;
-        this.usuarioAdm.password = this.usuarioLogado.password; 
+        this.usuarioAdm = data;
+        this.usuarioLogado = this.usuarioAdm.id;
+        this.usuarioAdm.id = null;
+        
+        let dateArray = this.usuarioAdm.dataAniversario.split("/");
+        this.dataSelecionada = new Date(dateArray[2] + "-" + dateArray[1] + "-" + dateArray[0])
+        //console.log(this.usuarioAdm.dataAniversario);
+
         }, err => { 
           alert('Ocorreu um erro ao carregar usuário!');
           console.error(err);                    
@@ -69,20 +64,16 @@ export class CadastroAdminComponent implements OnInit {
     this.step--;
   }
 
-  // email = new FormControl('', [Validators.required, Validators.email]);
-
-  // getErrorMessage() {
-  //   return this.email.hasError('required') ? 'You must enter a value' :
-  //       this.email.hasError('email') ? 'Not a valid email' :
-  //           '';
-  // }
 
   Salvar(form: NgForm) {
     this.usuarioAdm.dataAniversario = formatDate(this.usuarioAdm.dataAniversario,"dd/MM/yyyy","en-US");
+    this.usuarioAdm.telefoneContato = this.usuarioAdm.telefoneContato.toString().replace("(","").replace(")","").replace("-","");
+    this.usuarioAdm.cpf = Number(this.usuarioAdm.cpf.toString().replace(".","").replace(".","").replace("-",""));
+    this.usuarioAdm.cepEnderecoPessoal = Number(this.usuarioAdm.cepEnderecoPessoal.toString().replace(".","").replace("-",""));
     this.usuarioAdm.usuarioType = "ADMINISTRADOR";
     console.log(this.usuarioAdm);
 
-    if (this.usuarioLogado.id == undefined) {
+    if (!this.loginService.IsAuthenticate) {
 
       this.administradorService.Cadastrar(this.usuarioAdm).subscribe( data =>  {
         alert('Usuário cadastrado com sucesso! \n Acesse sua caixa de entrada para validar o cadastro!');  
@@ -95,7 +86,7 @@ export class CadastroAdminComponent implements OnInit {
 
     } else {
       console.log(this.usuarioAdm);
-      this.administradorService.Editar(this.usuarioLogado.id, this.usuarioAdm).subscribe( data =>  {
+      this.administradorService.Editar(this.usuarioLogado, this.usuarioAdm).subscribe( data =>  {
         alert('Usuário alterado com sucesso!');    
         this.router.navigate(["/home"]);
         }, err => { 

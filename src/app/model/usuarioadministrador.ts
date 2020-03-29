@@ -3,14 +3,15 @@ export interface Usuarioadministrador {
     "usuarioType": string,
     "bairroEnderecoPessoal": string,
     "cepEnderecoPessoal": number,
-    "cpf": string,
+    "cpf": number,
     "cidadeEnderecoPessoal": string,
     "username": string,
     "estadoEnderecoPessoal": string,
     "nome": string,
-    "numeroEnderecoPessoal": string,
+    "numeroEnderecoPessoal": number,
     "ruaEnderecoPessoal": string,
-    "telefoneContato": number,
+    "telefoneContato": string,
     "dataAniversario": string,
-    "password": string
+    "password": string,
+    "usernameAdministrador": string
 }

@@ -25,19 +25,19 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="CPF" name="cpf"  [(ngModel)]="usuarioAdm.cpf" #name="ngModel"
+            <input matInput placeholder="CPF" name="cpf" [textMask]="{mask: CPFmask}"  [(ngModel)]="usuarioAdm.cpf" #name="ngModel"
              required>
             <mat-error *ngIf="f.invalid">CPF é obrigatório.</mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Telefone de contato" name="telefone_contato"
+            <input matInput placeholder="Telefone de contato" name="telefone_contato" [textMask]="{mask: Telmask}"
               [(ngModel)]="usuarioAdm.telefoneContato" #name="ngModel">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [min]="" [max]="" name="dataAniversario" [matDatepicker]="picker" placeholder="Data de nascimento"
-              [(ngModel)]="usuarioAdm.dataAniversario" #name="ngModel">
+            <input matInput [min]="" [max]="" name="dataAniversario" [matDatepicker]="picker" placeholder="Nascimento"
+              [(ngModel)]="usuarioAdm.dataAniversario" #name="ngModel" [value]="dataSelecionada">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -66,7 +66,7 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput type="number" placeholder="Cep" name="cepEnderecoPessoal" [(ngModel)]="usuarioAdm.cepEnderecoPessoal" #name="ngModel">
+            <input matInput placeholder="Cep" [textMask]="{mask: CEPmask}" name="cepEnderecoPessoal" [(ngModel)]="usuarioAdm.cepEnderecoPessoal" #name="ngModel">
           </mat-form-field>
 
           <mat-form-field>
@@ -113,7 +113,7 @@
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
           </mat-form-field>
-
+<!-- 
           <mat-form-field>
             <input matInput placeholder="Confirmar senha" [type]="hide ? 'password' : 'text'"
               [(ngModel)]="usuarioAdm.password" #name="ngModel" required>
@@ -122,7 +122,7 @@
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
 
-          </mat-form-field>
+          </mat-form-field> -->
 
           <mat-action-row>
             <button mat-button color="warn" (click)="prevStep()">Anterior</button>

@@ -42,16 +42,6 @@ export class LoginService {
       )
   }
 
-  // logout() {
-  //   this.token = null;
-  //   this.IsAuthenticate = false;
-  //   return this.httpClient.post(Appconstants.baseAPIURL + 'Logout',this.httpOptions)
-  //     .pipe(
-  //       retry(2),
-  //       catchError(this.handleError)
-  //     )
-  // }
-
   // Manipulação de erros
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';

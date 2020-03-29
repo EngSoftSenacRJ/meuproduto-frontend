@@ -17,10 +17,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { LojaModule } from './loja/loja.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
+import { CadastroFuncionarioComponent } from './funcionario/cadastro-funcionario/cadastro-funcionario.component';
+import { ListaMarcaComponent } from './marca/lista-marca/lista-marca.component';
+import { CadastroMarcaComponent } from './marca/cadastro-marca/cadastro-marca.component';
+import { ListaFuncionarioComponent } from './funcionario/lista-funcionario/lista-funcionario.component';
 @NgModule({
   declarations: [
     AppComponent,
     PesquisarComponent,
+    CadastroFuncionarioComponent,
+    ListaMarcaComponent,
+    CadastroMarcaComponent,
+    ListaFuncionarioComponent,
   ],
   imports: [
     BrowserModule,

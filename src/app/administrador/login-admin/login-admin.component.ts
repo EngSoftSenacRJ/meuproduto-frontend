@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login/login.service';
-import { query } from '@angular/animations';
-import { AlertModalService } from 'src/app/shared/alert-modal.service';
 
 @Component({
   selector: 'app-login-admin',
@@ -18,28 +16,13 @@ export class LoginAdminComponent implements OnInit {
     username: '',
     password: '',
   });
-
-  status: string;
   
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
-    private loginService: LoginService,
-    private alertService: AlertModalService
+    private loginService: LoginService
   ) {}
 
   ngOnInit() {
-      this.route.queryParams.subscribe(
-        (queryParams: any) => {
-          this.status = queryParams['status'];
-        }
-      );
-
-      if(this.status == "sucesso"){
-        this.alertService.showAlertSucces("Email confirmado! ");
-      }else if(this.status == "erro"){
-        this.alertService.showAlertDanger("Email não pôde ser validado!")
-      }
   }
 
   Acessar(form: NgForm) {

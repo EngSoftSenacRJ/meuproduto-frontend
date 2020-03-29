@@ -26,8 +26,8 @@
         <button mat-button  *ngIf="IsAdmin" [matMenuTriggerFor]="menuAdm">Gerencia Adm.</button>
         <mat-menu #menuAdm="matMenu" color="primary">
             <button mat-menu-item color="primary" routerLink="lojas">Lojas</button>
-            <button mat-menu-item color="primary">Funcionários</button> 
-            <button mat-menu-item color="primary">Marcas</button>
+            <button mat-menu-item color="primary" routerLink="funcionarios">Funcionários</button> 
+            <button mat-menu-item color="primary" routerLink="marcas">Marcas</button>
             <button mat-menu-item color="primary">Produtos</button>
             <button mat-menu-item color="primary" [matMenuTriggerFor]="menuDados">Gerenciar dados</button>   
         </mat-menu>
