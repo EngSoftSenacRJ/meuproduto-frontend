@@ -36,8 +36,8 @@
             </mat-form-field>
   
             <mat-form-field class="example-full-width">
-              <input matInput [min]="" [max]="" name="dataAniversario" [matDatepicker]="picker" placeholder="Nascimento"
-                [(ngModel)]="funcionario.dataAniversario" #name="ngModel" [value]="dataSelecionada">
+              <input matInput [min]="" [max]="" name="dateF" [matDatepicker]="picker" placeholder="Nascimento"
+                [(ngModel)]="dateF" #name="ngModel" >
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -56,35 +56,41 @@
             </mat-expansion-panel-header>
   
             <mat-form-field>
-              <input matInput placeholder="Rua" name="ruaEnderecoPessoal" [(ngModel)]="funcionario.ruaEnderecoPessoal" #name="ngModel">
+              <input matInput placeholder="Rua" name="ruaEnderecoPessoal" [(ngModel)]="funcionario.ruaEnderecoPessoal" #name="ngModel" required>
+              <mat-error *ngIf="f.invalid">Rua é obrigatório.</mat-error>
             </mat-form-field>
   
             <mat-form-field>
               <mat-label>Numero</mat-label>
               <input matInput type="number" placeholder="Numero" name="numeroEnderecoPessoal" [(ngModel)]="funcionario.numeroEnderecoPessoal"
-                #name="ngModel">
+                #name="ngModel" required>
+                <mat-error *ngIf="f.invalid">Numero é obrigatório.</mat-error>
             </mat-form-field>
   
             <mat-form-field>
-              <input matInput placeholder="Cep" [textMask]="{mask: CEPmask}" name="cepEnderecoPessoal" [(ngModel)]="funcionario.cepEnderecoPessoal" #name="ngModel">
+              <input matInput placeholder="Cep" [textMask]="{mask: CEPmask}" name="cepEnderecoPessoal" [(ngModel)]="funcionario.cepEnderecoPessoal" #name="ngModel" required>
+              <mat-error *ngIf="f.invalid">Cep é obrigatório.</mat-error>
             </mat-form-field>
   
             <mat-form-field>
               <mat-label>Bairro</mat-label>
               <input matInput placeholder="Bairro" name="bairroEnderecoPessoal" [(ngModel)]="funcionario.bairroEnderecoPessoal"
-                #name="ngModel">
+                #name="ngModel" required>
+                <mat-error *ngIf="f.invalid">Bairro é obrigatório.</mat-error>
             </mat-form-field>
   
             <mat-form-field>
               <mat-label>Cidade</mat-label>
               <input matInput placeholder="Cidade" name="cidadeEnderecoPessoal" [(ngModel)]="funcionario.cidadeEnderecoPessoal"
-                #name="ngModel">
+                #name="ngModel" required>
+                <mat-error *ngIf="f.invalid">Cidade é obrigatório.</mat-error>
             </mat-form-field>
   
             <mat-form-field>
               <mat-label>Estado</mat-label>
               <input matInput placeholder="Estado" name="estadoEnderecoPessoal" [(ngModel)]="funcionario.estadoEnderecoPessoal"
-                #name="ngModel">
+                #name="ngModel" required>
+                <mat-error *ngIf="f.invalid">Estado é obrigatório.</mat-error>
             </mat-form-field>
   
             <mat-action-row>
@@ -103,11 +109,13 @@
   
             <mat-form-field>
               <input matInput placeholder="Email" name="username" [(ngModel)]="funcionario.username" #name="ngModel" required>
+              <mat-error *ngIf="f.invalid">E-mail é obrigatório.</mat-error>
             </mat-form-field>
   
             <mat-form-field>
               <input matInput placeholder="Senha" name="senha" [type]="hide ? 'password' : 'text'" [(ngModel)]="funcionario.password"
                 #name="ngModel" required>
+                <mat-error *ngIf="f.invalid">Senha é obrigatório.</mat-error>
               <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -116,7 +124,8 @@
   
             <mat-action-row>
               <button mat-button color="warn" (click)="prevStep()">Anterior</button>
-              <button mat-button color="primary" (click)="Salvar(f)">Concluir</button>
+              <button mat-button color="warn" (click)="retornar(f)">Cancelar</button>
+              <button mat-button color="primary" [disabled]="!f.valid"  (click)="Salvar(f)">Concluir</button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>

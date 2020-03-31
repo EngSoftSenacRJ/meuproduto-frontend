@@ -42,7 +42,9 @@ export class ListaFuncionarioComponent implements OnInit {
     this.service.remover(this.service.funcionarioSelecionado).subscribe(
       success => {alert("Funcionario Removido")  
       this.deleteModalRef.hide();
-      this.service.listar().subscribe(dados => this.funcionarios = dados);
+      this.service.listar().subscribe(
+        dados => this.funcionarios = dados,
+        this.funcionarios = null);
     });
   }
  

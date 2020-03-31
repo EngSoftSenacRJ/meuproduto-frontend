@@ -18,8 +18,7 @@ export class MarcaService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization' : 'Bearer ' + tokenName
+      'Content-Type':  'application/json'
     }),
   };
 
@@ -33,8 +32,6 @@ export class MarcaService {
   }
 
   cadastrar(marca : Marca): Observable<any> {
-    console.log(marca);
-    console.log(this.loginService.token);
     return this.http.post(Appconstants.baseAPIURL+'marcas', marca, this.ConstroiHeader())
     .pipe(
       retry(0),
@@ -61,8 +58,8 @@ export class MarcaService {
   }
 
   listar(): Observable<any>{
-    console.log(this.ConstroiHeader());
-    return this.http.get<any>(Appconstants.baseAPIURL + 'marcas',this.ConstroiHeader())
+    this.marcaSelecionada = undefined;
+    return this.http.get<any>(Appconstants.baseAPIURL + 'marcas/enabled',this.ConstroiHeader())
       .pipe(
         map(data => data['_embedded']['marcaProdutoResources']),
         catchError(this.handleError)

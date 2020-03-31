@@ -46,8 +46,8 @@ export class FuncionarioService {
 
   // Chama API de Listar do Funcionario
   listar(): Observable<any>{
-
-    return this.httpClient.get(Appconstants.baseAPIURL + 'funcionarios',this.ConstroiHeader())
+    this.funcionarioSelecionado = undefined;
+    return this.httpClient.get(Appconstants.baseAPIURL + 'funcionarios/enabled',this.ConstroiHeader())
       .pipe(
         map(data => data['_embedded']['usuarioFuncionarioResources']),
         catchError(this.handleError)
@@ -56,7 +56,7 @@ export class FuncionarioService {
 
   CarregarporFuncionarioSelecionado(): Observable<any> {
 
-    return this.httpClient.get('http://localhost:8080/funcionarios/'+ this.funcionarioSelecionado, this.ConstroiHeader())
+    return this.httpClient.get(Appconstants.baseAPIURL + 'funcionarios/'+ this.funcionarioSelecionado, this.ConstroiHeader())
       .pipe(
         retry(0),
         catchError(this.handleError)
@@ -65,7 +65,7 @@ export class FuncionarioService {
   
 
   // Chama API de Edição do Administrador
-  Editar(id: number, usuarioAdm: Usuarioadministrador): Observable<any> {
+  Editar(id: any, usuarioAdm: Usuarioadministrador): Observable<any> {
     return this.httpClient.put<any>(Appconstants.baseAPIURL+'funcionarios/' + id, usuarioAdm, this.ConstroiHeader())
       .pipe(
         retry(0),
@@ -76,7 +76,6 @@ export class FuncionarioService {
 
   // Chama API de Exclusão logica do Funcionario
   remover(id){
-    console.log(Appconstants.baseAPIURL + 'funcionarios/'+id);
     return this.httpClient.delete(Appconstants.baseAPIURL + 'funcionarios/'+id,this.ConstroiHeader())
     .pipe(
       take(1),

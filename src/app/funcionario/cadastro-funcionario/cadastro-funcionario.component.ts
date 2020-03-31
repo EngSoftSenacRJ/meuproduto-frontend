@@ -6,16 +6,27 @@ import { formatDate } from '@angular/common';
 import { LoginService } from 'src/app/service/login/login.service';
 import { Router } from '@angular/router';
 import { FuncionarioService } from 'src/app/service/funcionario/funcionario.service';
+import {  MAT_MOMENT_DATE_FORMATS,  MomentDateAdapter,  MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
 @Component({
   selector: 'app-cadastro-funcionario',
   templateUrl: './cadastro-funcionario.component.html',
-  styleUrls: ['./cadastro-funcionario.component.css']
+  styleUrls: ['./cadastro-funcionario.component.css'],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+  ],
 })
 export class CadastroFuncionarioComponent implements OnInit {
 
   funcionario = {} as Usuarioadministrador;
-  dataSelecionada = new Date();
+  dateF: Date;
 
   CPFmask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   Telmask = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/,/\d/,/\d/, '-',/\d/, /\d/, /\d/, /\d/,];
@@ -32,18 +43,22 @@ export class CadastroFuncionarioComponent implements OnInit {
 
   ngOnInit() {
     
-    console.log(this.funcionarioService.funcionarioSelecionado);
     if (this.funcionarioService.funcionarioSelecionado != undefined){
       this.funcionarioService.CarregarporFuncionarioSelecionado().subscribe( data => {
         this.funcionario = data;
         this.funcionario.id = null;
-        this.dataSelecionada = new Date(this.funcionario.dataAniversario);
-        console.log(this.funcionario);
+        console.log(data);
+        var dateArray = this.funcionario.dataAniversario.split("/");
+        this.dateF = new Date(dateArray[1] + "-" + dateArray[0] + "-" + dateArray[2]);
+
       },
       err => { 
         alert('Ocorreu um erro ao carregar Funcionario!');
         console.error(err);                    
        });
+    }
+    else {
+      this.funcionario = null;
     }
 
   }
@@ -62,7 +77,8 @@ export class CadastroFuncionarioComponent implements OnInit {
 
 
   Salvar(form: NgForm) {
-    this.funcionario.dataAniversario = formatDate(this.funcionario.dataAniversario,"dd/MM/yyyy","en-US");
+
+    this.funcionario.dataAniversario = formatDate(this.dateF,"dd/MM/yyyy","en-US");
     this.funcionario.telefoneContato = this.funcionario.telefoneContato.toString().replace("(","").replace(")","").replace("-","");
     this.funcionario.cpf = Number(this.funcionario.cpf.toString().replace(".","").replace(".","").replace("-",""));
     this.funcionario.cepEnderecoPessoal = Number(this.funcionario.cepEnderecoPessoal.toString().replace(".","").replace("-",""));
@@ -70,10 +86,10 @@ export class CadastroFuncionarioComponent implements OnInit {
     this.funcionario.usernameAdministrador = this.loginService.username;
 
     if (this.funcionarioService.funcionarioSelecionado == undefined) {
-      console.log(this.funcionario);
+      
       this.funcionarioService.Cadastrar(this.funcionario).subscribe( data =>  {
         alert('Funcionario cadastrado com sucesso!');  
-        this.router.navigate(["/home"]);
+        this.router.navigate(["home/funcionarios"]);
         }, err => { 
           alert('Ocorreu um erro ao cadastrar funcionario!');
           console.error(err);                    
@@ -81,10 +97,9 @@ export class CadastroFuncionarioComponent implements OnInit {
        );
 
     } else {
-      console.log(this.funcionario);
-      this.funcionarioService.Editar(this.funcionarioService.funcionarioSelecionado.id, this.funcionario).subscribe( data =>  {
+      this.funcionarioService.Editar(this.funcionarioService.funcionarioSelecionado, this.funcionario).subscribe( data =>  {
         alert('Funcionario alterado com sucesso!');    
-        this.router.navigate(["/home"]);
+        this.router.navigate(["home/funcionarios"]);
         }, err => { 
           alert('Ocorreu um erro ao alterar Funcionario!');
           console.error(err);                    
@@ -93,6 +108,10 @@ export class CadastroFuncionarioComponent implements OnInit {
 
     }
      
+  }
+
+  retornar(form: NgForm){
+    this.router.navigate(["home/funcionarios"]);
   }
 
 }

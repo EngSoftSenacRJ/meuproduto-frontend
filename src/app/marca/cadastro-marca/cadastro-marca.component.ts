@@ -21,12 +21,10 @@ export class CadastroMarcaComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    console.log(this.marcaService.marcaSelecionada);
     if (this.marcaService.marcaSelecionada != undefined){
       this.marcaService.CarregarporMarcaSelecionada().subscribe( data => {
         this.marca = data;
         this.marca.id = null;
-        console.log(this.marca);
       },
       err => { 
         alert('Ocorreu um erro ao carregar marca!');
@@ -40,14 +38,15 @@ export class CadastroMarcaComponent implements OnInit {
 
     if(this.marcaService.marcaSelecionada != undefined){
       this.marcaService.editar(this.marcaService.marcaSelecionada,this.marca).subscribe(
-        success => alert("Dados da marca alterados") 
+        data =>  {
+          this.router.navigate(["home/marcas"]);
+          alert("Dados da marca alterados");
+        }
       )
     }else{
-      console.log(this.marca);
       this.marcaService.cadastrar(this.marca).subscribe( data => {
-      this.retornar(form);
+      this.router.navigate(["home/marcas"]);
       alert("Marca cadastrada!");
-      
     }, err =>{
       alert("Erro no cadastro!");
       console.error("Erro: "+err);
@@ -55,11 +54,9 @@ export class CadastroMarcaComponent implements OnInit {
   );
 }
   }
+
   retornar(form: NgForm){
-    form.reset();
-    this.marcaService.marcaSelecionada = null;
     this.router.navigate(["home/marcas"]);
   }
-
 
 }

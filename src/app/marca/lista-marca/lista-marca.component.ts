@@ -24,8 +24,7 @@ export class ListaMarcaComponent implements OnInit {
   ngOnInit() {
     this.service.listar().subscribe(
       dados => this.marcas = dados,
-      );
-     
+      );  
   }
 
   editar(marca : Marca){
@@ -44,7 +43,9 @@ export class ListaMarcaComponent implements OnInit {
     this.service.remover(this.service.marcaSelecionada).subscribe(
       success => {alert("Marca Removida")  
       this.deleteModalRef.hide();
-      this.service.listar().subscribe(dados => this.marcas = dados);
+      this.service.listar().subscribe(
+        dados => this.marcas = dados,
+        this.marcas = null);
     });
   }
  
