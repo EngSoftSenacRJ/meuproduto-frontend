@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { CadastroAdminComponent } from './administrador/cadastro-admin/cadastro-admin.component';
-import { HomeComponent } from './home/home/home.component';
-import { LoginAdminComponent } from './administrador/login-admin/login-admin.component';
-import { PesquisarComponent } from './pesquisa/pesquisar/pesquisar.component';
-import { ListaLojasComponent } from './loja/lista-lojas/lista-lojas.component';
-import { CadastroLojaComponent } from './loja/cadastro-loja/cadastro-loja.component';
-import { ListaMarcaComponent } from './marca/lista-marca/lista-marca.component';
-import { CadastroMarcaComponent } from './marca/cadastro-marca/cadastro-marca.component';
-import { CadastroFuncionarioComponent } from './funcionario/cadastro-funcionario/cadastro-funcionario.component';
-import { ListaFuncionarioComponent } from './funcionario/lista-funcionario/lista-funcionario.component';
+import { CadastroAdminComponent } from './components/administrador/cadastro-admin/cadastro-admin.component';
+import { HomeComponent } from './components/home/home/home.component';
+import { PesquisarComponent } from './components/pesquisa/pesquisar/pesquisar.component';
+import { ListaLojasComponent } from './components/loja/lista-lojas/lista-lojas.component';
+import { CadastroLojaComponent } from './components/loja/cadastro-loja/cadastro-loja.component';
+import { ListaMarcaComponent } from './components/marca/lista-marca/lista-marca.component';
+import { CadastroMarcaComponent } from './components/marca/cadastro-marca/cadastro-marca.component';
+import { CadastroFuncionarioComponent } from './components/funcionario/cadastro-funcionario/cadastro-funcionario.component';
+import { ListaFuncionarioComponent } from './components/funcionario/lista-funcionario/lista-funcionario.component';
+import { LoginAdminComponent } from './components/administrador/login-admin/login-admin.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: "full"},

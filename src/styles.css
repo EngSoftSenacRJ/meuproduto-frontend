@@ -35,3 +35,9 @@ html, body{
     min-width: 45px;
 
   }
+
+  .fab-bottom-right {
+    position: fixed;
+     bottom: 30px;
+     right: 15px;
+    }

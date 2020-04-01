@@ -23,7 +23,7 @@ export class CadastroLojaComponent implements OnInit {
   cepInfos: any;
 
 
-  maskCnpj = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  maskCnpj = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/,];
   maskTel = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   maskCep = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
 
@@ -97,6 +97,9 @@ export class CadastroLojaComponent implements OnInit {
     }else{
     this.loja.emailUsuarioCriadorLoja = this.loginService.username;
     console.log("Loja "+this.loja.nome);
+    this.loja.cepEnderecoComercial =  this.loja.cepEnderecoComercial.replace(/\D/g, '');
+    this.loja.cnpj = this.loja.cnpj.replace(/\D/g, '');
+    this.loja.telefoneContato = this.loja.telefoneContato.replace(/\D/g, ''); 
     this.lojaService.cadastrar(this.loja).subscribe( data => {
       this.retornar(form);
       this.handleSucesso();
@@ -116,7 +119,7 @@ export class CadastroLojaComponent implements OnInit {
 
 
   handleError() {
-    this.alertService.showAlertDanger("Erro ao carregar os cursos");
+    this.alertService.showAlertDanger("Ocorreu um erro ao cadastrar a loja. Tente Novamente!");
   };
 
   handleSucesso() {
