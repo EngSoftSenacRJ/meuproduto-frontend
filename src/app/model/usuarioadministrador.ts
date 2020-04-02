@@ -13,5 +13,7 @@ export interface Usuarioadministrador {
     "telefoneContato": string,
     "dataAniversario": string,
     "password": string,
-    "usernameAdministrador": string
+    "usernameAdministrador": string,
+    "enabled": Boolean,
+    "emailConfirmado": boolean
 }

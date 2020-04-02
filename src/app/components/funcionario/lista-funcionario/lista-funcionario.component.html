@@ -8,14 +8,17 @@
               <tr>
                 <th id="id">#</th>
                 <th>Nome</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let funcionario of funcionarios">
-                <td>{{funcionario.id}}</td>
-                <td>{{funcionario.nome}}</td>
+                <td>{{ funcionario.id }}</td>
+                <td>{{ funcionario.nome }}</td>
+                <td>{{ formatarStatus(funcionario.enabled) }}</td>
                 <td class="acoes"><button mat-raised-button color="primary" (click)="editar(funcionario.id)">Detalhar</button>
-                {{' '}}<button mat-raised-button color="warn" (click)="deletar(funcionario.id)">Excluir</button></td>
+                {{' '}}<button mat-raised-button *ngIf="funcionario.enabled" color="warn" (click)="deletar(funcionario.id)">Inativar</button>
+                {{' '}}<button mat-raised-button *ngIf="!funcionario.enabled" color="primary" (click)="reativar(funcionario.id)">Reativar</button></td>
               </tr>
              
             </tbody>
@@ -36,7 +39,7 @@
   </mat-card>
     <ng-template #deleteModal>
       <div class="modal-body text-center">
-        <p>Tem certeza que deseja excuir a funcionario?</p>
+        <p>Tem certeza que deseja Inativar a funcionario?</p>
         <button type="button" class="btn btn-default" (click)="confirm()">Sim</button>
         <button type="button" class="btn btn-primary" (click)="decline()">Não</button>
       </div>

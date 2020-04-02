@@ -50,17 +50,12 @@ export class CadastroFuncionarioComponent implements OnInit {
         console.log(data);
         var dateArray = this.funcionario.dataAniversario.split("/");
         this.dateF = new Date(dateArray[1] + "-" + dateArray[0] + "-" + dateArray[2]);
-
       },
       err => { 
         alert('Ocorreu um erro ao carregar Funcionario!');
         console.error(err);                    
        });
     }
-    else {
-      this.funcionario = null;
-    }
-
   }
 
   setStep(index: number) {
@@ -83,6 +78,7 @@ export class CadastroFuncionarioComponent implements OnInit {
     this.funcionario.cpf = Number(this.funcionario.cpf.toString().replace(".","").replace(".","").replace("-",""));
     this.funcionario.cepEnderecoPessoal = Number(this.funcionario.cepEnderecoPessoal.toString().replace(".","").replace("-",""));
     this.funcionario.usuarioType = "FUNCIONARIO";
+    this.funcionario.enabled = true;
     this.funcionario.usernameAdministrador = this.loginService.username;
 
     if (this.funcionarioService.funcionarioSelecionado == undefined) {

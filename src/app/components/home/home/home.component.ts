@@ -3,6 +3,7 @@ import { LoginService } from 'src/app/service/login/login.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Usuarioadministrador } from 'src/app/model/usuarioadministrador';
 import { AdministradorService } from 'src/app/service/administrador/administrador.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
+    private router: Router,
     private modalService: BsModalService,
     private administradorService: AdministradorService) { }
 
@@ -37,7 +39,8 @@ export class HomeComponent implements OnInit {
       this.IsAdmin = false;
       this.IsFuncionario = false;
       this.IsLogado = false;
-    }      
+      this.router.navigate(["/home"]);
+    }       
 
   }
 
