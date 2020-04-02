@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Marca } from 'src/app/model/marca';
-import { ListaMarcaComponent } from '../lista-marca/lista-marca.component';
 import { MarcaService } from 'src/app/service/marca/marca.service';
-import { LoginService } from 'src/app/service/login/login.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
@@ -15,7 +13,6 @@ export class CadastroMarcaComponent implements OnInit {
 
   marca = {} as Marca;
 
-  listaLoja: ListaMarcaComponent;
   constructor(
     private marcaService: MarcaService,
     private router: Router) { }

@@ -19,6 +19,7 @@ import { ListaMarcaComponent } from './components/marca/lista-marca/lista-marca.
 import { MaterialModule } from './material-module';
 import { PesquisarComponent } from './components/pesquisa/pesquisar/pesquisar.component';
 import { SharedModule } from './shared/shared.module';
+import { CadastroProdutoComponent } from './components/produto/cadastro-produto/cadastro-produto.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SharedModule } from './shared/shared.module';
     CadastroFuncionarioComponent,
     ListaMarcaComponent,
     CadastroMarcaComponent,
-    ListaFuncionarioComponent
+    ListaFuncionarioComponent,
+    CadastroProdutoComponent
   ],
   imports: [
     BrowserModule,

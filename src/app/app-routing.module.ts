@@ -11,6 +11,7 @@ import { CadastroMarcaComponent } from './components/marca/cadastro-marca/cadast
 import { CadastroFuncionarioComponent } from './components/funcionario/cadastro-funcionario/cadastro-funcionario.component';
 import { ListaFuncionarioComponent } from './components/funcionario/lista-funcionario/lista-funcionario.component';
 import { LoginAdminComponent } from './components/administrador/login-admin/login-admin.component';
+import { CadastroProdutoComponent } from './components/produto/cadastro-produto/cadastro-produto.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: "full"},
@@ -25,6 +26,7 @@ const routes: Routes = [
     { path: 'cadastromarca', component: CadastroMarcaComponent},
     { path: 'cadastrofuncionario', component: CadastroFuncionarioComponent},
     { path: 'funcionarios', component: ListaFuncionarioComponent},
+    { path: 'cadastroproduto', component: CadastroProdutoComponent},
     { path: '', redirectTo: 'home', pathMatch: 'full'}
     ] },
     { path: 'login', component:  LoginAdminComponent },
