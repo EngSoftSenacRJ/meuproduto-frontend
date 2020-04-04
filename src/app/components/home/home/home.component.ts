@@ -70,7 +70,9 @@ export class HomeComponent implements OnInit {
   logout() {
      this.IsLogado = false;
      this.IsFuncionario = false;
-     this.IsAdmin = false;  
+     this.IsAdmin = false; 
+     
+     this.loginService.Logout();
 
     //TODO: Fazer chamada logout
     // this.loginService.logout().subscribe( data =>  {  

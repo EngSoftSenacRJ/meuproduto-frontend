@@ -43,7 +43,7 @@ export class CategoriaService {
     this.categoriaSelecionado = undefined;
     return this.http.get<any>(Appconstants.baseAPIURL + 'categorias',this.ConstroiHeader())
       .pipe(
-        map(data => data['_embedded']['categoriasResources']),
+        map(data => data['_embedded']['categoriaProdutoResources']),
         catchError(this.handleError)
       );
   }

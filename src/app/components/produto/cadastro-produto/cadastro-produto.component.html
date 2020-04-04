@@ -23,7 +23,7 @@
           <div class="form-group col-md-3">
             <mat-form-field>
                 <mat-label>Meses de Garantia</mat-label>
-                <input matInput type="number" placeholder="Meses de Garantia" name="mesesgarantia" [(ngModel)]="produto.mesesgarantia"
+                <input matInput type="number" placeholder="Meses de Garantia" name="mesesGarantia" [(ngModel)]="produto.mesesGarantia"
                   #name="ngModel" required>
                   <mat-error *ngIf="f.invalid">Meses de Garantia é obrigatório.</mat-error>
               </mat-form-field>
@@ -33,19 +33,19 @@
           <div class="form-group col-md-4">
             <mat-form-field>
                 <mat-label>Marca</mat-label>
-                <select matNativeControl [(ngModel)]="produto.marcaId" title="Marca" name="Marca" #model="ngModel" required>
-                    <option *ngFor="let marca of marcas" [value]="marca.Id"> {{ marca.nome }} </option>
-                    <mat-error *ngIf="f.invalid">Marca é obrigatório.</mat-error>
+                <select matNativeControl [(ngModel)]="produto.marcaId" title="Marca" name="marca" #model="ngModel" required>
+                    <option *ngFor="let marca of marcas" [ngValue]="marca.id"> {{ marca.nome }} </option>
                 </select>
+                <mat-error *ngIf="f.invalid">Marca é obrigatório.</mat-error>
             </mat-form-field>
           </div>
           <div class="form-group col-md-3">
             <mat-form-field>
                 <mat-label>Categoria</mat-label>
-                <select matNativeControl [(ngModel)]="produto.categoriaId" title="Categoria" name="Categoria" #model="ngModel" required>
-                    <option *ngFor="let categoria of categorias" [value]="categoria.Id"> {{ categoria.nome }} </option>
-                    <mat-error *ngIf="f.invalid">Categoria é obrigatório.</mat-error>
+                <select matNativeControl [(ngModel)]="produto.categoriaId" title="Categoria" name="categoria" #model="ngModel" required>
+                    <option *ngFor="let categoria of categorias" [ngValue]="categoria.id"> {{ categoria.nome }} </option>
                 </select>
+                <mat-error *ngIf="f.invalid">Categoria é obrigatório.</mat-error>
             </mat-form-field>
           </div>
         </div>        

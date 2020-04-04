@@ -42,6 +42,13 @@ export class LoginService {
       )
   }
 
+
+  Logout() {
+    this.IsAuthenticate = false;
+    this.token = undefined;
+    this.username = undefined;    
+  }
+
   // Manipulação de erros
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';

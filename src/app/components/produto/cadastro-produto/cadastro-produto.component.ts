@@ -36,7 +36,7 @@ export class CadastroProdutoComponent implements OnInit {
        });
 
       this.categoriaService.listar().subscribe( data => {
-        this.marcas = data;
+        this.categorias = data;
       },
       err => { 
         alert('Ocorreu um erro ao carregar categorias!');
@@ -46,7 +46,7 @@ export class CadastroProdutoComponent implements OnInit {
     }
 
   salvar(form: NgForm){
-
+    console.log(this.produto);
     this.produtoService.cadastrar(this.produto).subscribe( data => {
       this.router.navigate(["home"]);
       alert("Produto cadastrado!");
