@@ -20,7 +20,7 @@
         <button mat-button routerLink="../home/pesquisar" routerLinkActive="router-link-active"  >Pesquisar</button>
         <button mat-button *ngIf="IsFuncionario || IsAdmin" [matMenuTriggerFor]="menuFuncionario">Gerência Loja </button>
         <mat-menu #menuFuncionario="matMenu" color="primary">
-            <button mat-menu-item color="primary">Catalogo da Loja</button>
+            <button mat-menu-item color="primary" routerLink="../home/incluirproduto">Catalogo da Loja</button>
             <button mat-menu-item color="primary">Atualizar Preços</button>
         </mat-menu>
         <button mat-button  *ngIf="IsAdmin" [matMenuTriggerFor]="menuAdm">Gerencia Adm.</button>

@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
       this.IsAdmin = false;
       this.IsFuncionario = false;
       this.IsLogado = false;
-      this.router.navigate(["/home"]);
+      // this.router.navigate(["/home"]);
     }       
 
   }

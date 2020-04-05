@@ -20,6 +20,7 @@ import { MaterialModule } from './material-module';
 import { PesquisarComponent } from './components/pesquisa/pesquisar/pesquisar.component';
 import { SharedModule } from './shared/shared.module';
 import { CadastroProdutoComponent } from './components/produto/cadastro-produto/cadastro-produto.component';
+import { AssociaLojaprodutoComponent } from './components/loja/associa-lojaproduto/associa-lojaproduto.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CadastroProdutoComponent } from './components/produto/cadastro-produto/
     ListaMarcaComponent,
     CadastroMarcaComponent,
     ListaFuncionarioComponent,
-    CadastroProdutoComponent
+    CadastroProdutoComponent,
+    AssociaLojaprodutoComponent
   ],
   imports: [
     BrowserModule,
