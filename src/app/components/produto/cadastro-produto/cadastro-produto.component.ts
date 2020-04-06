@@ -51,7 +51,7 @@ export class CadastroProdutoComponent implements OnInit {
       this.router.navigate(["home"]);
       alert("Produto cadastrado!");
     }, err =>{
-      alert("Erro no cadastro!");
+      alert(err);
       console.error("Erro: "+ err);
     });
   }

@@ -52,7 +52,7 @@ export class ProdutoService {
     this.produtoSelecionado = undefined;
     return this.http.get<any>(Appconstants.baseAPIURL + 'produtos',this.ConstroiHeader())
       .pipe(
-        map(data => data['_embedded']['produtosResources']),
+        map(data => data['_embedded']['produtoResources']),
         catchError(this.handleError)
       );
   }
@@ -67,7 +67,7 @@ export class ProdutoService {
       console.log("Erro lado cliente: "+ errorMessage);
     } else {
       // Erro ocorreu no lado do servidor
-      errorMessage = 'Ocorreu um erro ao efetuar operação.';
+      errorMessage = `Ocorreu um erro ao efetuar operação. \n ${error.error.message} `;
       console.log(`Código do erro: ${error.status}, ` + `menssagem: ${error.message}, `);          
     }
     console.log(errorMessage);
