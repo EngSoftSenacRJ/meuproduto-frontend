@@ -1,3 +1,6 @@
+import { Marca } from './marca';
+import { Categoria } from './categoria';
+
 export interface Loja {
     id:number;
     nome: string;
@@ -13,4 +16,19 @@ export interface Loja {
     emailUsuarioCriadorLoja: string;
     latitude: string;
     longitude: string;
+    produtoPrecoSet: ProdutoPrecoSet[];
+}
+
+export interface ProdutoPrecoSet {
+    produtoResource: ProdutoResource;
+    preco: number;
+}
+
+export interface ProdutoResource {
+    id: number;
+    nome: string;
+    descricao: string;
+    mesesGarantia: number;
+    marca: Marca;
+    categoria: Categoria;
 }

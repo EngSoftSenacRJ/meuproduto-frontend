@@ -73,11 +73,18 @@ export class LojaService {
     }
     
     listar(): Observable<Loja[]>{
-      return this.http.get<Loja[]>(Appconstants.baseAPIURL + 'lojas',this.ConstroiHeader())
+      return this.http.get<Loja[]>(Appconstants.baseAPIURL + 'lojas?listarProdutos=true',this.ConstroiHeader())
       .pipe(
-        map(data => data['_embedded']['lojaResources'])   
+        map(data => data['_embedded']['lojaResources'])
         );
       }
+
+      listarByLoja(idLoja: number): Observable<any[]>{
+        return this.http.get<any[]>(Appconstants.baseAPIURL + 'lojas/'+idLoja+'?listarProdutos=true',this.ConstroiHeader())
+        .pipe(
+          map(data => data['produtoPrecoSet'])
+          );
+        }
       
       remover(id){
         console.log("service id é:"+id);

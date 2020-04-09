@@ -5,6 +5,7 @@ import { retry, catchError, map, take } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { LoginService } from '../login/login.service';
 import { Produto } from 'src/app/model/produto';
+import { LojasProdutos } from 'src/app/model/lojasProdutos';
 
 
 @Injectable({
@@ -13,6 +14,9 @@ import { Produto } from 'src/app/model/produto';
 export class ProdutoService {
 
   produtoSelecionado: Produto;
+
+  idAssociacaoSelecionada: number;
+
   constructor(private http: HttpClient,
     private loginService: LoginService) { }
 
@@ -39,6 +43,14 @@ export class ProdutoService {
     )
   }
 
+  associarComLoja(associacao : LojasProdutos): Observable<any> {
+    return this.http.post(Appconstants.baseAPIURL+'lojasProdutos', associacao, this.ConstroiHeader())
+    .pipe(
+      retry(0),
+      catchError(this.handleError)
+    )
+  }
+
   CarregarporProdutoSelecionado(): Observable<any> {
     
     return this.http.get(Appconstants.baseAPIURL + 'produtos/'+ this.produtoSelecionado, this.ConstroiHeader())
@@ -55,6 +67,16 @@ export class ProdutoService {
         map(data => data['_embedded']['produtoResources']),
         catchError(this.handleError)
       );
+  }
+
+  removerProdutoLoja(id){
+    console.log("service id é:"+id);
+        return this.http.delete(Appconstants.baseAPIURL + 'lojasProdutos/'+id,this.ConstroiHeader())
+        .pipe(
+          take(1),
+          retry(0),
+          catchError(this.handleError)
+          )
   }
 
 

@@ -1,17 +1,19 @@
 <div class="card-block card-header white-color">
-  
+  <form #f="ngForm">
   <mat-form-field class="col-md-3">
     <mat-label>Lojas</mat-label>
-    <mat-select title="Lojas">
-      <mat-option *ngFor="let loja of lojas" [value]="loja.id">{{loja.nome}}</mat-option>
-      </mat-select>
+    <select matNativeControl [(ngModel)]="associacao.idLoja" title="Lojas" name="loja" #model="ngModel" (change)="listarProdutosLoja($event.target.value,associacao.idLoja)" required>
+      <option *ngFor="let loja of lojas" [ngValue]="loja.id"> {{loja.nome}} </option>
+  </select>
+  <mat-error *ngIf="f.invalid">Loja é obrigatório.</mat-error>
   </mat-form-field>
 
   <mat-form-field class="col-md-3">
     <mat-label>Produtos</mat-label>
-    <mat-select title="Produtos">
-      <mat-option *ngFor="let prod of produtos" [value]="prod.id">{{prod.nome}}</mat-option>
-      </mat-select>
+    <select matNativeControl [(ngModel)]="associacao.idProduto" title="Produtos" name="produto" #model="ngModel" required>
+      <option *ngFor="let prod of produtos" [ngValue]="prod.id">{{prod.nome}}</option>
+  </select>
+  <mat-error *ngIf="f.invalid">Produto é obrigatório.</mat-error>
   </mat-form-field>
   <button class="btn-add" mat-stroked-button routerLink="../cadastroproduto"
     matTooltip="Não encontrou? Clique e cadastre"
@@ -22,46 +24,43 @@
   <mat-form-field class="col-md-2">
     <mat-label>Preço</mat-label>
     <span matPrefix>R$</span>
-    <input type="number" matInput placeholder="Preço">
+    <input type="number" matInput placeholder="Preço" [(ngModel)]="associacao.preco" name="preco" #model="ngModel">
+    <mat-error *ngIf="f.invalid">Preço é obrigatório.</mat-error>
   </mat-form-field>
 
-  <button class="col-md-2" mat-raised-button>Incluir</button>
+  <button class="col-md-2" mat-raised-button (click)="salvar(f)" [disabled]="!f.valid">Incluir</button>
+</form>
 </div>
 
-<div class="card-block card-header white-color">
-  Produtos da loja 
+    <div class="container-table">
+      <p clss="white-color" style="text-align: center">Produtos da loja</p>
+      <div class="mat-elevation-z8">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th id="id">#</th>
+                <th>Produto</th>
+                <th>Preço</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let loja of lojaPreco; index as i">
+                <td>{{loja.produtoResource.id}}</td>
+                <td>{{loja.produtoResource.nome}}</td>
+                <td>{{loja.preco}}</td>
+                <td><button mat-raised-button color="primary" >Editar preço</button>
+                {{' '}}<button mat-raised-button color="warn" (click)="deletar(loja.produtoResource.id)"><mat-icon aria-hidden="false" aria-label="Excluir assoiciação">delete</mat-icon>
+                </button></td>
+              </tr>
+            </tbody>
+          </table> 
+        </div> 
 </div>
-<div class="container-table">
-  <div class="mat-elevation-z8">
-      <table class="table table-bordered table-hover">
-        <thead>
-          <tr>
-            <th id="id">#</th>
-            <th>Nome da Loja</th>
-            <th>Produto</th>
-            <th>Preço</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let loja of lojas">
-            <td>{{loja.id}}</td>
-            <td>{{loja.nome}}</td>
-            <td>{{loja.ruaEnderecoComercial}}</td>
-            <td>{{loja.telefoneContato}}</td>
-            <td><button mat-raised-button color="primary"  ><mat-icon aria-hidden="false" aria-label="Detalhar">description</mat-icon>
-            </button>
-            {{' '}}<button mat-raised-button color="warn" ><mat-icon aria-hidden="false" aria-label="Excluir loja">delete</mat-icon>
-            </button></td>
-          </tr>
-         
-        </tbody>
-      </table>
-    
-      <div class="row justify-content-end">
-        <div class="col-6">
-          <mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
-        </div>
-      </div>
-    </div> 
-  </div> 
+<ng-template #deleteModal>
+  <div class="modal-body text-center">
+    <p>Tem certeza que deseja excuir a loja?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()">Sim</button>
+    <button type="button" class="btn btn-primary" (click)="decline()">Não</button>
+  </div>
+</ng-template>
