@@ -30,6 +30,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
   MatStepperModule,
+  MatOptionModule
 } from '@angular/material';
 
 import {MatNativeDateModule, MatRippleModule} from '@angular/material';
@@ -74,7 +75,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatTooltipModule,
     MatNativeDateModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatOptionModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule {}

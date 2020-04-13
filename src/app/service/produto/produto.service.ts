@@ -69,6 +69,15 @@ export class ProdutoService {
       );
   }
 
+  editarPrecoByLoja(lojaProd: LojasProdutos){
+    return this.http.put<any>(Appconstants.baseAPIURL + 'lojasProdutos', lojaProd, this.ConstroiHeader())
+    .pipe(
+      take(1),
+      retry(0),
+      catchError(this.handleError)
+      )
+  }
+
   removerProdutoLoja(id){
     console.log("service id é:"+id);
         return this.http.delete(Appconstants.baseAPIURL + 'lojasProdutos/'+id,this.ConstroiHeader())

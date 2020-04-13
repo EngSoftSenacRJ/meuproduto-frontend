@@ -11,7 +11,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let loja of lojas" (dblclick)="detalhar(loja.id)">
+          <tr *ngFor="let loja of lojas" (dblclick)="detalhar(loja)">
             <td>{{loja.id}}</td>
             <td>{{loja.nome}}</td>
             <td>{{loja.ruaEnderecoComercial}}</td>
@@ -35,86 +35,80 @@
       </div>
     </div> 
   </div> 
-  <ng-template #viewModal>
+  <ng-template #viewModal let-modal>
     <div class="modal-header">
         <h4 class="modal-title pull-left">Dados da Loja</h4>
       </div>
+      <form [formGroup]="editProfileForm">
       <div class="modal-body">
         <div class="form-row">
           <div class="form-group col-md-4">
             <mat-form-field>
-              <input matInput placeholder="Nome da Loja" [(ngModel)]="loja.nome" name="nome" required>
+              <mat-label>Nome da Loja:</mat-label>
+              <input matInput formControlName="nomeLoja">
             </mat-form-field>
           </div>
           <div class="form-group col-md-3">
             <mat-form-field>
-              <input matInput placeholder="Razão Social" [(ngModel)]="loja.razaoSocial" name="razaoSocial" required>
-              <mat-error *ngIf="f.invalid">Razão social é obrigatório.</mat-error>
-  
+              <mat-label>Razão Social:</mat-label>
+              <input matInput formControlName="razaoSocial">
             </mat-form-field>
           </div>
           <div class="form-group col-md-2">
             <mat-form-field>
-              <input matInput placeholder="CNPJ" [(ngModel)]="loja.cnpj" name="cnpj" [textMask]="{mask: maskCnpj}" required>
-              <mat-error *ngIf="f.invalid">CNPJ deve conter 14 dígitos</mat-error>
-  
+              <mat-label>CNPJ:</mat-label>
+              <input matInput formControlName="cnpj">
             </mat-form-field>
           </div>
           <div class="form-group col-md-3">
             <mat-form-field>
-              <input matInput placeholder="Telefone" [(ngModel)]="loja.telefoneContato" name="telefone" [textMask]="{mask: maskTel}" required>
-              <mat-error *ngIf="f.invalid">Telefone é obrigatório.</mat-error>
-  
+              <mat-label>Telefone de Contato:</mat-label>
+              <input matInput formControlName="telefoneContato">  
           </mat-form-field>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-7">
             <mat-form-field>
-              <input matInput placeholder="Endereço da loja" [(ngModel)]="loja.ruaEnderecoComercial" name="rua" required>
-              <mat-error *ngIf="f.invalid">Rua é obrigatório.</mat-error>
-  
+              <mat-label>Rua:</mat-label>
+              <input matInput formControlName="ruaEndereco">  
             </mat-form-field>
           </div>
           <div class="form-group col-md-2">
             <mat-form-field>
-              <input matInput placeholder="Número" [(ngModel)]="loja.numeroEnderecoComercial" name="numero" required>
-              <mat-error *ngIf="f.invalid">Número da loja é obrigatório.</mat-error>
-  
+              <mat-label>Numero Endereco</mat-label>
+              <input matInput formControlName="numeroEndereco">  
             </mat-form-field>
           </div>
           <div class="form-group col-md-3">
             <mat-form-field>
-              <input matInput placeholder="Bairro" [(ngModel)]="loja.bairroEnderecoComercial" name="bairro" required>
-              <mat-error *ngIf="f.invalid">Bairro da loja é obrigatório.</mat-error>
-  
+              <mat-label>Bairro:</mat-label>
+              <input matInput formControlName="bairroEndereco">
             </mat-form-field>
           </div>
       </div>
         <div class="form-row">
           <div class="form-group col-md-4">
             <mat-form-field>
-              <input matInput placeholder="Cidade" [(ngModel)]="loja.cidadeEnderecoComercial" name="cidade" required>
-              <mat-error *ngIf="f.invalid">Cidade é obrigatório.</mat-error>
-  
+              <mat-label>Cidade:</mat-label>
+              <input matInput formControlName="cidadeEndereco">
             </mat-form-field>
           </div>
           <div class="form-group col-md-4">
             <mat-form-field>
-              <mat-label>Estado</mat-label>
-              <input matInput placeholder="Estado" [(ngModel)]="loja.estadoEnderecoComercial" name="estado" required>
-              <mat-error *ngIf="f.invalid">Estado é obrigatório.</mat-error>
+              <mat-label>Estado:</mat-label>
+              <input matInput formControlName="estadoEndereco">
             </mat-form-field>
           </div>
           <div class="form-group col-md-4">
             <mat-form-field>
-              <input matInput placeholder="CEP" [(ngModel)]="loja.cepEnderecoComercial" name="cep" [textMask]="{mask: maskCep}" required>
-              <mat-error *ngIf="f.invalid">CEP é obrigatório.</mat-error>
+              <mat-label>CEP:</mat-label>
+              <input matInput formControlName="cep">
             </mat-form-field>
           </div>
         </div>
-        
       </div>
+    </form>
       <div class="modal-footer">
         <button type="button" class="btn btn-info" (click)="decline()">Fechar</button>
       </div>

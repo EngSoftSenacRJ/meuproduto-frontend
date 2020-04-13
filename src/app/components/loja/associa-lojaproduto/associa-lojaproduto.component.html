@@ -2,17 +2,17 @@
   <form #f="ngForm">
   <mat-form-field class="col-md-3">
     <mat-label>Lojas</mat-label>
-    <select matNativeControl [(ngModel)]="associacao.idLoja" title="Lojas" name="loja" #model="ngModel" (change)="listarProdutosLoja($event.target.value,associacao.idLoja)" required>
-      <option *ngFor="let loja of lojas" [ngValue]="loja.id"> {{loja.nome}} </option>
-  </select>
+    <mat-select [(ngModel)]="associacao.idLoja" title="Lojas" name="loja" #model="ngModel" (selectionChange)="listarProdutosLoja()" required>
+      <mat-option *ngFor="let loja of lojas" [value]="loja.id"> {{loja.nome}} </mat-option>
+  </mat-select>
   <mat-error *ngIf="f.invalid">Loja é obrigatório.</mat-error>
   </mat-form-field>
 
   <mat-form-field class="col-md-3">
     <mat-label>Produtos</mat-label>
-    <select matNativeControl [(ngModel)]="associacao.idProduto" title="Produtos" name="produto" #model="ngModel" required>
-      <option *ngFor="let prod of produtos" [ngValue]="prod.id">{{prod.nome}}</option>
-  </select>
+    <mat-select matNativeControl [(ngModel)]="associacao.idProduto" title="Produtos" name="produto" #model="ngModel" required>
+      <mat-option *ngFor="let prod of produtos" [value]="prod.id">{{prod.nome}}</mat-option>
+  </mat-select>
   <mat-error *ngIf="f.invalid">Produto é obrigatório.</mat-error>
   </mat-form-field>
   <button class="btn-add" mat-stroked-button routerLink="../cadastroproduto"
@@ -49,14 +49,35 @@
                 <td>{{loja.produtoResource.id}}</td>
                 <td>{{loja.produtoResource.nome}}</td>
                 <td>{{loja.preco}}</td>
-                <td><button mat-raised-button color="primary" >Editar preço</button>
-                {{' '}}<button mat-raised-button color="warn" (click)="deletar(loja.produtoResource.id)"><mat-icon aria-hidden="false" aria-label="Excluir assoiciação">delete</mat-icon>
+                <td><button mat-raised-button color="primary" (click)="openModal(editProfileModal,loja)">Editar preço</button>
+                {{' '}}<button mat-raised-button color="warn" (click)="deletar()"><mat-icon aria-hidden="false" aria-label="Excluir assoiciação">delete</mat-icon>
                 </button></td>
               </tr>
             </tbody>
           </table> 
         </div> 
 </div>
+<ng-template #editPrecoModal let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title pull-left">Alterar Preço</h4>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="example-full-width">
+          <mat-label>De:</mat-label>
+          <input matInput formControlName="precoAntigo">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Para:</mat-label>
+          <input matInput type="number" placeholder="Preço novo" formControlName="precoNovo">
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-info" (click)="decline()">Cancelar</button>
+      <button type="button" class="btn btn-success" (click)="onSubmit()">Confirmar</button>
+    </div>
+</ng-template>
 <ng-template #deleteModal>
   <div class="modal-body text-center">
     <p>Tem certeza que deseja excuir a loja?</p>

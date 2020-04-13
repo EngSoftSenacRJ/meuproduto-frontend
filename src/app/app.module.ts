@@ -1,7 +1,7 @@
 /* HTTP  */
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TextMaskModule } from 'angular2-text-mask';
@@ -21,7 +21,6 @@ import { PesquisarComponent } from './components/pesquisa/pesquisar/pesquisar.co
 import { SharedModule } from './shared/shared.module';
 import { CadastroProdutoComponent } from './components/produto/cadastro-produto/cadastro-produto.component';
 import { AssociaLojaprodutoComponent } from './components/loja/associa-lojaproduto/associa-lojaproduto.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +45,7 @@ import { AssociaLojaprodutoComponent } from './components/loja/associa-lojaprodu
     LojaModule,
     FormsModule,
     SharedModule,
+    ReactiveFormsModule,
     ModalModule.forRoot()   
   ],
   providers: [],
