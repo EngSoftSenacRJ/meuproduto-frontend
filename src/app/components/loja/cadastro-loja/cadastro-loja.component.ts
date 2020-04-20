@@ -18,11 +18,7 @@ export class CadastroLojaComponent implements OnInit {
   loja = {} as Loja;
   listaLoja: ListaLojasComponent;
   bsModalRef: BsModalRef;
-
-
-  cepInfos: any;
-
-
+  
   maskCnpj = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/,];
   maskTel = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   maskCep = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
@@ -41,7 +37,7 @@ export class CadastroLojaComponent implements OnInit {
         console.log("id da loja: "+this.loja.id);
       },
       err => { 
-        alert('Ocorreu um erro ao carregar usuário!');
+        this.alertService.showAlertDanger("Ocorreu um erro ao carregar loja. Tente Novamente!");
         console.error(err);
        });
 
@@ -70,47 +66,39 @@ export class CadastroLojaComponent implements OnInit {
   }
 
   populaDadosForm(data, form){
-    form.setValue({
-      nome: null,
-      razaoSocial: null,
-      cnpj: null,
-      rua: null,
-      numero: null,
+    form.form.patchValue({
       bairro: data.address_components[1].long_name,
       cidade: data.address_components[2].long_name,
       estado: data.address_components[3].long_name,
       cep: data.address_components[0].long_name,
-      telefone: null,
     })
   }
 
   salvar(form: NgForm){
 
     if(this.lojaService.lojaSelecionada != undefined){
-      console.log("entrou no salvar parte edição");
-      console.log("Loja selecionada: "+this.lojaService.lojaSelecionada)
       this.lojaService.editar(this.lojaService.lojaSelecionada,this.loja).subscribe(
-        success =>{this.handleInfo();
-          this.retornar(form);}
-        //alert("Dados da loja alterados") 
+        success =>{
+          this.alertService.showAlertInfo("Edição da loja realizada!");
+          this.retornar(form);
+        }
       )
     }else{
-    this.loja.emailUsuarioCriadorLoja = this.loginService.username;
-    console.log("Loja "+this.loja.nome);
-    this.loja.cepEnderecoComercial =  this.loja.cepEnderecoComercial.replace(/\D/g, '');
-    this.loja.cnpj = this.loja.cnpj.replace(/\D/g, '');
-    this.loja.telefoneContato = this.loja.telefoneContato.replace(/\D/g, ''); 
-    this.lojaService.cadastrar(this.loja).subscribe( data => {
-      this.retornar(form);
-      this.handleSucesso();
-      
-    }, err =>{
-      this.handleError();
-      console.error("Esse é o erro: "+err);
-    }
-  );
-}
+      this.loja.emailUsuarioCriadorLoja = this.loginService.username;
+      this.loja.cepEnderecoComercial =  this.loja.cepEnderecoComercial.replace(/\D/g, '');
+      this.loja.cnpj = this.loja.cnpj.replace(/\D/g, '');
+      this.loja.telefoneContato = this.loja.telefoneContato.replace(/\D/g, ''); 
+      this.lojaService.cadastrar(this.loja).subscribe( data => {
+        this.retornar(form);
+        this.alertService.showAlertSucces("Loja cadastrada com sucesso");
+        
+      }, err =>{
+        this.alertService.showAlertDanger("Ocorreu um erro ao cadastrar a loja. Tente Novamente!");
+        console.error("Esse é o erro: "+err);
+      }
+    );
   }
+}
   retornar(form: NgForm){
     form.reset();
     this.lojaService.lojaSelecionada = null;
@@ -118,15 +106,4 @@ export class CadastroLojaComponent implements OnInit {
   }
 
 
-  handleError() {
-    this.alertService.showAlertDanger("Ocorreu um erro ao cadastrar a loja. Tente Novamente!");
-  };
-
-  handleSucesso() {
-    this.alertService.showAlertSucces("Loja cadastrada com sucesso");
-  };
-
-  handleInfo() {
-    this.alertService.showAlertInfo("Edição da loja realizada!");
-  };
 }

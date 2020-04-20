@@ -11,7 +11,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let loja of lojas" (dblclick)="detalhar(loja)">
+          <tr *ngFor="let loja of lojas | paginate: { itemsPerPage: 5, currentPage: p }" (dblclick)="detalhar(loja)">
             <td>{{loja.id}}</td>
             <td>{{loja.nome}}</td>
             <td>{{loja.ruaEnderecoComercial}}</td>
@@ -24,11 +24,11 @@
          
         </tbody>
       </table>
-    
+      <div class="row justify-content-center">
+        <pagination-controls (pageChange)="p = $event" previousLabel="Anterior"
+        nextLabel="Próximo"></pagination-controls>
+      </div>
       <div class="row justify-content-end">
-        <div class="col-6">
-          <mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
-        </div>
         <div class="fab-bottom-right">
           <button id="btn-add" mat-fab routerLink="../cadastroloja" color="primary"><mat-icon>add</mat-icon></button>
         </div>

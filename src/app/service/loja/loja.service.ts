@@ -101,7 +101,6 @@ export class LojaService {
           .pipe(
             map((result:any)=>{
               console.log(result);
-              // console.log("2: "+result.results[0].geometry.location.lat)
               return result.results[0];
            }));
    }

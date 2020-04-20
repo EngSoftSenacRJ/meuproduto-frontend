@@ -88,11 +88,7 @@ export class AssociaLojaprodutoComponent implements OnInit {
   }    
 
   salvar(form: NgForm){
-    // console.log("Loja: "+this.associacao.idLoja);
-    // console.log("Produto: "+this.associacao.idProduto);
-    // console.log("Preco: "+this.associacao.preco);
-
-    this.produtoService.associarComLoja(this.associacao).subscribe( data => {
+      this.produtoService.associarComLoja(this.associacao).subscribe( data => {
       alert("Produto cadastrado!");
       form.reset();
     }, err =>{
@@ -116,5 +112,9 @@ export class AssociaLojaprodutoComponent implements OnInit {
 
   retornar(form: NgForm){
     form.reset();
+  }
+
+  decline(): void {
+    this.modalService.hide(1);
   }
 }

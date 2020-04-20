@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     if (this.loginService.IsAuthenticate) {
-      //TODO: Validar perfil
       this.IsAdmin = true;
       this.IsFuncionario = false;
       this.IsLogado = true;

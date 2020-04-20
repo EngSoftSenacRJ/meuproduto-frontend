@@ -54,7 +54,11 @@
                 </button></td>
               </tr>
             </tbody>
-          </table> 
+          </table>
+          <div class="row justify-content-center">
+            <pagination-controls (pageChange)="p = $event" previousLabel="Anterior"
+            nextLabel="Próximo"></pagination-controls>
+          </div>
         </div> 
 </div>
 <ng-template #editPrecoModal let-modal>

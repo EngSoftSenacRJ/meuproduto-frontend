@@ -36,11 +36,13 @@ import {
 import {MatNativeDateModule, MatRippleModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {NgxPaginationModule} from 'ngx-pagination';
 /**
  * NgModule that includes all Material modules that are required to serve the demo-app.
  */
 @NgModule({
   exports: [
+    NgxPaginationModule,
     FlexLayoutModule,
     MatAutocompleteModule,
     MatButtonModule,

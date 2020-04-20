@@ -4,6 +4,9 @@ import { LojaService } from 'src/app/service/loja/loja.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { AlertModalService } from 'src/app/shared/alert-modal.service';
+// import { parsePhoneNumberFromString } from 'libphonenumber-js';
+
 
 @Component({
   selector: 'app-lista-lojas',
@@ -14,7 +17,6 @@ export class ListaLojasComponent implements OnInit {
 
   lojas : Loja[];
   modalRef: BsModalRef;
-
   editProfileForm: FormGroup;
 
   @ViewChild('deleteModal', { static: true }) deleteModal;
@@ -23,7 +25,8 @@ export class ListaLojasComponent implements OnInit {
   constructor(private service : LojaService,
     private modalService: BsModalService,
     private router: Router,
-    private fb: FormBuilder){}
+    private fb: FormBuilder,
+    private alertService: AlertModalService){}
 
   ngOnInit() {
     this.service.listar().subscribe(dados => this.lojas = dados);
@@ -75,7 +78,7 @@ export class ListaLojasComponent implements OnInit {
   confirm(){
     console.log("selecionada Confirm: "+this.service.lojaSelecionada)
     this.service.remover(this.service.lojaSelecionada).subscribe(
-      success => {alert("Loja Removida")  
+      success => {this.alertService.showAlertSucces("Loja foi removida com sucesso!");
       this.modalRef.hide();
       this.service.listar().subscribe(dados => this.lojas = dados);
     }
@@ -85,4 +88,11 @@ export class ListaLojasComponent implements OnInit {
   decline(): void {
     this.modalService.hide(1);
   }
+
+  // formatarTelefone(numero:any){
+  //   let telefone: any = parsePhoneNumberFromString(numero,'BR');
+  //   console.log("telefone: "+telefone);
+  //   return telefone
+  // }
+
 }

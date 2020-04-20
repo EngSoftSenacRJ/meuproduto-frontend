@@ -84,7 +84,7 @@
     <mat-divider></mat-divider>
     <mat-card-actions>
       <button mat-button (click)="retornar(f)">Cancelar</button>
-      <button mat-button class="btn-info" (click)="salvar(f)">Confirmar</button>
+      <button mat-button class="btn-info" (click)="salvar(f)" [disabled]="!f.valid">Confirmar</button>
     </mat-card-actions>
   </form>
 </mat-card>
