@@ -65,9 +65,15 @@
                 <th (click)="sort('produto')">Produto
                   <span *ngIf="key =='produto'">{{reverse ? '▲' : '▼'}}</span>
                 </th>
-                <th>Categoria</th>
-                <th>Marca</th>
-                <th>Preço</th>
+                <th (click)="sort('categoria')">Categoria 
+                  <span *ngIf="key =='categoria'">{{reverse ? '▲' : '▼'}}</span>
+                </th>
+                <th (click)="sort('marca')">Marca
+                  <span *ngIf="key =='marca'">{{reverse ? '▲' : '▼'}}</span>
+                </th>
+                <th (click)="sort('preco')">Preço
+                  <span *ngIf="key =='preco'">{{reverse ? '▲' : '▼'}}</span>
+                </th>
                 <th>Ações</th>
               </tr>
             </thead>
