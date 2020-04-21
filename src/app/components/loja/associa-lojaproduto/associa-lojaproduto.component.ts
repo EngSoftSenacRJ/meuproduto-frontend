@@ -18,6 +18,13 @@ export class AssociaLojaprodutoComponent implements OnInit {
 
   resetar: boolean;
 
+  key: string = 'produto'; // Define um valor padrão, para quando inicializar o componente
+    reverse: boolean = false;
+    sort(key) {
+        this.key = key;
+        this.reverse = !this.reverse;
+    }
+
   associacao= {} as LojasProdutos;
   lojaPreco: any;
   produtos: Produto[];
@@ -89,8 +96,11 @@ export class AssociaLojaprodutoComponent implements OnInit {
 
   salvar(form: NgForm){
       this.produtoService.associarComLoja(this.associacao).subscribe( data => {
-      alert("Produto cadastrado!");
-      form.reset();
+        this.alertService.showAlertSucces("Produto foi incluído na loja!");
+        this.listarProdutosLoja();
+      form.form.get('preco').reset();
+      form.form.get('produto').reset();
+      
     }, err =>{
       alert(err);
       console.error("Erro: "+ err);
@@ -103,8 +113,9 @@ export class AssociaLojaprodutoComponent implements OnInit {
   }
 
   confirmRemocaoAssoc(){
+    console.log("id associacao: "+this.produtoService.idAssociacaoSelecionada);
     this.produtoService.removerProdutoLoja(this.produtoService.idAssociacaoSelecionada).subscribe(
-      success => {alert("Produto desassociado com sucesso!!!")  
+      success => {this.alertService.showAlertSucces("Produto foi retirado da Loja!");  
       this.modalRef.hide();
       this.listarProdutosLoja();
     });

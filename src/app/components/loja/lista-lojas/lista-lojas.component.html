@@ -1,17 +1,34 @@
 <div class="container-table">
-  <div class="mat-elevation-z8">
+  <div class="mat-elevation-z8">    
+    <div class="row">
+      <div class="col-8">
+        <div class="titulo-table">
+         <h6 class="titulo">Lojas cadastradas</h6>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="filtro-table">
+          <mat-form-field class="filtro">
+            <mat-label>Busca: </mat-label>
+            <input matInput name="search" [(ngModel)]="filter">
+          </mat-form-field>
+        </div>
+      </div>
+    </div> 
       <table class="table table-bordered table-hover">
         <thead>
           <tr>
             <th id="id">#</th>
-            <th>Nome da Loja</th>
+            <th (click)="sort('nome')">Nome da Loja
+              <span *ngIf="key =='nome'">{{reverse ? '▲' : '▼'}}</span>
+            </th>
             <th>Endereco</th>
             <th>Telefone Contato</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let loja of lojas | paginate: { itemsPerPage: 5, currentPage: p }" (dblclick)="detalhar(loja)">
+          <tr *ngFor="let loja of lojas |filter:filter| orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }" (dblclick)="detalhar(loja)">
             <td>{{loja.id}}</td>
             <td>{{loja.nome}}</td>
             <td>{{loja.ruaEnderecoComercial}}</td>

@@ -7,14 +7,21 @@
 min-width: 43px;
 line-height: 25px;
 padding: 0;
+margin-left:10px;
 }
 
 table {
   width: 100%;
 }
 
-.container-table {
-    margin: 5px;
-    background-color: white;
+#lojaInput{
+  width: 100%;
+}
 
+#prodInput{
+  width: 80%;
+}
+
+#precoInput{
+  width: 100%;
 }

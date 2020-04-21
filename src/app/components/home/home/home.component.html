@@ -1,7 +1,7 @@
 <nav fxFlexFill class="home">
     <mat-toolbar>
         <!-- <mat-icon style="color: red;"> location_on</mat-icon> <span class="title"><span style="color: black;">Meu</span>Produto</span> -->
-        <img src="../../../assets/meuproduto.png"  width="240px" height="60px"/>
+        <img src="../../../assets/meuproduto.png"  width="240px" height="60px" routerLink=""/>
         <!-- This fills the remaining space of the current row -->
         <span class="example-fill-remaining-space"></span>
         <span class="example-spacer"></span>
@@ -11,7 +11,7 @@
             <button mat-raised-button color="primary" type="button" routerLink="../home/cadastro" routerLinkActive="router-link-active" (click)="logout()" >Cadastrar</button>
         </div>
         <div *ngIf="IsLogado">
-            Bem-vindo, fulano! &nbsp; <button mat-raised-button color="primary" type="button" routerLink="../home" routerLinkActive="router-link-active" (click)="logout()"><mat-icon>power_settings_new</mat-icon></button>
+            Bem-vindo, {{nome}}! &nbsp; <button mat-raised-button class="btn-Logout" type="button" routerLink="../home" routerLinkActive="router-link-active" (click)="logout()" title="Logout"><mat-icon>power_settings_new</mat-icon></button>
         </div>           
         <!-- <a routerLink="../cadastro" class="nodecoration">Login</a> 
        <a routerLink="../cadastro" class="nodecoration">Cadastro</a>  -->
@@ -21,7 +21,6 @@
         <button mat-button *ngIf="IsFuncionario || IsAdmin" [matMenuTriggerFor]="menuFuncionario">Gerência Loja </button>
         <mat-menu #menuFuncionario="matMenu" color="primary">
             <button mat-menu-item color="primary" routerLink="../home/incluirproduto">Catalogo da Loja</button>
-            <button mat-menu-item color="primary">Atualizar Preços</button>
         </mat-menu>
         <button mat-button  *ngIf="IsAdmin" [matMenuTriggerFor]="menuAdm">Gerencia Adm.</button>
         <mat-menu #menuAdm="matMenu" color="primary">
@@ -34,7 +33,7 @@
 
         <mat-menu #menuDados="matMenu" color="primary">
             <button mat-menu-item routerLink="../home/cadastro" color="primary">Editar dados pessoais</button>
-            <button mat-menu-item (click)="desativarAdmin()" color="primary">Excluir dados pessoais</button>
+            <button mat-menu-item (click)="desativarAdmin()" color="primary">Excluir conta</button>
         </mat-menu>
         <button mat-button  *ngIf="IsAdmin" [matMenuTriggerFor]="menuVis">Visibilidade</button>
         <mat-menu #menuVis="matMenu" color="primary">

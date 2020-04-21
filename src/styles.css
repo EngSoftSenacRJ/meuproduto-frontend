@@ -41,3 +41,32 @@ html, body{
      bottom: 30px;
      right: 15px;
     }
+
+    .container-table {
+      margin: 2%;
+      background-color: white;
+
+  }
+    .titulo{
+      margin-top: 2%;
+      margin-left: 25%;
+    }
+    
+     .titulo-table{
+      display: flex;
+      justify-content: center;
+     } 
+    
+    .filtro-table{
+      display: flex;
+      justify-content: flex-end;
+    }
+      
+      .filtro {
+        font-size: 14px;
+        width: 80%;
+        margin-top: 1px;
+        margin-bottom: 2px;
+        right: 10px;
+      }
+    

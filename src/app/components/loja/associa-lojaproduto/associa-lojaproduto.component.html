@@ -1,56 +1,85 @@
-<div class="card-block card-header white-color">
+<div class="container-table card-block card-header">
   <form #f="ngForm">
-  <mat-form-field class="col-md-3">
-    <mat-label>Lojas</mat-label>
-    <mat-select [(ngModel)]="associacao.idLoja" title="Lojas" name="loja" #model="ngModel" (selectionChange)="listarProdutosLoja()" required>
-      <mat-option *ngFor="let loja of lojas" [value]="loja.id"> {{loja.nome}} </mat-option>
-  </mat-select>
-  <mat-error *ngIf="f.invalid">Loja é obrigatório.</mat-error>
-  </mat-form-field>
 
-  <mat-form-field class="col-md-3">
-    <mat-label>Produtos</mat-label>
-    <mat-select matNativeControl [(ngModel)]="associacao.idProduto" title="Produtos" name="produto" #model="ngModel" required>
-      <mat-option *ngFor="let prod of produtos" [value]="prod.id">{{prod.nome}}</mat-option>
-  </mat-select>
-  <mat-error *ngIf="f.invalid">Produto é obrigatório.</mat-error>
-  </mat-form-field>
-  <button class="btn-add" mat-stroked-button routerLink="../cadastroproduto"
-    matTooltip="Não encontrou? Clique e cadastre"
-    aria-label="Button that displays a tooltip in various positions">
-    <mat-icon>add</mat-icon>
-  </button>
-  
-  <mat-form-field class="col-md-2">
-    <mat-label>Preço</mat-label>
-    <span matPrefix>R$</span>
-    <input type="number" matInput placeholder="Preço" [(ngModel)]="associacao.preco" name="preco" #model="ngModel">
-    <mat-error *ngIf="f.invalid">Preço é obrigatório.</mat-error>
-  </mat-form-field>
+    <div class="row justify-content-between">
+      <div class="col-3">
+        <mat-form-field id="lojaInput">
+          <mat-label>Lojas</mat-label>
+          <mat-select [(ngModel)]="associacao
+          .idLoja" title="Lojas" name="loja" #model="ngModel" (selectionChange)="listarProdutosLoja()" required>
+            <mat-option *ngFor="let loja of lojas" [value]="loja.id"> {{loja.nome}} </mat-option>
+        </mat-select>
+        <mat-error *ngIf="f.invalid">Loja é obrigatório.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-4">
+        <mat-form-field id="prodInput">
+          <mat-label>Produtos</mat-label>
+          <mat-select matNativeControl [(ngModel)]="associacao.idProduto" title="Produtos" name="produto" #model="ngModel" required>
+            <mat-option *ngFor="let prod of produtos" [value]="prod.id">{{prod.nome}}</mat-option>
+        </mat-select>
+        <!-- <mat-error *ngIf="f.invalid">Produto é obrigatório.</mat-error> -->
+        </mat-form-field>
+        <button class="btn-add" mat-stroked-button routerLink="../cadastroproduto"
+          matTooltip="Não encontrou? Clique e cadastre"
+          aria-label="Button that displays a tooltip in various positions">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="col-3">
+        <mat-form-field id="precoInput"> 
+          <mat-label>Preço</mat-label>
+          <span matPrefix>R$</span>
+          <input type="number" matInput placeholder="Preço" [(ngModel)]="associacao.preco" name="preco" #model="ngModel" required>
+          <!-- <mat-error *ngIf="f.invalid">Preço é obrigatório.</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="row col-2 align-items-center">
+      <button class="col-8"  mat-raised-button (click)="salvar(f)" [disabled]="!f.valid">Incluir</button>
+      </div>
+    </div>
 
-  <button class="col-md-2" mat-raised-button (click)="salvar(f)" [disabled]="!f.valid">Incluir</button>
 </form>
 </div>
-
     <div class="container-table">
-      <p clss="white-color" style="text-align: center">Produtos da loja</p>
       <div class="mat-elevation-z8">
+        <div class="row">
+          <div class="col-8">
+            <div class="titulo-table">
+             <h6 class="titulo">Produtos da Loja </h6>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="filtro-table">
+              <mat-form-field class="filtro">
+                <mat-label>Busca: </mat-label>
+                <input matInput name="search" [(ngModel)]="filter">
+              </mat-form-field>
+            </div>
+          </div>
+        </div> 
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
                 <th id="id">#</th>
-                <th>Produto</th>
+                <th (click)="sort('produto')">Produto
+                  <span *ngIf="key =='produto'">{{reverse ? '▲' : '▼'}}</span>
+                </th>
+                <th>Categoria</th>
+                <th>Marca</th>
                 <th>Preço</th>
                 <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let loja of lojaPreco; index as i">
+              <tr *ngFor="let loja of lojaPreco |filter:filter| orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }">
                 <td>{{loja.produtoResource.id}}</td>
                 <td>{{loja.produtoResource.nome}}</td>
+                <td>{{loja.produtoResource.categoria.nome}}</td>
+                <td>{{loja.produtoResource.marca.nome}}</td>
                 <td>{{loja.preco}}</td>
                 <td><button mat-raised-button color="primary" (click)="openModal(editProfileModal,loja)">Editar preço</button>
-                {{' '}}<button mat-raised-button color="warn" (click)="deletar()"><mat-icon aria-hidden="false" aria-label="Excluir assoiciação">delete</mat-icon>
+                {{' '}}<button mat-raised-button color="warn" (click)="removeAssociacao(loja.produtoResource.id)"><mat-icon aria-hidden="false" aria-label="Excluir assoiciação">delete</mat-icon>
                 </button></td>
               </tr>
             </tbody>
@@ -61,6 +90,7 @@
           </div>
         </div> 
 </div>
+
 <ng-template #editPrecoModal let-modal>
   <div class="modal-header">
       <h4 class="modal-title pull-left">Alterar Preço</h4>
@@ -85,7 +115,7 @@
 <ng-template #deleteModal>
   <div class="modal-body text-center">
     <p>Tem certeza que deseja excuir a loja?</p>
-    <button type="button" class="btn btn-default" (click)="confirm()">Sim</button>
+    <button type="button" class="btn btn-default" (click)="confirmRemocaoAssoc()">Sim</button>
     <button type="button" class="btn btn-primary" (click)="decline()">Não</button>
   </div>
 </ng-template>

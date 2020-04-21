@@ -5,7 +5,6 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
-// import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 
 @Component({
@@ -14,6 +13,13 @@ import { AlertModalService } from 'src/app/shared/alert-modal.service';
   styleUrls: ['./lista-lojas.component.css']
 })
 export class ListaLojasComponent implements OnInit {
+
+  key: string = 'nome'; // Define um valor padrão, para quando inicializar o componente
+    reverse: boolean = false;
+    sort(key) {
+        this.key = key;
+        this.reverse = !this.reverse;
+    }
 
   lojas : Loja[];
   modalRef: BsModalRef;

@@ -1,15 +1,9 @@
 
-  .mat-form-field {
+  /* .mat-form-field {
     font-size: 14px;
     width: 100%;
     left: 2%;
-  }
-
-  .container-table {
-      margin: 2%;
-      background-color: white;
-
-  }
+  } */
 
   #btn-add{
       margin: 5px;
@@ -19,3 +13,4 @@
   #id th{
     width: 10px;
   }
+

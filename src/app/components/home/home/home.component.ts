@@ -14,7 +14,8 @@ export class HomeComponent implements OnInit {
  
   IsAdmin = false;
   IsFuncionario = false;
-  IsLogado = false;  
+  IsLogado = false; 
+  nome:String = "Fulano"; 
 
  dadosAdministrador: Usuarioadministrador;
 
@@ -39,7 +40,9 @@ export class HomeComponent implements OnInit {
       this.IsFuncionario = false;
       this.IsLogado = false;
       // this.router.navigate(["/home"]);
-    }       
+    }    
+    
+    
 
   }
 
