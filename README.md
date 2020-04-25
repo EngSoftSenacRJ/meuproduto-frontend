@@ -30,3 +30,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # meuproduto-frontend
 FrontEnd do projeto MeuProduto
 >>>>>>> c8510e00799ffc7aeaa14365727a212854954c24
+# andre
