@@ -1,4 +1,5 @@
-// @ts-check
+// @ts-nocheck
+
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
@@ -28,5 +29,35 @@ exports.config = {
       project: require('path').join(__dirname, './tsconfig.json')
     });
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
-  }
+    var jasmineReporters = require('jasmine-reporters');
+
+    jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({
+      consolidateAll: true,
+      filePrefix: 'guitest-xmloutput',
+      savePath: '.'
+}));
+  },
+  onComplete: function() {
+    var browserName, browserVersion;
+    var capsPromise = browser.getCapabilities();
+  capsPromise.then(function (caps) {
+       browserName = caps.get('browserName');
+       browserVersion = caps.get('version');
+      var platform = caps.get('platform');
+  var HTMLReport = require('protractor-html-reporter-2');
+  var testConfig = {
+           reportTitle: 'Protractor Test Execution Report',
+           outputPath: './',
+           outputFilename: 'ProtractorTestReport',
+           screenshotPath: './screenshots',
+           testBrowser: browserName,
+           browserVersion: browserVersion,
+           modifiedSuiteName: false,
+           screenshotsOnlyOnFailure: true,
+           testPlatform: platform
+       };
+       new HTMLReport().from('guitest-xmloutput.xml', testConfig);
+   });
+}
+
 };

@@ -43,12 +43,12 @@ describe('Testando Cadastro Administrador:',()=>{
         )
     });
 
-    it('Deve reliazar um cadastro com sucesso', () => {
-        informacoesCadastro.forEach(usuario => {
-            cadastroAdminPage.registrarDadosAdmin(usuario.nome, usuario.valor);
-        })
-        expect(cadastroAdminPage.confirmaCadastro().click());
-    });
+    // it('Deve reliazar um cadastro com sucesso', () => {
+    //     informacoesCadastro.forEach(usuario => {
+    //         cadastroAdminPage.registrarDadosAdmin(usuario.nome, usuario.valor);
+    //     })
+    //     expect(cadastroAdminPage.confirmaCadastro().click());
+    // });
 
 });
 

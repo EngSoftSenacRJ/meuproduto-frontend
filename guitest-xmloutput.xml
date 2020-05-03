@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="10" time="45.384">
+ <testsuite name="Testando Cadastro Administrador:" timestamp="2020-05-03T00:31:29" hostname="localhost" time="11.995" errors="0" tests="2" skipped="0" disabled="0" failures="1">
+  <testcase classname="Testando Cadastro Administrador:" name="Deve ir para página de cadastro" time="6.949" />
+  <testcase classname="Testando Cadastro Administrador:" name="Deve reliazar um cadastro com sucesso" time="5.043">
+   <failure type="exception" message="Failed: element not interactable
+  (Session info: chrome=81.0.4044.129)
+  (Driver info: chromedriver=81.0.4044.20 (f006328e39a9769596eb506c8841c3004b24e747-refs/branch-heads/4044@{#244}),platform=Windows NT 10.0.18363 x86_64)"><![CDATA[WebDriverError: element not interactable
+  (Session info: chrome=81.0.4044.129)
+  (Driver info: chromedriver=81.0.4044.20 (f006328e39a9769596eb506c8841c3004b24e747-refs/branch-heads/4044@{#244}),platform=Windows NT 10.0.18363 x86_64)
+    at Object.checkLegacyResponse (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\selenium-webdriver\lib\error.js:546:15)
+    at parseHttpResponse (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\selenium-webdriver\lib\http.js:509:13)
+    at doSend.then.response (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\selenium-webdriver\lib\http.js:441:30)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+From: Task: WebElement.sendKeys()
+    at ControlFlow.protractor_1.browser.driver.controlFlow.execute (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\e2e\src\login-admin.e2e-spec.ts:15:17)
+    at Driver.schedule (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\selenium-webdriver\lib\webdriver.js:807:17)
+    at WebElement.schedule_ (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\selenium-webdriver\lib\webdriver.js:2010:25)
+    at WebElement.sendKeys (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\selenium-webdriver\lib\webdriver.js:2174:19)
+    at actionFn (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\protractor\built\element.js:89:44)
+    at Array.map (<anonymous>)
+    at actionResults.getWebElements.then (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\protractor\built\element.js:461:65)
+    at ManagedPromise.invokeCallback_ (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\selenium-webdriver\lib\promise.js:1376:14)
+    at TaskQueue.execute_ (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\selenium-webdriver\lib\promise.js:3084:14)
+    at TaskQueue.executeNext_ (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\selenium-webdriver\lib\promise.js:3067:27)Error: 
+    at ElementArrayFinder.applyAction_ (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\protractor\built\element.js:459:27)
+    at ElementArrayFinder.(anonymous function).args [as sendKeys] (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\protractor\built\element.js:91:29)
+    at ElementFinder.(anonymous function).args [as sendKeys] (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\protractor\built\element.js:831:22)
+    at CadastroAdminPage.registrarDadosAdmin (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\e2e\src\cadastro-admin-po.ts:10:57)
+    at C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\e2e\src\login-admin.e2e-spec.ts:48:31
+    at Array.forEach (<anonymous>)
+    at UserContext.<anonymous> (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\e2e\src\login-admin.e2e-spec.ts:47:29)
+    at C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\jasminewd2\index.js:112:25
+    at new ManagedPromise (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\selenium-webdriver\lib\promise.js:1077:7)
+    at ControlFlow.promise (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\selenium-webdriver\lib\promise.js:2505:12)
+From: Task: Run it("Deve reliazar um cadastro com sucesso") in control flow
+    at ControlFlow.protractor_1.browser.driver.controlFlow.execute (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\e2e\src\login-admin.e2e-spec.ts:15:17)
+    at UserContext.<anonymous> (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\jasminewd2\index.js:94:19)
+    at attempt (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:4297:26)
+    at QueueRunner.run (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:4217:20)
+    at runNext (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:4257:20)
+    at C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:4264:13
+    at C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:4172:9
+    at C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\jasminewd2\index.js:64:48
+    at ControlFlow.emit (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\selenium-webdriver\lib\events.js:62:21)
+    at ControlFlow.shutdown_ (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\selenium-webdriver\lib\promise.js:2674:10)
+From asynchronous test: 
+Error: 
+    at Suite.<anonymous> (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\e2e\src\login-admin.e2e-spec.ts:46:5)
+    at addSpecsToSuite (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1107:25)
+    at Env.describe (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1074:7)
+    at describe (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:4399:18)
+    at Object.<anonymous> (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\e2e\src\login-admin.e2e-spec.ts:18:1)
+    at Module._compile (internal/modules/cjs/loader.js:776:30)
+    at Module.m._compile (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\ts-node\src\index.ts:439:23)
+    at Module._extensions..js (internal/modules/cjs/loader.js:787:10)
+    at Object.require.extensions.(anonymous function) [as .ts] (C:\Users\Carmen\Desktop\frontend\meuproduto-frontend\node_modules\ts-node\src\index.ts:442:12)]]>
+   </failure>
+  </testcase>
+ </testsuite>
+ <testsuite name="Testando tela de Login:" timestamp="2020-05-03T00:31:41" hostname="localhost" time="15.72" errors="0" tests="4" skipped="0" disabled="0" failures="0">
+  <testcase classname="Testando tela de Login:" name="Deve ir para a pagina de login" time="4.837" />
+  <testcase classname="Testando tela de Login:" name="Deve verificar a url" time="0.939" />
+  <testcase classname="Testando tela de Login:" name="Deve dar erro ao realizar o login" time="3.573" />
+  <testcase classname="Testando tela de Login:" name="Deve fazer login com sucesso" time="6.371" />
+ </testsuite>
+ <testsuite name="Testando CRUD de Loja" timestamp="2020-05-03T00:31:57" hostname="localhost" time="17.669" errors="0" tests="4" skipped="0" disabled="0" failures="0">
+  <testcase classname="Testando CRUD de Loja" name="Deve ir para o menu de lojas" time="3.555" />
+  <testcase classname="Testando CRUD de Loja" name="Deve cadastrar Loja" time="13.504" />
+  <testcase classname="Testando CRUD de Loja" name="Deve editar uma loja com sucesso" time="0.305" />
+  <testcase classname="Testando CRUD de Loja" name="Deve deletar uma loja" time="0.304" />
+ </testsuite>
+</testsuites>
