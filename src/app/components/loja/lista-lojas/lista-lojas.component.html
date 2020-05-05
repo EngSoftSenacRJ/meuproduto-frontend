@@ -28,7 +28,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let loja of lojas |filter:filter| orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }" (dblclick)="detalhar(loja)">
+          <tr ng-repeat="loja-list" ng *ngFor="let loja of lojas |filter:filter| orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }" (dblclick)="detalhar(loja)">
             <td>{{loja.id}}</td>
             <td>{{loja.nome}}</td>
             <td>{{loja.ruaEnderecoComercial}}</td>

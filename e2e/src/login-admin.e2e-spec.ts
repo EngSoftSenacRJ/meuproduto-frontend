@@ -15,42 +15,42 @@ browser.driver.controlFlow().execute = function() {
   return origFn.apply(browser.driver.controlFlow(), args);
 };
 
-describe('Testando Cadastro Administrador:',()=>{
-    let cadastroAdminPage : CadastroAdminPage;
+// describe('Testando Cadastro Administrador:',()=>{
+//     let cadastroAdminPage : CadastroAdminPage;
 
-    let informacoesCadastro=[
-        {nome: 'nome', valor:'Carmen'},
-        {nome: 'cpf', valor:14913117700},
-        {nome: 'telefone_contato', valor:'21999642637'},
-        {nome: 'dataAniversario', valor:'10/04/1995'},
-        {nome: 'ruaEnderecoPessoal', valor:'Rua A'},
-        {nome: 'numeroEnderecoPessoal', valor:15},
-        {nome: 'cepEnderecoPessoal', valor:21520460},
-        {nome: 'bairroEnderecoPessoal', valor: 'Pavuna'},
-        {nome: 'cidadeEnderecoPessoal', valor:'Janeiro'},
-        {nome: 'estadoEnderecoPessoal', valor:'Rio de Janeiro'},
-        {nome: 'username', valor:'carmenlivia@outlook.com'},
-        {nome: 'password', valor:'123456'}
-      ]
+//     let informacoesCadastro=[
+//         {nome: 'nome', valor:'Carmen'},
+//         {nome: 'cpf', valor:14913117700},
+//         {nome: 'telefone_contato', valor:'21999642637'},
+//         {nome: 'dataAniversario', valor:'10/04/1995'},
+//         {nome: 'ruaEnderecoPessoal', valor:'Rua A'},
+//         {nome: 'numeroEnderecoPessoal', valor:15},
+//         {nome: 'cepEnderecoPessoal', valor:21520460},
+//         {nome: 'bairroEnderecoPessoal', valor: 'Pavuna'},
+//         {nome: 'cidadeEnderecoPessoal', valor:'Janeiro'},
+//         {nome: 'estadoEnderecoPessoal', valor:'Rio de Janeiro'},
+//         {nome: 'username', valor:'carmenlivia@outlook.com'},
+//         {nome: 'password', valor:'123456'}
+//       ]
 
-    beforeEach(()=>{
-        cadastroAdminPage = new CadastroAdminPage();
-    });
+//     beforeEach(()=>{
+//         cadastroAdminPage = new CadastroAdminPage();
+//     });
 
-    it('Deve ir para página de cadastro',()=>{
-        expect(
-            cadastroAdminPage.goToCadastro()
-        )
-    });
+//     it('Deve ir para página de cadastro',()=>{
+//         expect(
+//             cadastroAdminPage.goToCadastro()
+//         )
+//     });
 
-    // it('Deve reliazar um cadastro com sucesso', () => {
-    //     informacoesCadastro.forEach(usuario => {
-    //         cadastroAdminPage.registrarDadosAdmin(usuario.nome, usuario.valor);
-    //     })
-    //     expect(cadastroAdminPage.confirmaCadastro().click());
-    // });
+//     // it('Deve reliazar um cadastro com sucesso', () => {
+//     //     informacoesCadastro.forEach(usuario => {
+//     //         cadastroAdminPage.registrarDadosAdmin(usuario.nome, usuario.valor);
+//     //     })
+//     //     expect(cadastroAdminPage.confirmaCadastro().click());
+//     // });
 
-});
+// });
 
 
 describe('Testando tela de Login:',()=>{
@@ -68,12 +68,12 @@ describe('Testando tela de Login:',()=>{
         expect(loginAdminPage.verificarUrl()).toBe('http://localhost:4200/login');
     });
 
-    it('Deve dar erro ao realizar o login',()=>{
-        expect(loginAdminPage.pegarInput('username',''));
-        expect(loginAdminPage.pegarInput('password',''));
-        expect(loginAdminPage.pegarBotaoLogin().click());
-        expect(loginAdminPage.verificarUrl()).toBe('http://localhost:4200/login');
-    });
+    // it('Deve dar erro ao realizar o login',()=>{
+    //     expect(loginAdminPage.pegarInput('username',''));
+    //     expect(loginAdminPage.pegarInput('password',''));
+    //     expect(loginAdminPage.pegarBotaoLogin().click());
+    //     expect(loginAdminPage.verificarUrl()).toBe('http://localhost:4200/login');
+    // });
 
     it('Deve fazer login com sucesso',() =>{
         expect(loginAdminPage.pegarInput('username','carmenlivia.lopes@gmail.com'));
