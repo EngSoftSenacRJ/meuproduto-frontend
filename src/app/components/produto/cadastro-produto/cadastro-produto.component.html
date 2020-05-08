@@ -33,7 +33,7 @@
           <div class="form-group col-md-4">
             <mat-form-field>
                 <mat-label>Marca</mat-label>
-                <select matNativeControl [(ngModel)]="produto.marcaId" title="Marca" name="marca" #model="ngModel" required>
+                <select matNativeControl id="marca" [(ngModel)]="produto.marcaId" title="Marca" name="marca" #model="ngModel" required>
                     <option *ngFor="let marca of marcas" [ngValue]="marca.id"> {{ marca.nome }} </option>
                 </select>
                 <mat-error *ngIf="f.invalid">Marca é obrigatório.</mat-error>
@@ -42,7 +42,7 @@
           <div class="form-group col-md-3">
             <mat-form-field>
                 <mat-label>Categoria</mat-label>
-                <select matNativeControl [(ngModel)]="produto.categoriaId" title="Categoria" name="categoria" #model="ngModel" required>
+                <select matNativeControl id="categoria" [(ngModel)]="produto.categoriaId" title="Categoria" name="categoria" #model="ngModel" required>
                     <option *ngFor="let categoria of categorias" [ngValue]="categoria.id"> {{ categoria.nome }} </option>
                 </select>
                 <mat-error *ngIf="f.invalid">Categoria é obrigatório.</mat-error>

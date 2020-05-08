@@ -68,12 +68,12 @@ describe('Testando tela de Login:',()=>{
         expect(loginAdminPage.verificarUrl()).toBe('http://localhost:4200/login');
     });
 
-    // it('Deve dar erro ao realizar o login',()=>{
-    //     expect(loginAdminPage.pegarInput('username',''));
-    //     expect(loginAdminPage.pegarInput('password',''));
-    //     expect(loginAdminPage.pegarBotaoLogin().click());
-    //     expect(loginAdminPage.verificarUrl()).toBe('http://localhost:4200/login');
-    // });
+    it('Deve dar erro ao realizar o login',()=>{
+        expect(loginAdminPage.pegarInput('username',''));
+        expect(loginAdminPage.pegarInput('password',''));
+        expect(loginAdminPage.pegarBotaoLogin().click());
+        expect(loginAdminPage.verificarUrl()).toBe('http://localhost:4200/login');
+    });
 
     it('Deve fazer login com sucesso',() =>{
         expect(loginAdminPage.pegarInput('username','carmenlivia.lopes@gmail.com'));

@@ -6,7 +6,7 @@
         <mat-form-field id="lojaInput">
           <mat-label>Lojas</mat-label>
           <mat-select [(ngModel)]="associacao
-          .idLoja" title="Lojas" name="loja" #model="ngModel" (selectionChange)="listarProdutosLoja()" required>
+          .idLoja" id="lojas" title="Lojas" name="loja" #model="ngModel" (selectionChange)="listarProdutosLoja()" required>
             <mat-option *ngFor="let loja of lojas" [value]="loja.id"> {{loja.nome}} </mat-option>
         </mat-select>
         <mat-error *ngIf="f.invalid">Loja é obrigatório.</mat-error>
@@ -78,7 +78,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let loja of lojaPreco |filter:filter| orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }">
+              <tr ng-repeat="associa-list" *ngFor="let loja of lojaPreco |filter:filter| orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }">
                 <td>{{loja.produtoResource.id}}</td>
                 <td>{{loja.produtoResource.nome}}</td>
                 <td>{{loja.produtoResource.categoria.nome}}</td>
@@ -120,7 +120,7 @@
 </ng-template>
 <ng-template #deleteModal>
   <div class="modal-body text-center">
-    <p>Tem certeza que deseja excuir a loja?</p>
+    <p>Tem certeza que deseja excuir o produto da loja?</p>
     <button type="button" class="btn btn-default" (click)="confirmRemocaoAssoc()">Sim</button>
     <button type="button" class="btn btn-primary" (click)="decline()">Não</button>
   </div>

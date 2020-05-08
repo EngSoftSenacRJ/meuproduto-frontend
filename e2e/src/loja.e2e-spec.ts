@@ -1,5 +1,6 @@
 import {LojaPage} from './pageobject/loja.po';
 import { browser, element, by, protractor } from 'protractor';
+import { ComponentInterface } from './pageobject/common.po';
 
 // var origFn = browser.driver.controlFlow().execute;
 // browser.driver.controlFlow().execute = function() {
@@ -14,6 +15,7 @@ import { browser, element, by, protractor } from 'protractor';
 //  };
 describe('Testando CRUD de Loja',() =>{
    let lojaPage : LojaPage;
+   let elemento : ComponentInterface;
    
    let informacoesLoja=[
       {nome:'nome', valor:'Loja InfoTech'},
@@ -27,47 +29,48 @@ describe('Testando CRUD de Loja',() =>{
 
    beforeEach(()=>{
       lojaPage = new LojaPage();
+      elemento = new ComponentInterface();
    })
 
    it('Deve ir para o menu de lojas',() =>{
          lojaPage.goToMenuLoja();
-         expect(lojaPage.verificarUrl()).toBe('http://localhost:4200/home/lojas');
+         expect(elemento.verificarUrl()).toBe('http://localhost:4200/home/lojas');
    });
 
    it('Deve cadastrar Loja', () => {
       lojaPage.goToCadastroLoja();
       informacoesLoja.forEach(loja =>{
-         lojaPage.inputDadosByAtributoName(loja.nome, loja.valor);
+         elemento.inputDadosByAtributoName(loja.nome, loja.valor);
       });
-      lojaPage.pressionarBotao('Confirmar');
+      elemento.pressionarBotao('Confirmar');
       expect(element(by.className('alert-success')).isPresent()).toBe(true);
       browser.actions().click().perform();
    });
 
    it('Deve abrir detalhamento da primeira loja',()=>{
-      expect(lojaPage.verificarUrl()).toBe('http://localhost:4200/home/lojas');
+      expect(elemento.verificarUrl()).toBe('http://localhost:4200/home/lojas');
       expect(lojaPage.doubleClickElementoLista(1));
-      lojaPage.pressionarBotao('Fechar');
+      elemento.pressionarBotao('Fechar');
    });
 
    it('Deve editar loja escolhida',()=>{
       lojaPage.editarLojaSelecionada(2);
-      lojaPage.inputDadosByAtributoName('nome','Nome da loja Alterado');
+      elemento.inputDadosByAtributoName('nome','Nome da loja Alterado');
       lojaPage.cadastrarLoja();
       expect(element(by.className('alert-info')).isPresent()).toBe(true);
       browser.actions().click().perform();
    });
 
-    it('Deve excluir loja escolhida',()=>{
-      lojaPage.excluirLojaSelecionada(3);
-      lojaPage.pressionarBotao('delete');
-      lojaPage.pressionarBotao('Fechar');
-      // expect(element(by.className('alert-success')).isPresent()).toBe(true);
-      // browser.actions().click().perform();
-   });
+   //  it('Deve excluir loja escolhida',()=>{
+   //    lojaPage.excluirLojaSelecionada(3);
+   //    elemento.pressionarBotao('delete');
+   //    elemento.pressionarBotao('Fechar');
+   //    // expect(element(by.className('alert-success')).isPresent()).toBe(true);
+   //    // browser.actions().click().perform();
+   // });
 
    it('Deve buscar por loja',()=>{
-      lojaPage.inputDadosByAtributoName('search','ABC');
+      elemento.inputDadosByAtributoName('search','ABC');
       browser.sleep(3000);
    });
  

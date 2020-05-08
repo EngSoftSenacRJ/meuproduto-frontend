@@ -10,26 +10,7 @@ export class LojaPage{
         return element(by.id('btn-add')).click();
     }
 
-    pressionarBotao(nome){
-        return element(by.buttonText(nome)).click();
-    }
-
-    pressionarBotaoById(nome){
-        return element(by.id(nome));
-    }
-
-    verificarUrl(){
-        return browser.getCurrentUrl();
-    }
-
-    limparCampoInput(nome){
-        element(by.css(`input[name="${nome}"]`)).clear();
-    }
-
-    inputDadosByAtributoName(nome, valor){
-        element(by.css(`input[name="${nome}"]`)).clear();
-        return element(by.css(`input[name="${nome}"]`)).sendKeys(valor);
-    }
+    
 
     cadastrarLoja(){
         return element(by.buttonText('Confirmar')).click();
