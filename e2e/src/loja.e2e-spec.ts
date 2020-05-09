@@ -61,13 +61,12 @@ describe('Testando CRUD de Loja',() =>{
       browser.actions().click().perform();
    });
 
-   //  it('Deve excluir loja escolhida',()=>{
-   //    lojaPage.excluirLojaSelecionada(3);
-   //    elemento.pressionarBotao('delete');
-   //    elemento.pressionarBotao('Fechar');
-   //    // expect(element(by.className('alert-success')).isPresent()).toBe(true);
-   //    // browser.actions().click().perform();
-   // });
+    it('Deve excluir loja escolhida',()=>{
+      lojaPage.excluirLojaSelecionada(2);
+      elemento.pressionarBotao('Sim');
+      expect(element(by.className('alert-success')).isPresent()).toBe(true);
+      browser.actions().click().perform();
+   });
 
    it('Deve buscar por loja',()=>{
       elemento.inputDadosByAtributoName('search','ABC');

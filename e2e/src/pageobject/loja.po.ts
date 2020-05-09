@@ -32,8 +32,9 @@ export class LojaPage{
     }
 
     excluirLojaSelecionada(indice){
-        let item = this.getLinha(indice);
-        return item.element(by.buttonText('delete')).click();
+        // let item = this.getLinha(indice);
+        var item = element(by.repeater('loja-list').row(indice)).element(by.buttonText('delete')).click();
+        // return item.element(by.buttonText('delete')).click();
     }
 
     confirmarExclusaoLoja(){
