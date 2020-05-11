@@ -88,6 +88,26 @@ export class ProdutoService {
           )
   }
 
+  listarAuditoria(IdLoja: number, IdProduto: number): Observable<any>{
+    //http://localhost:8080/lojasProdutos/audit?idLoja=1&idProduto=1
+
+    let params = ""
+       
+    if (IdLoja != null && IdLoja > 0) {
+     params ='&idLoja=' + IdLoja;
+    }
+  
+   if (IdProduto != null && IdProduto > 0) {
+      params +='&idProduto='+ IdProduto;
+   }
+   console.log(Appconstants.baseAPIURL + 'lojasProdutos/audit?'+params);
+   return this.http.get<any>(Appconstants.baseAPIURL + 'lojasProdutos/audit?'+params,this.ConstroiHeader())
+      .pipe(
+      retry(0),
+        catchError(this.handleError)
+      );
+  }
+
 
   // Manipulação de erros
   handleError(error: HttpErrorResponse) {

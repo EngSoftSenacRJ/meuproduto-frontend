@@ -1,6 +1,6 @@
 .login-wrapper{height:100%;}
 .positronx{text-decoration:none;color:#ffffff;}
-.box{position:relative;top:0;opacity:1;float:left;padding:60px 50px 40px 50px;width:100%;background:#fff;border-radius:10px;max-width:800px; border-style: groove;border-color: #003e7e;}
+.box{position:relative;top:0;opacity:1;float:left;padding:60px 50px 40px 50px;width:100%;background:#fff;border-radius:10px;max-width:500px; border-style: groove;border-color: #003e7e;}
 .box.back{transform:scale(.95);-webkit-transform:scale(.95);-ms-transform:scale(.95);top:-20px;opacity:.8;z-index:-1;}
 .login-wrapper .example-form{min-width:100%;max-width:800px;width:100%;}
 .login-wrapper .example-full-width,.login-wrapper .btn-block{width:100%;}

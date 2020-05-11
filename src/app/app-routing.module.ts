@@ -13,6 +13,7 @@ import { PesquisarComponent } from './components/pesquisa/pesquisar/pesquisar.co
 import { CadastroProdutoComponent } from './components/produto/cadastro-produto/cadastro-produto.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { AssociaLojaprodutoComponent } from './components/loja/associa-lojaproduto/associa-lojaproduto.component';
+import { LogprodutoComponent } from './components/visibilidade/logproduto/logproduto.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: "full"},
@@ -29,6 +30,7 @@ const routes: Routes = [
     { path: 'funcionarios', component: ListaFuncionarioComponent},
     { path: 'cadastroproduto', component: CadastroProdutoComponent},
     { path: 'incluirproduto', component: AssociaLojaprodutoComponent},
+    { path: 'auditoria', component: LogprodutoComponent},
     { path: '', redirectTo: 'home', pathMatch: 'full'}
     ] },
     { path: 'login', component:  LoginAdminComponent },
