@@ -27,7 +27,7 @@
             <button mat-menu-item color="primary" routerLink="lojas">Lojas</button>
             <button mat-menu-item color="primary" routerLink="funcionarios">Funcionários</button> 
             <button mat-menu-item color="primary" routerLink="marcas">Marcas</button>
-            <button mat-menu-item color="primary" routerLink="cadastroproduto">Produtos</button>
+            <!-- <button mat-menu-item color="primary" routerLink="cadastroproduto">Produtos</button> -->
             <button mat-menu-item color="primary" [matMenuTriggerFor]="menuDados">Gerenciar dados</button>   
         </mat-menu>
 
@@ -37,7 +37,7 @@
         </mat-menu>
         <button mat-button  *ngIf="IsAdmin" [matMenuTriggerFor]="menuVis">Visibilidade</button>
         <mat-menu #menuVis="matMenu" color="primary">
-            <button mat-menu-item color="primary">Histórico de alterações do produto</button>
+            <button mat-menu-item color="primary" routerLink="../home/auditoria">Histórico de alterações do produto</button>
         </mat-menu>
         <button mat-button [matMenuTriggerFor]="menuSobre">Ajuda</button>
         <mat-menu #menuSobre="matMenu" color="primary">

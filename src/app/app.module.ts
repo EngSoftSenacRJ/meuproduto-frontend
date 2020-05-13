@@ -21,6 +21,7 @@ import { PesquisarComponent } from './components/pesquisa/pesquisar/pesquisar.co
 import { SharedModule } from './shared/shared.module';
 import { CadastroProdutoComponent } from './components/produto/cadastro-produto/cadastro-produto.component';
 import { AssociaLojaprodutoComponent } from './components/loja/associa-lojaproduto/associa-lojaproduto.component';
+import { LogprodutoComponent } from './components/visibilidade/logproduto/logproduto.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AssociaLojaprodutoComponent } from './components/loja/associa-lojaprodu
     CadastroMarcaComponent,
     ListaFuncionarioComponent,
     CadastroProdutoComponent,
-    AssociaLojaprodutoComponent
+    AssociaLojaprodutoComponent,
+    LogprodutoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,99 @@
+<div *ngIf="pesquisando">
+    <div class="login-wrapper container" fxLayout="row" fxLayoutAlign="center center" >
+        <mat-card class="box">
+          <mat-card-header>
+            <mat-card-title>Histórico de preço</mat-card-title>
+          </mat-card-header>
+          <form class="example-form" #f="ngForm" name="pesqform">
+            <mat-card-content>
+      
+              <!-- <mat-form-field class="example-full-width">
+                <mat-label>Loja</mat-label>
+                <select matNativeControl title="Loja" name="loja" [(ngModel)]="form.idLoja" #model="ngModel" >
+                    <mat-option *ngFor="let loja of lojas" [value]="loja.id"> {{loja.nome}} </mat-option>
+                </select>
+            </mat-form-field> -->
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Lojas</mat-label>
+              <mat-select [(ngModel)]="pesqform.idLoja" title="Lojas" name="loja" #model="ngModel" required>
+                <mat-option *ngFor="let loja of lojas" [value]="loja.id"> {{loja.nome}} </mat-option>
+            </mat-select>
+            <mat-error *ngIf="f.invalid">Loja é obrigatório.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Produtos</mat-label>
+              <mat-select [(ngModel)]="pesqform.idProduto" title="Produtos" name="produto" #model="ngModel" required>
+                <mat-option *ngFor="let produto of produtos" [value]="produto.id">{{produto.nome}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="f.invalid">Produto é obrigatório.</mat-error>
+            </mat-form-field>
+  
+      
+            </mat-card-content>
+            <button mat-raised-button class="btn-block" type="button" color="primary" (click)="pesquisar()" >Pesquisar</button>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+    <div *ngIf="!pesquisando">
+      <div class="container-table">
+        <div class="mat-elevation-z8">
+          <button mat-raised-button class="btn-block" type="button" color="primary" (click)="Voltar()" >Voltar aos Filtros</button>
+          <div class="row">
+            <div class="col-8">
+              <div class="titulo-table">
+               <h6 class="titulo">Resultados da pesquisa</h6>            
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="filtro-table">
+                <mat-form-field class="filtro">
+                  <mat-label>Busca: </mat-label>
+                  <input matInput name="search" [(ngModel)]="filter">
+                </mat-form-field>
+              </div>
+            </div>
+          </div> 
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <!-- <th id="id">#</th> -->
+                  <th (click)="sort('nomeLoja')">Loja
+                    <span *ngIf="key =='nomeLoja'">{{reverse ? '▲' : '▼'}}</span>
+                  </th>
+                  <th (click)="sort('nomeProduto')">Produto 
+                    <span *ngIf="key =='nomeProduto'">{{reverse ? '▲' : '▼'}}</span>
+                  </th>
+                  <th (click)="sort('preco')">Preço
+                    <span *ngIf="key =='preco'">{{reverse ? '▲' : '▼'}}</span>
+                  </th>
+                  <th (click)="sort('acao')">Ação
+                      <span *ngIf="key =='acao'">{{reverse ? '▲' : '▼'}}</span>
+                    </th>
+                  <th (click)="sort('dataAcao')">Data Ação
+                    <span *ngIf="key =='dataAcao'">{{reverse ? '▲' : '▼'}}</span>
+                  </th>
+                 </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let registro of resultado |filter:filter| orderBy: key : reverse | paginate: { itemsPerPage: 10, currentPage: p }">
+                  <td>{{registro.nomeLoja}}</td>
+                  <td>{{registro.nomeProduto}}</td>
+                  <td>{{registro.preco}}</td>
+                  <td>{{registro.acao}}</td>
+                  <td>{{registro.dataAcao}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="row justify-content-center">
+              <pagination-controls (pageChange)="p = $event" previousLabel="Anterior"
+              nextLabel="Próximo"></pagination-controls>
+            </div>
+          </div> 
+      </div>
+    </div>
+        
+      
+        

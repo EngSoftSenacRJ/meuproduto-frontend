@@ -66,6 +66,15 @@ export class MarcaService {
       );
   }
 
+  listarPublica(): Observable<any>{
+    this.marcaSelecionada = undefined;
+    return this.http.get<any>(Appconstants.baseAPIURL + 'marcas',this.httpOptions)
+      .pipe(
+        map(data => data['_embedded']['marcaProdutoResources']),
+        catchError(this.handleError)
+      );
+  }
+
   remover(id){
     return this.http.delete(Appconstants.baseAPIURL + 'marcas/'+id,this.ConstroiHeader())
     .pipe(

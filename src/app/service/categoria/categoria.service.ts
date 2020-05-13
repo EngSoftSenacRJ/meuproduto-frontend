@@ -48,6 +48,15 @@ export class CategoriaService {
       );
   }
 
+  listarPublica(): Observable<any>{
+    this.categoriaSelecionado = undefined;
+    return this.http.get<any>(Appconstants.baseAPIURL + 'categorias',this.httpOptions)
+      .pipe(
+        map(data => data['_embedded']['categoriaProdutoResources']),
+        catchError(this.handleError)
+      );
+  }
+
 
   // Manipulação de erros
   handleError(error: HttpErrorResponse) {
