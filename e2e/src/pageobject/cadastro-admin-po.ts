@@ -6,6 +6,10 @@ export class CadastroAdminPage{
         return browser.get('/home/cadastro');
     }
 
+    verificarUrl(){
+        return browser.getCurrentUrl();
+    }
+    
     registrarDadosAdmin(nome, valor){
         return element(by.css(`input[name="${nome}"]`)).sendKeys(valor);
         }

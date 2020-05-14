@@ -7,6 +7,7 @@ import { LoginService } from 'src/app/service/login/login.service';
 import { Router } from '@angular/router';
 import {  MAT_MOMENT_DATE_FORMATS,  MomentDateAdapter,  MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { AlertModalService } from 'src/app/shared/alert-modal.service';
 
 @Component({
   selector: 'app-cadastro-admin',
@@ -32,14 +33,14 @@ export class CadastroAdminComponent implements OnInit {
   Telmask = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/,/\d/,/\d/, '-',/\d/, /\d/, /\d/, /\d/,];
   CEPmask = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
 
-  step = 0;
   hide = true;
 
   constructor(
     private administradorService: AdministradorService,
     private loginService: LoginService,
     private router: Router,
-    private _adapter: DateAdapter<any>
+    private _adapter: DateAdapter<any>,
+    private alertService: AlertModalService
   ) {}
 
   ngOnInit() {
@@ -56,26 +57,13 @@ export class CadastroAdminComponent implements OnInit {
 
         
         }, err => { 
-          alert('Ocorreu um erro ao carregar usuário!');
+          this.alertService.showAlertDanger('Ocorreu um erro ao carregar o usuário!');
           console.error(err);                    
          }    
        );
     }
 
   }
-
-  setStep(index: number) {
-    this.step = index;
-  }
-
-  nextStep() {
-    this.step++;
-  }
-
-  prevStep() {
-    this.step--;
-  }
-
 
   Salvar(form: NgForm) {
     this.usuarioAdm.dataAniversario = formatDate(this.dateF,"dd/MM/yyyy","en-US");
@@ -88,10 +76,10 @@ export class CadastroAdminComponent implements OnInit {
     if (!this.loginService.IsAuthenticate) {
 
       this.administradorService.Cadastrar(this.usuarioAdm).subscribe( data =>  {
-        alert('Usuário cadastrado com sucesso! \n Acesse sua caixa de entrada para validar o cadastro!');  
+        this.alertService.showAlertSucces('Usuário cadastrado com sucesso! \n Acesse sua caixa de entrada para validar o cadastro!');
         this.router.navigate(["/home"]);
         }, err => { 
-          alert('Ocorreu um erro ao cadastrar usuário!');
+          this.alertService.showAlertDanger('Ocorreu um erro ao cadastrar usuário!');
           console.error(err);                    
          }    
        );
@@ -99,10 +87,10 @@ export class CadastroAdminComponent implements OnInit {
     } else {
       console.log(this.usuarioAdm);
       this.administradorService.Editar(this.usuarioLogado, this.usuarioAdm).subscribe( data =>  {
-        alert('Usuário alterado com sucesso!');    
+        this.alertService.showAlertSucces('Dados do Usuário alterado com sucesso!');
         this.router.navigate(["/home"]);
         }, err => { 
-          alert('Ocorreu um erro ao alterar usuário!');
+          this.alertService.showAlertDanger('Ocorreu um erro ao alterar usuário!');
           console.error(err);                    
          }    
        );
