@@ -3,18 +3,18 @@ import { CadastroAdminPage } from './pageobject/cadastro-admin-po';
 import { browser, protractor, element, by } from 'protractor';
 import { ComponentInterface } from './pageobject/common.po';
 
-var origFn = browser.driver.controlFlow().execute;
+// var origFn = browser.driver.controlFlow().execute;
 
-browser.driver.controlFlow().execute = function () {
-    var args = arguments;
+// browser.driver.controlFlow().execute = function () {
+//     var args = arguments;
 
-    // queue 100ms wait
-    origFn.call(browser.driver.controlFlow(), function () {
-        return protractor.promise.delayed(100);
-    });
+//     // queue 100ms wait
+//     origFn.call(browser.driver.controlFlow(), function () {
+//         return protractor.promise.delayed(100);
+//     });
 
-    return origFn.apply(browser.driver.controlFlow(), args);
-};
+//     return origFn.apply(browser.driver.controlFlow(), args);
+// };
 
 describe('Testando Cadastro Administrador:', () => {
     let cadastroAdminPage: CadastroAdminPage;
@@ -91,21 +91,19 @@ describe('Testando tela de Login:', () => {
 
     });
 
-    it('Deve editar dado do administrador com sucesso',()=>{
-        elemento.pressionarBotao('Gerencia Adm.');
-        elemento.pressionarBotao('Gerenciar dados');
-        elemento.pressionarBotao('Editar dados pessoais');
+    // it('Deve editar dado do administrador com sucesso',()=>{
+    //     elemento.pressionarBotao('Gerencia Adm.');
+    //     elemento.pressionarBotao('Gerenciar dados');
+    //     elemento.pressionarBotao('Editar dados pessoais');
 
-        elemento.limparCampoInput('nome');
-        elemento.inputDadosByAtributoName('nome','Carmen');
-        elemento.inputDadosByAtributoName('password','12345');
-        elemento.pressionarBotao('Concluir');
-        expect(element(by.className('alert-success')).isPresent()).toBe(true);
-        browser.actions().click().perform();
-        browser.sleep(3000);
-    });
-
-
+    //     elemento.limparCampoInput('nome');
+    //     elemento.inputDadosByAtributoName('nome','Carmen');
+    //     elemento.inputDadosByAtributoName('password','12345');
+    //     elemento.pressionarBotao('Concluir');
+    //     expect(element(by.className('alert-success')).isPresent()).toBe(true);
+    //     browser.actions().click().perform();
+    //     browser.sleep(3000);
+    // });
 
 });
 

@@ -12,8 +12,9 @@ exports.config = {
   allScriptsTimeout: 11000,
   specs: [
     './src/login-admin.e2e-spec.ts',
-    // './src/loja.e2e-spec.ts',
-    // './src/produto.e2e-spec.ts',
+    './src/pesquisa.e2e-spec.ts',
+    './src/loja.e2e-spec.ts',
+    './src/produto.e2e-spec.ts',
   ],
   
   capabilities: {

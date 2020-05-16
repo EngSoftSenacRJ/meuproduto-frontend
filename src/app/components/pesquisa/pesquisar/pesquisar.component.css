@@ -11,7 +11,26 @@
 .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix{padding:0.8375em 0;}
 .div-erro {font-size: small; color: red;}
 
+.btn-voltar{
+  border-radius: 100%;
+  background-color: transparent;
+  color: black;
+  margin: 3%;
+}
+.btn-voltar:hover{
+  /* border-color: skyblue; */
+  background-color:#2196f33b;
+  opacity:0.65;
+	-moz-opacity: 0.65;
+	filter: alpha(opacity=65);
+  ;
+}
 
+#arrow{
+  padding-top: 5px;
+  padding-bottom: 2px;
+  padding-right: 2px;
+}
 .white-color{
     background-color: white;
     margin: 5px;
