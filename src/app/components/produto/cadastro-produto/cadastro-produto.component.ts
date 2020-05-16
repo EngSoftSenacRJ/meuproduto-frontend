@@ -7,6 +7,7 @@ import { Produto } from 'src/app/model/produto';
 import { Categoria } from 'src/app/model/categoria';
 import { ProdutoService } from 'src/app/service/produto/produto.service';
 import { CategoriaService } from 'src/app/service/categoria/categoria.service';
+import { AlertModalService } from 'src/app/shared/alert-modal.service';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -23,7 +24,8 @@ export class CadastroProdutoComponent implements OnInit {
     private produtoService: ProdutoService,
     private categoriaService: CategoriaService,
     private marcaService: MarcaService,
-    private router: Router) { }
+    private router: Router,
+    private alertService: AlertModalService) { }
 
   ngOnInit() {
   
@@ -31,7 +33,7 @@ export class CadastroProdutoComponent implements OnInit {
         this.marcas = data;
       },
       err => { 
-        alert('Ocorreu um erro ao carregar marcas!');
+        this.alertService.showAlertDanger("Ocorreu um erro! Tente mais tarde.");
         console.error(err);                    
        });
 
@@ -39,7 +41,7 @@ export class CadastroProdutoComponent implements OnInit {
         this.categorias = data;
       },
       err => { 
-        alert('Ocorreu um erro ao carregar categorias!');
+        this.alertService.showAlertDanger('Ocorreu um erro ao carregar categorias!');
         console.error(err);                    
        });
 
@@ -48,10 +50,10 @@ export class CadastroProdutoComponent implements OnInit {
   salvar(form: NgForm){
     console.log(this.produto);
     this.produtoService.cadastrar(this.produto).subscribe( data => {
-      this.router.navigate(["home"]);
-      alert("Produto cadastrado!");
+      this.router.navigate(["home/incluirproduto"]);
+      this.alertService.showAlertSucces("Produto cadastrado com sucesso!");
     }, err =>{
-      alert(err);
+      this.alertService.showAlertDanger("Ocorreu um erro ao cadastrar, tente novamente!");
       console.error("Erro: "+ err);
     });
   }

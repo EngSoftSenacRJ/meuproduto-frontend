@@ -6,6 +6,133 @@
     <mat-card-title class="card-admin-title">Cadastro</mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
+  <div >
+  <form #f="ngForm"style="margin-top: 10px;">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <mat-form-field>
+          <input matInput placeholder="Nome completo" id="nome" name="nome" [(ngModel)]="usuarioAdm.nome"
+            #name="ngModel" required>
+          <mat-error *ngIf="f.invalid">Nome é obrigatório.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-2">
+        <mat-form-field>
+          <input matInput placeholder="CPF" name="cpf" [textMask]="{mask: CPFmask}" [(ngModel)]="usuarioAdm.cpf"
+            #name="ngModel" required>
+          <mat-error *ngIf="f.invalid">CPF é obrigatório.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-2">
+        <mat-form-field>
+          <input matInput placeholder="Telefone de contato" name="telefone_contato" [textMask]="{mask: Telmask}"
+            [(ngModel)]="usuarioAdm.telefoneContato" #name="ngModel">
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-2">
+        <mat-form-field>
+          <input matInput [min]="" [max]="" name="dataAniversario" [matDatepicker]="picker"
+            placeholder="Data Nascimento" [(ngModel)]="dateF" #name="ngModel">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <mat-form-field>
+          <input matInput placeholder="Rua" name="ruaEnderecoPessoal" [(ngModel)]="usuarioAdm.ruaEnderecoPessoal"
+            #name="ngModel" required>
+          <mat-error *ngIf="f.invalid">Rua é obrigatório.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-3">
+        <mat-form-field>
+          <mat-label>Numero</mat-label>
+          <input matInput type="number" placeholder="Numero" name="numeroEnderecoPessoal"
+            [(ngModel)]="usuarioAdm.numeroEnderecoPessoal" #name="ngModel" required>
+          <mat-error *ngIf="f.invalid">Numero é obrigatório.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-3">
+        <mat-form-field>
+          <input matInput placeholder="Cep" [textMask]="{mask: CEPmask}" name="cepEnderecoPessoal"
+            [(ngModel)]="usuarioAdm.cepEnderecoPessoal" #name="ngModel" required>
+          <mat-error *ngIf="f.invalid">Cep é obrigatório.</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+    <mat-form-field>
+      <mat-label>Bairro</mat-label>
+      <input matInput placeholder="Bairro" name="bairroEnderecoPessoal" [(ngModel)]="usuarioAdm.bairroEnderecoPessoal"
+        #name="ngModel" required>
+      <mat-error *ngIf="f.invalid">Cep é obrigatório.</mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="form-group col-md-4">
+    <mat-form-field>
+      <mat-label>Cidade</mat-label>
+      <input matInput placeholder="Cidade" name="cidadeEnderecoPessoal" [(ngModel)]="usuarioAdm.cidadeEnderecoPessoal"
+        #name="ngModel" required>
+      <mat-error *ngIf="f.invalid">Cidade é obrigatório.</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group col-md-4">
+    <mat-form-field>
+      <mat-label>Estado</mat-label>
+      <input matInput placeholder="Estado" name="estadoEnderecoPessoal" [(ngModel)]="usuarioAdm.estadoEnderecoPessoal"
+        #name="ngModel" required>
+      <mat-error *ngIf="f.invalid">Estado é obrigatório.</mat-error>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <mat-form-field>
+      <input matInput placeholder="Email" name="username" [(ngModel)]="usuarioAdm.username" #name="ngModel" required>
+      <mat-error *ngIf="f.invalid">E-mail é obrigatório.</mat-error>
+    </mat-form-field>
+  </div>
+
+    <div class="form-group col-md-6">
+    <mat-form-field>
+      <input matInput placeholder="Senha" name="password" [type]="hide ? 'password' : 'text'"
+        [(ngModel)]="usuarioAdm.password" #name="ngModel" required>
+      <mat-error *ngIf="f.invalid">Senha é obrigatório.</mat-error>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div style="margin-top: 10px;">
+    <mat-action-row class="offset-md-10" style="padding-top: 5px;">
+      <button mat-button color="warn" routerLink="/home">Cancelar</button>
+      <button mat-button color="primary" [disabled]="!f.valid" (click)="Salvar(f)">Concluir</button>
+    </mat-action-row>
+    </div>
+  </form>
+  </div>
+</mat-card>
+
+
+<!-- <mat-card class="container">
+  <mat-card-header class="card-admin-header">
+    <div mat-card-avatar>
+      <mat-icon>account_circle</mat-icon>
+    </div>
+    <mat-card-title class="card-admin-title">Cadastro</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
   <mat-card-content class="barra">
 
     <form class="example-form" #f="ngForm">
@@ -130,4 +257,4 @@
       </mat-accordion>
     </form>
   </mat-card-content>
-</mat-card>
+</mat-card> -->

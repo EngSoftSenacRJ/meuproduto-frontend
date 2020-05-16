@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginAdminComponent } from './login-admin.component';
+import { MaterialModule } from 'src/app/material-module';
 
 describe('LoginAdminComponent', () => {
   let component: LoginAdminComponent;
@@ -8,7 +9,8 @@ describe('LoginAdminComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginAdminComponent ]
+      declarations: [ LoginAdminComponent],
+      imports:[MaterialModule]
     })
     .compileComponents();
   }));

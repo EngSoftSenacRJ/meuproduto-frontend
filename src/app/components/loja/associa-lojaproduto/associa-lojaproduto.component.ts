@@ -83,7 +83,7 @@ export class AssociaLojaprodutoComponent implements OnInit {
       })
       this.listarProdutosLoja();
       this.resetar = true;
-      // this.modalService.hide(1);
+      this.modalService.hide(1);
      }
 
   listarProdutosLoja(){

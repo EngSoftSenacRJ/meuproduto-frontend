@@ -1,34 +1,38 @@
 <div *ngIf="pesquisando">
-<div class="login-wrapper container" fxLayout="row" fxLayoutAlign="center center" >
+  <div class="login-wrapper container" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box">
       <mat-card-header>
         <mat-card-title>Consultar Produtos</mat-card-title>
       </mat-card-header>
       <form class="example-form" #f="ngForm" name="LoginForm">
         <mat-card-content>
-  
+
           <mat-form-field class="example-full-width">
             <mat-label>Categoria</mat-label>
-            <select matNativeControl title="Categoria" name="categoria" [(ngModel)]="search.idCategoria" #model="ngModel" >
+            <select matNativeControl id="categoria" title="Categoria" name="categoria" [(ngModel)]="search.idCategoria"
+              #model="ngModel">
               <option *ngFor="let categoria of categorias" [ngValue]="categoria.id"> {{ categoria.nome }} </option>
             </select>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>Marca</mat-label>
-          <select matNativeControl title="Marca" name="marca" [(ngModel)]="search.idMarca" #model="ngModel" >
-              <option [ngValue]=0>Todos</option>
-              <option *ngFor="let marca of marcas" [ngValue]="marca.id"> {{ marca.nome }} </option>
-          </select>
-      </mat-form-field>
+          </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Produto" id="Produto" name="Produto" [(ngModel)]="search.nomeProduto" #model="ngModel">
+            <mat-label>Marca</mat-label>
+            <select matNativeControl title="Marca" id="marca" name="marca" [(ngModel)]="search.idMarca"
+              #model="ngModel">
+              <option [ngValue]=0>Todos</option>
+              <option *ngFor="let marca of marcas" [ngValue]="marca.id"> {{ marca.nome }} </option>
+            </select>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Produto" id="Produto" name="Produto" [(ngModel)]="search.nomeProduto"
+              #model="ngModel">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
             <mat-label>Distância (KM)</mat-label>
-            <select matNativeControl title="Distancia"  id="Distancia" name="Distancia" [(ngModel)]="search.distanceKM" #model="ngModel">
+            <select matNativeControl title="Distancia" id="Distancia" name="Distancia" [(ngModel)]="search.distanceKM"
+              #model="ngModel">
               <option [ngValue]=0>Todas</option>
               <option [ngValue]=1>1</option>
               <option [ngValue]=3>3</option>
@@ -39,9 +43,10 @@
             </select>
           </mat-form-field>
 
-  
+
         </mat-card-content>
-        <button mat-raised-button class="btn-block" type="button" color="primary" (click)="pesquisar()" >Pesquisar</button>
+        <button mat-raised-button class="btn-block" type="button" color="primary"
+          (click)="pesquisar()">Pesquisar</button>
       </form>
     </mat-card>
   </div>
@@ -49,11 +54,15 @@
 <div *ngIf="!pesquisando">
   <div class="container-table">
     <div class="mat-elevation-z8">
-      <button mat-raised-button class="btn-block" type="button" color="primary" (click)="Voltar()" >Voltar aos Filtros</button>
       <div class="row">
-        <div class="col-8">
+        <div class="col-2">
+          <button class="btn btn-voltar" type="button" (click)="Voltar()"><span id="arrow" class="material-icons">
+              arrow_back
+            </span></button>
+        </div>
+        <div class="col-6">
           <div class="titulo-table">
-           <h6 class="titulo">Resultados da pesquisa</h6>            
+            <h6 class="titulo">Resultados da pesquisa</h6>
           </div>
         </div>
         <div class="col-4">
@@ -64,47 +73,45 @@
             </mat-form-field>
           </div>
         </div>
-      </div> 
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th id="id">#</th>
-              <th (click)="sort('produto')">Produto
-                <span *ngIf="key =='produto'">{{reverse ? '▲' : '▼'}}</span>
-              </th>
-              <th (click)="sort('categoria')">Categoria 
-                <span *ngIf="key =='categoria'">{{reverse ? '▲' : '▼'}}</span>
-              </th>
-              <th (click)="sort('marca')">Marca
-                <span *ngIf="key =='marca'">{{reverse ? '▲' : '▼'}}</span>
-              </th>
-              <th (click)="sort('loja')">Loja
-                  <span *ngIf="key =='loja'">{{reverse ? '▲' : '▼'}}</span>
-                </th>
-              <th (click)="sort('preco')">Preço
-                <span *ngIf="key =='preco'">{{reverse ? '▲' : '▼'}}</span>
-              </th>
-             </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let registro of resultado |filter:filter| orderBy: key : reverse | paginate: { itemsPerPage: 10, currentPage: p }">
-              <td>{{registro.id}}</td>
-              <td>{{registro.nome}}</td>
-              <td>{{registro.categoria.nome}}</td>
-              <td>{{registro.marca.nome}}</td>
-              <td>{{registro.lojaResource.nome}}</td>
-              <td>{{registro.preco}}</td>
-  
-            </tr>
-          </tbody>
-        </table>
-        <div class="row justify-content-center">
-          <pagination-controls (pageChange)="p = $event" previousLabel="Anterior"
-          nextLabel="Próximo"></pagination-controls>
-        </div>
-      </div> 
+      </div>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th id="id">#</th>
+            <th (click)="sort('produto')">Produto
+              <span *ngIf="key =='produto'">{{reverse ? '▲' : '▼'}}</span>
+            </th>
+            <th (click)="sort('categoria')">Categoria
+              <span *ngIf="key =='categoria'">{{reverse ? '▲' : '▼'}}</span>
+            </th>
+            <th (click)="sort('marca')">Marca
+              <span *ngIf="key =='marca'">{{reverse ? '▲' : '▼'}}</span>
+            </th>
+            <th (click)="sort('loja')">Loja
+              <span *ngIf="key =='loja'">{{reverse ? '▲' : '▼'}}</span>
+            </th>
+            <th (click)="sort('preco')">Preço
+              <span *ngIf="key =='preco'">{{reverse ? '▲' : '▼'}}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let registro of resultado |filter:filter| orderBy: key : reverse | paginate: { itemsPerPage: 10, currentPage: p }">
+            <td>{{registro.id}}</td>
+            <td>{{registro.nome}}</td>
+            <td>{{registro.categoria.nome}}</td>
+            <td>{{registro.marca.nome}}</td>
+            <td>{{registro.lojaResource.nome}}</td>
+            <td>{{registro.preco}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+      <div class="row justify-content-center">
+        <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Próximo">
+        </pagination-controls>
+      </div>
+    </div>
   </div>
 </div>
-    
-  
-    

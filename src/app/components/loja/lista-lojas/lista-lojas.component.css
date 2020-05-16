@@ -1,9 +1,9 @@
 
-  /* .mat-form-field {
+  .mat-form-field {
     font-size: 14px;
     width: 100%;
-    left: 2%;
-  } */
+    right: 5%;
+  }
 
   #btn-add{
       margin: 5px;
