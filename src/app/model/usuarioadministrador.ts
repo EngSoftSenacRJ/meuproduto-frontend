@@ -15,5 +15,6 @@ export interface Usuarioadministrador {
     "password": string,
     "usernameAdministrador": string,
     "enabled": Boolean,
-    "emailConfirmado": boolean
+    "emailConfirmado": boolean,
+    //"IdLoja": number
 }

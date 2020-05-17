@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angul
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Appconstants } from 'src/app/helpers/appconstants';
-import { Usuarioadministrador } from 'src/app/model/usuarioadministrador';
+import { UsuarioLogado } from 'src/app/model/usuarioLogado';
 
 
 @Injectable({
@@ -13,6 +13,7 @@ export class LoginService {
 
 
   IsAuthenticate: boolean;
+  usuarioLogado: UsuarioLogado;
   username: string;
   token: String;
   
@@ -24,7 +25,8 @@ export class LoginService {
     headers: new HttpHeaders({
       'Content-Type':  'application/x-www-form-urlencoded'
     }),
-};
+  };
+
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -32,15 +34,32 @@ export class LoginService {
     }),
   };
 
+  ConstroiHeader(): any {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + this.token
+      }),
+    };
+  }
+
   // Fazer Login
-  Logar(userName: String, password: String): Observable<{"token":string}> {
-//{"username":"javainuse","password":"password"}
-    return this.httpClient.post<{"token":string}>(Appconstants.baseAPIURL + 'authenticate', {"username":userName,"password":password},this.httpOptions)
+  Logar(userName: String, password: String): Observable<UsuarioLogado> {
+    return this.httpClient.post<UsuarioLogado>(Appconstants.baseAPIURL + 'authenticate', {"username":userName,"password":password},this.httpOptions)
       .pipe(
         retry(0),
         catchError(this.handleError)
       )
   }
+
+    // Buscar dados do usuário logado
+    BuscarUsuarioLogado(userName: string): Observable<any> {
+      return this.httpClient.get<any>(Appconstants.baseAPIURL + 'administradores/administrador?username=' + userName, this.ConstroiHeader())
+        .pipe(
+          retry(0),
+          catchError(this.handleError)
+        )
+    }
 
 
   Logout() {

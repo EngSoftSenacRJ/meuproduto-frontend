@@ -24,17 +24,23 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private router: Router,
     private modalService: BsModalService,
     private administradorService: AdministradorService) { }
 
   ngOnInit() {
     if (this.loginService.IsAuthenticate) {
-      this.IsAdmin = true;
-      this.IsFuncionario = false;
-      this.IsLogado = true;
-
       
+      this.IsLogado = true;
+      this.nome = this.loginService.usuarioLogado.nome;
+
+      if (this.loginService.usuarioLogado.usuarioType == "ADMINISTRADOR") {
+        this.IsAdmin = true;
+        this.IsFuncionario = false;
+      } else {
+        this.IsAdmin = false;
+        this.IsFuncionario = true;
+      }
+           
     } else {
       this.IsAdmin = false;
       this.IsFuncionario = false;
