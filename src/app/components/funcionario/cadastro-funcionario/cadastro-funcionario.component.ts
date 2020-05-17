@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { FuncionarioService } from 'src/app/service/funcionario/funcionario.service';
 import {  MAT_MOMENT_DATE_FORMATS,  MomentDateAdapter,  MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { AlertModalService } from 'src/app/shared/alert-modal.service';
 
 @Component({
   selector: 'app-cadastro-funcionario',
@@ -32,13 +33,11 @@ export class CadastroFuncionarioComponent implements OnInit {
   Telmask = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/,/\d/,/\d/, '-',/\d/, /\d/, /\d/, /\d/,];
   CEPmask = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
 
-  step = 0;
-  hide = true;
-
   constructor(
     private funcionarioService: FuncionarioService,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertModalService
   ) {}
 
   ngOnInit() {
@@ -52,24 +51,11 @@ export class CadastroFuncionarioComponent implements OnInit {
         this.dateF = new Date(dateArray[1] + "-" + dateArray[0] + "-" + dateArray[2]);
       },
       err => { 
-        alert('Ocorreu um erro ao carregar Funcionario!');
+        this.alertService.showAlertDanger('Ocorreu um erro ao carregar Funcionario!');
         console.error(err);                    
        });
     }
   }
-
-  setStep(index: number) {
-    this.step = index;
-  }
-
-  nextStep() {
-    this.step++;
-  }
-
-  prevStep() {
-    this.step--;
-  }
-
 
   Salvar(form: NgForm) {
 
@@ -84,20 +70,20 @@ export class CadastroFuncionarioComponent implements OnInit {
     if (this.funcionarioService.funcionarioSelecionado == undefined) {
       
       this.funcionarioService.Cadastrar(this.funcionario).subscribe( data =>  {
-        alert('Funcionario cadastrado com sucesso!');  
+       this.alertService.showAlertSucces('Funcionario cadastrado com sucesso!');
         this.router.navigate(["home/funcionarios"]);
         }, err => { 
-          alert('Ocorreu um erro ao cadastrar funcionario!');
+          this.alertService.showAlertDanger('Ocorreu um erro ao cadastrar funcionario!');
           console.error(err);                    
          }    
        );
 
     } else {
       this.funcionarioService.Editar(this.funcionarioService.funcionarioSelecionado, this.funcionario).subscribe( data =>  {
-        alert('Funcionario alterado com sucesso!');    
+        this.alertService.showAlertSucces('Funcionario alterado com sucesso!');
         this.router.navigate(["home/funcionarios"]);
         }, err => { 
-          alert('Ocorreu um erro ao alterar Funcionario!');
+          this.alertService.showAlertDanger('Ocorreu um erro ao alterar Funcionario!');
           console.error(err);                    
          }    
        );

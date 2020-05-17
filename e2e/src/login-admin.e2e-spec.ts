@@ -31,7 +31,7 @@ describe('Testando Cadastro Administrador:', () => {
         { nome: 'bairroEnderecoPessoal', valor: 'Pavuna' },
         { nome: 'cidadeEnderecoPessoal', valor: 'Janeiro' },
         { nome: 'estadoEnderecoPessoal', valor: 'Rio de Janeiro' },
-        { nome: 'username', valor: 'carmenlivia@outlook.com' },
+        { nome: 'username', valor: 'carmenlivia.lopes@gmail.com' },
         { nome: 'password', valor: '123456' }
     ]
 

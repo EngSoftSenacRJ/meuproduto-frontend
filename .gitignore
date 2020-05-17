@@ -46,5 +46,6 @@ testem.log
 Thumbs.db
 
 /screenshots
+/relatorio
 guitest-xmloutput.xml
 ProtractorTestReport.html

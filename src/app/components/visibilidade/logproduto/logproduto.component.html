@@ -40,9 +40,13 @@
     <div *ngIf="!pesquisando">
       <div class="container-table">
         <div class="mat-elevation-z8">
-          <button mat-raised-button class="btn-block" type="button" color="primary" (click)="Voltar()" >Voltar aos Filtros</button>
           <div class="row">
-            <div class="col-8">
+            <div class="col-2">
+              <button class="btn btn-voltar" type="button" (click)="Voltar()"><span id="arrow" class="material-icons">
+                  arrow_back
+                </span></button>
+            </div>
+            <div class="col-6">
               <div class="titulo-table">
                <h6 class="titulo">Resultados da pesquisa</h6>            
               </div>
