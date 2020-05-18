@@ -14,12 +14,13 @@ import { CadastroProdutoComponent } from './components/produto/cadastro-produto/
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { AssociaLojaprodutoComponent } from './components/loja/associa-lojaproduto/associa-lojaproduto.component';
 import { LogprodutoComponent } from './components/visibilidade/logproduto/logproduto.component';
+import { ContentComponent } from './components/home/content/content.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: "full"},
   {path: "home", component: HomeComponent,
   children: [
-    // { path: '', component:  AComponent },
+    { path: '', component:  ContentComponent },
     { path: 'cadastro', component: CadastroAdminComponent },
     { path: 'pesquisar', component: PesquisarComponent },
     { path: 'lojas', component: ListaLojasComponent },

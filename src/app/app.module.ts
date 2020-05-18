@@ -22,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
 import { CadastroProdutoComponent } from './components/produto/cadastro-produto/cadastro-produto.component';
 import { AssociaLojaprodutoComponent } from './components/loja/associa-lojaproduto/associa-lojaproduto.component';
 import { LogprodutoComponent } from './components/visibilidade/logproduto/logproduto.component';
+import {ContentComponent} from './components/home/content/content.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { LogprodutoComponent } from './components/visibilidade/logproduto/logpro
     CadastroProdutoComponent,
     AssociaLojaprodutoComponent,
     LogprodutoComponent,
+    ContentComponent,
   ],
   imports: [
     BrowserModule,
