@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Usuarioadministrador } from 'src/app/model/usuarioadministrador';
-import { AdministradorService } from 'src/app/service/administrador/administrador.service';
 import { formatDate } from '@angular/common';
 import { LoginService } from 'src/app/service/login/login.service';
 import { Router } from '@angular/router';
@@ -9,6 +8,8 @@ import { FuncionarioService } from 'src/app/service/funcionario/funcionario.serv
 import {  MAT_MOMENT_DATE_FORMATS,  MomentDateAdapter,  MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
+import { LojaService } from 'src/app/service/loja/loja.service';
+import { Loja } from 'src/app/model/loja';										  
 
 @Component({
   selector: 'app-cadastro-funcionario',
@@ -27,15 +28,19 @@ import { AlertModalService } from 'src/app/shared/alert-modal.service';
 export class CadastroFuncionarioComponent implements OnInit {
 
   funcionario = {} as Usuarioadministrador;
+lojas: Loja[];
   dateF: Date;
 
   CPFmask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   Telmask = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/,/\d/,/\d/, '-',/\d/, /\d/, /\d/, /\d/,];
   CEPmask = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+		   
+			  
 
   constructor(
     private funcionarioService: FuncionarioService,
     private loginService: LoginService,
+	private lojaService: LojaService,
     private router: Router,
     private alertService: AlertModalService
   ) {}
@@ -43,9 +48,11 @@ export class CadastroFuncionarioComponent implements OnInit {
   ngOnInit() {
     
     if (this.funcionarioService.funcionarioSelecionado != undefined){
+
       this.funcionarioService.CarregarporFuncionarioSelecionado().subscribe( data => {
         this.funcionario = data;
-        this.funcionario.id = null;
+        //this.funcionario.id = null;
+		    this.funcionario.lojaId = this.funcionario.lojaResource.id;														   
         console.log(data);
         var dateArray = this.funcionario.dataAniversario.split("/");
         this.dateF = new Date(dateArray[1] + "-" + dateArray[0] + "-" + dateArray[2]);
@@ -55,10 +62,17 @@ export class CadastroFuncionarioComponent implements OnInit {
         console.error(err);                    
        });
     }
+
+    this.lojaService.listar().subscribe(dados => {
+      this.lojas = dados;
+      console.log(this.lojas);
+    });
+  
   }
 
   Salvar(form: NgForm) {
 
+	  delete  this.funcionario.id;							
     this.funcionario.dataAniversario = formatDate(this.dateF,"dd/MM/yyyy","en-US");
     this.funcionario.telefoneContato = this.funcionario.telefoneContato.toString().replace("(","").replace(")","").replace("-","");
     this.funcionario.cpf = Number(this.funcionario.cpf.toString().replace(".","").replace(".","").replace("-",""));
@@ -66,6 +80,8 @@ export class CadastroFuncionarioComponent implements OnInit {
     this.funcionario.usuarioType = "FUNCIONARIO";
     this.funcionario.enabled = true;
     this.funcionario.usernameAdministrador = this.loginService.username;
+
+								  
 
     if (this.funcionarioService.funcionarioSelecionado == undefined) {
       
@@ -79,7 +95,12 @@ export class CadastroFuncionarioComponent implements OnInit {
        );
 
     } else {
-      this.funcionarioService.Editar(this.funcionarioService.funcionarioSelecionado, this.funcionario).subscribe( data =>  {
+
+	  if (this.funcionario.password != undefined && this.funcionario.password != "") {
+        this.funcionario.newPassword = this.funcionario.password;
+      }	
+
+    this.funcionarioService.Editar(this.funcionarioService.funcionarioSelecionado, this.funcionario).subscribe( data =>  {
         this.alertService.showAlertSucces('Funcionario alterado com sucesso!');
         this.router.navigate(["home/funcionarios"]);
         }, err => { 

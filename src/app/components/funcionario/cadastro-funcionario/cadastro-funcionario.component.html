@@ -94,6 +94,17 @@
 </div>
 
 <div class="form-row">
+
+  <div class="form-group col-md-6">
+  <mat-form-field >
+    <mat-label>Lojas</mat-label>
+    <mat-select [(ngModel)]="funcionario.lojaId" title="Lojas" name="loja" #model="ngModel" required>
+      <mat-option *ngFor="let loja of lojas" [value]="loja.id"> {{loja.nome}} </mat-option>
+  </mat-select>
+  <mat-error *ngIf="f.invalid">Loja é obrigatório.</mat-error>
+  </mat-form-field>
+  </div>	   
+
   <div class="form-group col-md-6">
     <mat-form-field>
       <input matInput placeholder="Email" name="username" [(ngModel)]="funcionario.username" #name="ngModel" required>

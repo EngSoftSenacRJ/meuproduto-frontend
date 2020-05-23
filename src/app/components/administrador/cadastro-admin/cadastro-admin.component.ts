@@ -66,6 +66,8 @@ export class CadastroAdminComponent implements OnInit {
   }
 
   Salvar(form: NgForm) {
+
+    delete  this.usuarioAdm.id;
     this.usuarioAdm.dataAniversario = formatDate(this.dateF,"dd/MM/yyyy","en-US");
     this.usuarioAdm.telefoneContato = this.usuarioAdm.telefoneContato.toString().replace("(","").replace(")","").replace("-","");
     this.usuarioAdm.cpf = Number(this.usuarioAdm.cpf.toString().replace(".","").replace(".","").replace("-",""));
@@ -85,7 +87,11 @@ export class CadastroAdminComponent implements OnInit {
        );
 
     } else {
-      console.log(this.usuarioAdm);
+
+      if (this.usuarioAdm.password != undefined && this.usuarioAdm.password != "") {
+        this.usuarioAdm.newPassword = this.usuarioAdm.password;
+      }
+      
       this.administradorService.Editar(this.usuarioLogado, this.usuarioAdm).subscribe( data =>  {
         this.alertService.showAlertSucces('Dados do Usuário alterado com sucesso!');
         this.router.navigate(["/home"]);

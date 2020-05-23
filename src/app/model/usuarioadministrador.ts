@@ -1,3 +1,5 @@
+import { Loja } from './loja';
+
 export interface Usuarioadministrador {
     "id": number,
     "usuarioType": string,
@@ -13,8 +15,10 @@ export interface Usuarioadministrador {
     "telefoneContato": string,
     "dataAniversario": string,
     "password": string,
+    "newPassword": string,
     "usernameAdministrador": string,
     "enabled": Boolean,
     "emailConfirmado": boolean,
-    //"IdLoja": number
+    "lojaId": number,
+    "lojaResource": Loja
 }
