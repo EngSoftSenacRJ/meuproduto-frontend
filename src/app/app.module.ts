@@ -17,7 +17,7 @@ import { LojaModule } from './components//loja/loja.module';
 import { CadastroMarcaComponent } from './components/marca/cadastro-marca/cadastro-marca.component';
 import { ListaMarcaComponent } from './components/marca/lista-marca/lista-marca.component';
 import { MaterialModule } from './material-module';
-import { PesquisarComponent } from './components/pesquisa/pesquisar/pesquisar.component';
+import { PesquisarComponent, DetalhelojaComponent,DetalheProdutoComponent } from './components/pesquisa/pesquisar/pesquisar.component';
 import { SharedModule } from './shared/shared.module';
 import { CadastroProdutoComponent } from './components/produto/cadastro-produto/cadastro-produto.component';
 import { AssociaLojaprodutoComponent } from './components/loja/associa-lojaproduto/associa-lojaproduto.component';
@@ -29,6 +29,8 @@ import {ContentComponent} from './components/home/content/content.component';
   declarations: [
     AppComponent,
     PesquisarComponent,
+    DetalhelojaComponent,
+    DetalheProdutoComponent,
     CadastroFuncionarioComponent,
     ListaMarcaComponent,
     CadastroMarcaComponent,
@@ -53,6 +55,10 @@ import {ContentComponent} from './components/home/content/content.component';
     SharedModule,
     ReactiveFormsModule,
     ModalModule.forRoot()   
+  ],
+  entryComponents: [
+    DetalhelojaComponent,
+    DetalheProdutoComponent,
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

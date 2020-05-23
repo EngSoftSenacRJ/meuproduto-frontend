@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CategoriaService } from 'src/app/service/categoria/categoria.service';
 import { MarcaService } from 'src/app/service/marca/marca.service';
@@ -6,7 +6,8 @@ import { Marca } from 'src/app/model/marca';
 import { Categoria } from 'src/app/model/categoria';
 import { Search } from 'src/app/model/search';
 import { SearchService } from 'src/app/service/search/search.service';
-import { Router } from '@angular/router';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Loja } from 'src/app/model/loja';
 import { SearchResult } from 'src/app/model/searchresult';
 
 @Component({
@@ -36,6 +37,7 @@ export class PesquisarComponent implements OnInit {
     private categoriaService: CategoriaService,
     private marcaService: MarcaService,
     private searchService: SearchService,
+    public matDialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -85,4 +87,45 @@ export class PesquisarComponent implements OnInit {
     this.pesquisando=true;
   }
 
+  DetalheLoja(loja: Loja) {
+    this.matDialog.open(DetalhelojaComponent, {
+      data: loja
+    });
+  }
+
+  DetalheProduto(produto: SearchResult) {
+    this.matDialog.open(DetalheProdutoComponent, {
+      data: produto
+    });
+  }
+
 }
+
+@Component({
+  selector: 'detalheloja',
+  templateUrl: 'detalheloja.html',
+  styleUrls: ['./detalheloja.css']
+})
+
+export class DetalhelojaComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Loja) {}
+
+  FormatarTel(tel: string): string {
+    return "(" + tel.substring(0,2) + ")" + tel.substring(2,6) + "-" + tel.substring(6,10) 
+  }
+
+  FormatarCEP(cep: string): string {
+    return cep.substring(0,5) + "-" + cep.substring(5,10) 
+  }
+}
+
+@Component({
+  selector: 'detalheproduto',
+  templateUrl: 'detalheproduto.html',
+  styleUrls: ['./detalheloja.css']
+})
+
+export class DetalheProdutoComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: SearchResult) {}
+}
+

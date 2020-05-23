@@ -28,19 +28,18 @@ import { Loja } from 'src/app/model/loja';
 export class CadastroFuncionarioComponent implements OnInit {
 
   funcionario = {} as Usuarioadministrador;
-lojas: Loja[];
+  lojas: Loja[];
   dateF: Date;
 
   CPFmask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   Telmask = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/,/\d/,/\d/, '-',/\d/, /\d/, /\d/, /\d/,];
   CEPmask = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
-		   
-			  
+	hide = true;		  
 
   constructor(
     private funcionarioService: FuncionarioService,
     private loginService: LoginService,
-	private lojaService: LojaService,
+	  private lojaService: LojaService,
     private router: Router,
     private alertService: AlertModalService
   ) {}
@@ -80,8 +79,6 @@ lojas: Loja[];
     this.funcionario.usuarioType = "FUNCIONARIO";
     this.funcionario.enabled = true;
     this.funcionario.usernameAdministrador = this.loginService.username;
-
-								  
 
     if (this.funcionarioService.funcionarioSelecionado == undefined) {
       

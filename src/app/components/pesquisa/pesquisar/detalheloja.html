@@ -1,0 +1,33 @@
+<!-- <h1 mat-dialog-title>{{data.nome}}</h1>
+<div mat-dialog-content>
+  <ul>
+    <li>CNPJ: {{data.cnpj}} </li>
+    <li>Razão Social: {{data.razaoSocial}} </li>
+    <li>Endereço: {{data.ruaEnderecoComercial}}
+    <li>n°: {{data.numeroEnderecoComercial}} </li>
+    <li>Bairro: {{data.bairroEnderecoComercial}} </li>
+    <li>Cidade: {{data.cidadeEnderecoComercial}} </li>
+    <li>Estado: {{data.estadoEnderecoComercial}} </li>
+    <li>Cep: {{data.cepEnderecoComercial}} </li>
+    <li>Contato: {{data.telefoneContato}} </li>
+  </ul>
+</div> -->
+
+<div class="login-wrapper container" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>{{data.nome}}</mat-card-title>
+    </mat-card-header>
+    <br>
+
+    <b>CNPJ:</b> {{data.cnpj}} <br>
+    <b>Razão Social:</b> {{data.razaoSocial}} <br>
+    <b>Endereço:</b> {{data.ruaEnderecoComercial}} <br>
+    <b>n°:</b> {{data.numeroEnderecoComercial}}  <br>
+    <b>Bairro:</b> {{data.bairroEnderecoComercial}} <br>
+    <b>Cidade:</b> {{data.cidadeEnderecoComercial}} <br>
+    <b>Estado:</b> {{data.estadoEnderecoComercial}} <br>
+    <b>Cep:</b> {{FormatarCEP(data.cepEnderecoComercial)}} <br>
+    <b>Contato:</b> {{FormatarTel(data.telefoneContato)}} <br>
+  </mat-card>
+</div>
