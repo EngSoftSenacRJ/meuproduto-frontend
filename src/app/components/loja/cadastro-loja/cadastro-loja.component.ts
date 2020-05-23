@@ -66,9 +66,32 @@ export class CadastroLojaComponent implements OnInit {
   }
 
   populaDadosForm(data, form){
+    let aux1 = data.address_components[1].types[0];
+    let aux2 = data.address_components[2].types[0];
+    let bairro;
+    let rua;
+    let cidade;
+    console.log('TIPO1: '+aux1);
+
+    if(aux1=='political'){
+      bairro =  data.address_components[1].long_name;
+    }else{
+      bairro = '';
+      rua = data.address_components[1].long_name;
+    }
+
+    if(aux2=='administrative_area_level_2'){
+      cidade = data.address_components[2].long_name;
+    }else{
+      bairro = data.address_components[2].long_name;
+      cidade = data.address_components[3].long_name;
+    }
+
+
     form.form.patchValue({
-      bairro: data.address_components[1].long_name,
-      cidade: data.address_components[2].long_name,
+      rua: rua,
+      bairro: bairro,
+      cidade: cidade,
       estado: data.address_components[3].long_name,
       cep: data.address_components[0].long_name,
     })

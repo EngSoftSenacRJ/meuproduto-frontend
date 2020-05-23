@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TextMaskModule } from 'angular2-text-mask';
-import { ModalModule } from 'ngx-bootstrap';
+import { ModalModule, BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { AdministradorModule } from './components/administrador/administrador.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -54,7 +54,7 @@ import {ContentComponent} from './components/home/content/content.component';
     ReactiveFormsModule,
     ModalModule.forRoot()   
   ],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
