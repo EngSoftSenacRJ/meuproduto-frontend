@@ -19,12 +19,12 @@
         <thead>
           <tr>
             <th id="id">#</th>
-            <th (click)="sort('nome')">Nome da Loja
+            <th id="nomeLoja" (click)="sort('nome')">Nome da Loja
               <span *ngIf="key =='nome'">{{reverse ? '▲' : '▼'}}</span>
             </th>
-            <th>Endereco</th>
-            <th>Telefone Contato</th>
-            <th>Ações</th>
+            <th id="endereco">Endereço</th>
+            <th id="telefone">Telefone Contato</th>
+            <th id="acoes">Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -33,7 +33,7 @@
             <td>{{loja.nome}}</td>
             <td>{{loja.ruaEnderecoComercial}}</td>
             <td>{{loja.telefoneContato}}</td>
-            <td><button mat-raised-button color="primary"  (click)="editar(loja.id)"><mat-icon aria-hidden="false" aria-label="Detalhar">description</mat-icon>
+            <td><button id="edicao" mat-raised-button color="primary"  (click)="editar(loja.id)"><mat-icon aria-hidden="false" aria-label="Detalhar">description</mat-icon>
             </button>
             {{' '}}<button mat-raised-button color="warn" (click)="deletar(loja.id)"><mat-icon aria-hidden="false" aria-label="Excluir loja">delete</mat-icon>
             </button></td>

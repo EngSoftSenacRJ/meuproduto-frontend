@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Loja } from 'src/app/model/loja';
 import { LojaService } from 'src/app/service/loja/loja.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup } from '@angular/forms';
 import { LoginService } from 'src/app/service/login/login.service';
 import { Router } from '@angular/router';
 import { ListaLojasComponent } from '../lista-lojas/lista-lojas.component';
@@ -86,7 +86,6 @@ export class CadastroLojaComponent implements OnInit {
       bairro = data.address_components[2].long_name;
       cidade = data.address_components[3].long_name;
     }
-
 
     form.form.patchValue({
       rua: rua,
