@@ -5,7 +5,7 @@ import { LojaService } from 'src/app/service/loja/loja.service';
 import { ProdutoService } from 'src/app/service/produto/produto.service';
 import { NgForm, FormGroup, FormBuilder, NgControl } from '@angular/forms';
 import { LojasProdutos } from 'src/app/model/lojasProdutos';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 
 @Component({

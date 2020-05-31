@@ -5,7 +5,7 @@ import { NgForm, FormGroup } from '@angular/forms';
 import { LoginService } from 'src/app/service/login/login.service';
 import { Router } from '@angular/router';
 import { ListaLojasComponent } from '../lista-lojas/lista-lojas.component';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 
 @Component({

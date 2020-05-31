@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TextMaskModule } from 'angular2-text-mask';
-import { ModalModule, BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { AdministradorModule } from './components/administrador/administrador.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +23,7 @@ import { CadastroProdutoComponent } from './components/produto/cadastro-produto/
 import { AssociaLojaprodutoComponent } from './components/loja/associa-lojaproduto/associa-lojaproduto.component';
 import { LogprodutoComponent } from './components/visibilidade/logproduto/logproduto.component';
 import {ContentComponent} from './components/home/content/content.component';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({

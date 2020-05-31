@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoginService } from 'src/app/service/login/login.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Usuarioadministrador } from 'src/app/model/usuarioadministrador';
 import { AdministradorService } from 'src/app/service/administrador/administrador.service';
 import { Router } from '@angular/router';

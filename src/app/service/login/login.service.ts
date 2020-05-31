@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -45,6 +46,9 @@ export class LoginService {
 
   // Fazer Login
   Logar(userName: String, password: String): Observable<UsuarioLogado> {
+    console.log(environment.apiBaseHost);
+    console.log(environment.apiBaseHost);
+    console.log(environment.apiBasePort);
     return this.httpClient.post<UsuarioLogado>(Appconstants.baseAPIURL + 'authenticate', {"username":userName,"password":password},this.httpOptions)
       .pipe(
         retry(0),

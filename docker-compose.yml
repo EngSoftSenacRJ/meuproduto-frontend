@@ -1,0 +1,18 @@
+meuproduto-frontend:
+    image: rderoci/meuproduto-frontend
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile
+    container_name: meuproduto-frontend
+    deploy:
+      restart_policy:
+        condition: on-failure
+    environment:
+      - API_BASE_HOST=18.190.96.128
+      - API_BASE_PORT=8080
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - net-meuproduto
+    ports:
+      - 80:80
