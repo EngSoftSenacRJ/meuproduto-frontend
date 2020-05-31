@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseHost: 'localhost',
-  apiBasePort: '8080'
+  apiBaseHost: 'API_BASE_HOST',
+  apiBasePort: 'API_BASE_PORT'
 };
 
 /*
