@@ -8,9 +8,10 @@
                     </div>
                     <mat-divider></mat-divider>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Desktop</li>
-                        <li class="list-group-item">Notebook</li>
-                        <li class="list-group-item">Tablets/iPads</li>
+                        <a routerLink='busca' [queryParams]="{cat:'desktop'}"><li class="list-group-item">Desktop</li></a>
+                        <a routerLink='busca' [queryParams]="{cat:'notebook'}"><li class="list-group-item">Notebook</li></a>
+                        <a routerLink='busca' [queryParams]="{cat:'tablet'}"><li class="list-group-item">Tablets/iPads</li></a>
+
                     </ul>
                 </div>
 
@@ -22,9 +23,9 @@
                     </div>
                     <mat-divider></mat-divider>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Smartphones</li>
-                        <li class="list-group-item">Smartwatches</li>
-                        <li class="list-group-item">Automação Residencial</li>
+                        <a routerLink='busca' [queryParams]="{cat:'smartphone'}"><li class="list-group-item">Smartphones</li></a>
+                        <a routerLink='busca' [queryParams]="{cat:'smartwatch'}"><li class="list-group-item">Smartwatch</li></a>
+                        <a routerLink='busca' [queryParams]="{cat:'automacao'}"> <li class="list-group-item">Automação Residencial</li></a>
                     </ul>
                 </div>
 
@@ -36,9 +37,9 @@
                     </div>
                     <mat-divider></mat-divider>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Monitores/TVs</li>
-                        <li class="list-group-item">Mouses</li>
-                        <li class="list-group-item">Teclados</li>
+                        <a routerLink='busca' [queryParams]="{cat:'monitor'}"><li class="list-group-item">Monitores/TVs</li></a>
+                        <a routerLink='busca' [queryParams]="{cat:'mouse'}"><li class="list-group-item">Mouses</li></a>
+                        <a routerLink='busca' [queryParams]="{cat:'teclado'}"><li class="list-group-item">Teclados</li></a>
                     </ul>
                 </div>
 
@@ -53,9 +54,9 @@
                     </div>
                     <mat-divider></mat-divider>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Placas Mãe</li>
-                        <li class="list-group-item">Processadores</li>
-                        <li class="list-group-item">Memórias</li>
+                        <a routerLink='busca' [queryParams]="{cat:'placa'}"><li class="list-group-item">Placas Mãe</li></a>
+                        <a routerLink='busca' [queryParams]="{cat:'processador'}"><li class="list-group-item">Processadores</li></a>
+                        <a routerLink='busca' [queryParams]="{cat:'memoria'}"><li class="list-group-item">Memórias</li></a>
                     </ul>
                 </div>
 
@@ -67,9 +68,9 @@
                     </div>
                     <mat-divider></mat-divider>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Consoles</li>
-                        <li class="list-group-item">JoySticks</li>
-                        <li class="list-group-item">Jogos</li>
+                        <a routerLink='busca' [queryParams]="{cat:'console'}"><li class="list-group-item">Consoles</li></a>
+                        <a routerLink='busca' [queryParams]="{cat:'joystick'}"><li class="list-group-item">JoySticks</li></a>
+                        <a routerLink='busca' [queryParams]="{cat:'jogo'}"><li class="list-group-item">Jogos</li></a>
                     </ul>
                 </div>
 
@@ -81,9 +82,9 @@
                     </div>
                     <mat-divider></mat-divider>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Headphones/Fones de ouvido</li>
-                        <li class="list-group-item">Carregadores</li>
-                        <li class="list-group-item">Capas e Cases</li>
+                        <a routerLink='busca' [queryParams]="{cat:'headphone'}"><li class="list-group-item">Headphones/Fones de ouvido</li></a>
+                        <a routerLink='busca' [queryParams]="{cat:'carregador'}"><li class="list-group-item">Carregadores</li></a>
+                        <a routerLink='busca' [queryParams]="{cat:'case'}"><li class="list-group-item">Capas e Cases</li></a>
                     </ul>
                 </div>
             </div>

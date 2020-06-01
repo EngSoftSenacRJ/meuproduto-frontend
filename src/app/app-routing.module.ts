@@ -15,6 +15,7 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { AssociaLojaprodutoComponent } from './components/loja/associa-lojaproduto/associa-lojaproduto.component';
 import { LogprodutoComponent } from './components/visibilidade/logproduto/logproduto.component';
 import { ContentComponent } from './components/home/content/content.component';
+import { BuscaCategoriaComponent } from './components/home/busca-categoria/busca-categoria.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: "full"},
@@ -23,6 +24,7 @@ const routes: Routes = [
     { path: '', component:  ContentComponent },
     { path: 'cadastro', component: CadastroAdminComponent },
     { path: 'pesquisar', component: PesquisarComponent },
+    { path: 'busca', component: BuscaCategoriaComponent },
     { path: 'lojas', component: ListaLojasComponent },
     { path: 'cadastroloja', component: CadastroLojaComponent},
     { path: 'marcas', component: ListaMarcaComponent },

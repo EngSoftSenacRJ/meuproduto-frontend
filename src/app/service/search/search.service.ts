@@ -63,6 +63,24 @@ export class SearchService {
       )
     }
 
+    ListarByCategoria(cat:String): Observable<any> {
+
+      let params = ""
+     
+      if (cat != null) {
+        params +='&nomeProduto=' + cat;
+     }
+   
+     console.log(Appconstants.baseAPIURL+'search' + params)
+     return this.http.get(Appconstants.baseAPIURL+'search?' + params, this.httpOptions )
+     //return this.http.post(Appconstants.baseAPIURL+'search', JSON.parse(JSON.stringify(search)), this.ConstroiHeader() )
+     .pipe(
+     map(data => data['_embedded']['produtoSearchResponseResources']),
+     catchError(this.handleError)
+     )
+   }
+
+
      // Manipulação de erros
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
