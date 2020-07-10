@@ -11,6 +11,13 @@ import { Router } from '@angular/router';
 })
 export class ListaMarcaComponent implements OnInit {
 
+  key: string = 'nome'; // Define um valor padrão, para quando inicializar o componente
+  reverse: boolean = false;
+  sort(key) {
+      this.key = key;
+      this.reverse = !this.reverse;
+  } 
+  
   marcas : Marca[];
   deleteModalRef: BsModalRef;
 

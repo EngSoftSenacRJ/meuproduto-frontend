@@ -47,6 +47,7 @@ describe('Testando módulo de pesquisa: ',()=>{
 
     it('Deve abrir os detalhes da loja do produto buscado', ()=>{
         expect(element.all(by.repeater("pesquisa-list")).get(0).element(by.id('loja')).click()).toBeDefined();
+        browser.actions().click().perform();
         browser.sleep(3000);
 
     })
