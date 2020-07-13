@@ -96,13 +96,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr
-            *ngFor="let registro of resultado |filter:filter| orderBy: key : reverse | paginate: { itemsPerPage: 10, currentPage: p }">
+          <tr ng-repeat="pesquisa-list" ng *ngFor="let registro of resultado |filter:filter| orderBy: key : reverse | paginate: { itemsPerPage: 10, currentPage: p }">
             <td>{{registro.id}}</td>
-            <td><a (click)="DetalheProduto(registro)">{{registro.nome}}</a></td>
+            <td id="produto" (click)="DetalheProduto(registro)">{{registro.nome}}</td>
             <td>{{registro.categoria.nome}}</td>
             <td>{{registro.marca.nome}}</td>
-            <td ><a (click)="DetalheLoja(registro.lojaResource)">{{registro.lojaResource.nome}}</a></td>
+            <td id="loja" (click)="DetalheLoja(registro.lojaResource)">{{registro.lojaResource.nome}}</td>
             <td>{{registro.preco}}</td>
 
           </tr>

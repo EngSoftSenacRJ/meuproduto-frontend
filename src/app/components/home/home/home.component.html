@@ -17,10 +17,10 @@
        <a routerLink="../cadastro" class="nodecoration">Cadastro</a>  -->
     </mat-toolbar>
     <div id="divmenu">
-        <button mat-button routerLink="../home/pesquisar" routerLinkActive="router-link-active"  >Pesquisar</button>
+        <button mat-button routerLink="../home/pesquisar" routerLinkActive="router-link-active">Pesquisar</button>
         <button mat-button *ngIf="IsFuncionario || IsAdmin" [matMenuTriggerFor]="menuFuncionario">Gerência Loja </button>
         <mat-menu #menuFuncionario="matMenu" color="primary">
-            <button mat-menu-item color="primary" routerLink="../home/incluirproduto">Catalogo da Loja</button>
+            <button mat-menu-item color="primary" routerLink="../home/incluirproduto">Catálogo da Loja</button>
         </mat-menu>
         <button mat-button  *ngIf="IsAdmin" [matMenuTriggerFor]="menuAdm">Gerencia Adm.</button>
         <mat-menu #menuAdm="matMenu" color="primary">
@@ -39,11 +39,11 @@
         <mat-menu #menuVis="matMenu" color="primary">
             <button mat-menu-item color="primary" routerLink="../home/auditoria">Histórico de alterações do produto</button>
         </mat-menu>
-        <button mat-button [matMenuTriggerFor]="menuSobre">Ajuda</button>
-        <mat-menu #menuSobre="matMenu" color="primary">
+        <!-- <button mat-button [matMenuTriggerFor]="menuSobre">Ajuda</button> -->
+        <!-- <mat-menu #menuSobre="matMenu" color="primary">
             <button mat-menu-item color="primary">Sobre nós</button>
-            <!-- <button mat-menu-item color="primary">Fale conosco</button> -->
-        </mat-menu>
+            <button mat-menu-item color="primary">Fale conosco</button>
+        </mat-menu> -->
     </div>
     <router-outlet></router-outlet>
     <ng-template #deleteModal>

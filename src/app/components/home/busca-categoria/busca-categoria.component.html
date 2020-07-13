@@ -1,0 +1,62 @@
+    <div class="container-table">
+      <div class="mat-elevation-z8">
+        <div class="row">
+          <div class="col-2">
+            <button class="btn btn-voltar" type="button" (click)="Voltar()"><span id="arrow" class="material-icons">
+                arrow_back
+              </span></button>
+          </div>
+          <div class="col-6">
+            <div class="titulo-table">
+              <h6 class="titulo">Resultados da pesquisa</h6>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="filtro-table">
+              <mat-form-field class="filtro">
+                <mat-label>Busca: </mat-label>
+                <input matInput name="search" [(ngModel)]="filter">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th (click)="sort('produto')">Produto
+                <span *ngIf="key =='produto'">{{reverse ? '▲' : '▼'}}</span>
+              </th>
+              <!-- <th (click)="sort('categoria')">Categoria
+                <span *ngIf="key =='categoria'">{{reverse ? '▲' : '▼'}}</span>
+              </th> -->
+              <th (click)="sort('marca')">Marca
+                <span *ngIf="key =='marca'">{{reverse ? '▲' : '▼'}}</span>
+              </th>
+              <th (click)="sort('loja')">Loja
+                <span *ngIf="key =='loja'">{{reverse ? '▲' : '▼'}}</span>
+              </th>
+              <th>Endereço</th>
+              <th (click)="sort('preco')">Preço
+                <span *ngIf="key =='preco'">{{reverse ? '▲' : '▼'}}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let registro of resultado |filter:filter| orderBy: key : reverse | paginate: { itemsPerPage: 10, currentPage: p }">
+              <td><a (click)="DetalheProduto(registro)">{{registro.nome}}</a></td>
+              <!-- <td>{{registro.categoria.nome}}</td> -->
+              <td>{{registro.marca.nome}}</td>
+              <td ><a (click)="DetalheLoja(registro.lojaResource)">{{registro.lojaResource.nome}}</a></td>
+              <td>{{registro.lojaResource.ruaEnderecoComercial}},{{registro.lojaResource.numeroEnderecoComercial}}</td>
+              <td>{{registro.preco}}</td>
+  
+            </tr>
+          </tbody>
+        </table>
+        <div class="row justify-content-center">
+          <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Próximo">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>

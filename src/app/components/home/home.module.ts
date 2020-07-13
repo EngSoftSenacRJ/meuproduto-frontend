@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { MaterialModule } from '../../material-module';
 import { RouterModule } from '@angular/router';
-import { ContentComponent } from './content/content.component';
+import { BuscaCategoriaComponent } from './busca-categoria/busca-categoria.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent,BuscaCategoriaComponent],
   imports: [
     CommonModule,
     MaterialModule,

@@ -23,8 +23,8 @@ describe('Testando CRUD de Loja',() =>{
       {nome:'cnpj', valor:'12895555165622'},
       {nome:'telefone', valor:'219996-4263'},
       {nome: 'cep', valor:'21520460'},
-      {nome:'rua', valor:'Rua ABC'},
-      {nome:'numero', valor:'15'}
+      {nome:'numero', valor:'15'},
+      {nome:'rua', valor:'Rua ABC'}
    ]
 
    beforeEach(()=>{
