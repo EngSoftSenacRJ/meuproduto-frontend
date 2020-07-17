@@ -47,7 +47,7 @@ export class FuncionarioService {
   // Chama API de Listar do Funcionario
   listar(username: string): Observable<any>{
     this.funcionarioSelecionado = undefined;
-    return this.httpClient.get(Appconstants.baseAPIURL + 'funcionarios?usernameAdministrador=' + username,this.ConstroiHeader())
+    return this.httpClient.get(Appconstants.baseAPIURL + 'funcionarios/administrador?usernameAdministrador=' + username,this.ConstroiHeader())
       .pipe(
         map(data => data['_embedded']['usuarioFuncionarioResources']),
         catchError(this.handleError)

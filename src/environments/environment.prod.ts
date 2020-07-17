@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiBaseHost: '3.17.125.139',
-  apiBasePort: '8080'
+  apiBaseHost: 'API_BASE_HOST',
+  apiBasePort: 'API_BASE_PORT'
 };

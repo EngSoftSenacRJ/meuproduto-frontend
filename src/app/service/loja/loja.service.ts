@@ -46,6 +46,7 @@ export class LojaService {
     
     console.log("retorno loja: "+loja.nome);
     console.log("Token: "+this.loginService.token);
+    this.loginService.usuarioLogado.username
     return this.http.post(Appconstants.baseAPIURL+'lojas', loja, this.ConstroiHeader())
     .pipe(
       retry(0),
@@ -73,7 +74,9 @@ export class LojaService {
     }
     
     listar(): Observable<Loja[]>{
-      return this.http.get<Loja[]>(Appconstants.baseAPIURL + 'lojas?listarProdutos=true',this.ConstroiHeader())
+      console.log("Listando lojas com a url:");
+      console.log(Appconstants.baseAPIURL + 'lojas?listarProdutos=true&usernameAdministrador=' + this.loginService.usuarioLogado.username);
+      return this.http.get<Loja[]>(Appconstants.baseAPIURL + 'lojas?listarProdutos=true&usernameAdministrador=' + this.loginService.usuarioLogado.username,this.ConstroiHeader())
       .pipe(
         map(data => data['_embedded']['lojaResources'])
         );

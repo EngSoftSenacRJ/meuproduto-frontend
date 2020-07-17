@@ -54,14 +54,32 @@ export class SearchService {
         params+='&longitude=' + search.longitude;
         params+='&distanceKM=' + search.distanceKM;
       }
-      console.log(Appconstants.baseSearchAPIURL+'?' + params)
-      return this.http.get(Appconstants.baseSearchAPIURL+'?'+ params, this.httpOptions )
+      console.log(Appconstants.baseSearchAPIURL+'search?' + params)
+      return this.http.get(Appconstants.baseSearchAPIURL+'search?'+ params, this.httpOptions )
       //return this.http.post(Appconstants.baseAPIURL+'search', JSON.parse(JSON.stringify(search)), this.ConstroiHeader() )
-      .pipe(
-      map(data => data['_embedded']['produtoSearchResponseResources']),
-      catchError(this.handleError)
-      )
+      //.pipe(
+      //map(data => data['_embedded']['produtoSearchResponseResources']),
+      //catchError(this.handleError)
+      //)
     }
+
+    ListarByCategoria(cat:String): Observable<any> {
+
+      let params = ""
+     
+      if (cat != null) {
+        params +='&nomeProduto=' + cat;
+     }
+   
+     console.log(Appconstants.baseAPIURL+'search' + params)
+     return this.http.get(Appconstants.baseAPIURL+'search?' + params, this.httpOptions )
+     //return this.http.post(Appconstants.baseAPIURL+'search', JSON.parse(JSON.stringify(search)), this.ConstroiHeader() )
+     .pipe(
+     map(data => data['_embedded']['produtoSearchResponseResources']),
+     catchError(this.handleError)
+     )
+   }
+
 
      // Manipulação de erros
   handleError(error: HttpErrorResponse) {

@@ -1,3 +1,8 @@
+a > li{
+    text-decoration: none;
+    color: black;
+}
+
 .icone {
     width: 40px;
     height: 40px;

@@ -3,7 +3,7 @@ import { element, by } from 'protractor';
 export class ProdutoPage{
     goToMenuProduto(){
         element(by.buttonText('Gerência Loja')).click();
-        return element(by.buttonText('Catalogo da Loja')).click();
+        return element(by.buttonText('Catálogo da Loja')).click();
     }
 
     getLinha(indice){

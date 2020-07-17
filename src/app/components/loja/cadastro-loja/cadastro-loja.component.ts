@@ -45,7 +45,6 @@ export class CadastroLojaComponent implements OnInit {
   }
 
   consultaCEP(cep, form){
-    console.log(cep)
     cep = cep.replace(/\D/g, '');
 
     if(cep !=""){
@@ -122,7 +121,7 @@ export class CadastroLojaComponent implements OnInit {
   }
 }
   retornar(form: NgForm){
-    form.reset();
+    // form.reset();
     this.lojaService.lojaSelecionada = null;
     this.router.navigate(["home/lojas"]);
   }

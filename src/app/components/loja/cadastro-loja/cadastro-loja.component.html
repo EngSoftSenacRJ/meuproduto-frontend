@@ -9,7 +9,7 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <mat-form-field>
-            <input matInput placeholder="Nome da Loja" [(ngModel)]="loja.nome" name="nome" required>
+            <input matInput placeholder="Nome da Loja" id="lojaName" [(ngModel)]="loja.nome" name="nome" required>
             <mat-error *ngIf="f.invalid">Nome da loja é obrigatório.</mat-error>
           </mat-form-field>
         </div>

@@ -15,7 +15,7 @@
       <div class="col-4">
         <mat-form-field id="prodInput">
           <mat-label>Produtos</mat-label>
-          <mat-select matNativeControl [(ngModel)]="associacao.idProduto" title="Produtos" name="produto" #model="ngModel" required>
+          <mat-select matNativeControl [(ngModel)]="associacao.idProduto" title="Produtos" name="produto" id="produtos" #model="ngModel" required>
             <mat-option *ngFor="let prod of produtos" [value]="prod.id">{{prod.nome}}</mat-option>
         </mat-select>
         <!-- <mat-error *ngIf="f.invalid">Produto é obrigatório.</mat-error> -->

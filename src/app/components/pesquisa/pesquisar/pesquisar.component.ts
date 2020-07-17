@@ -7,7 +7,6 @@ import { Categoria } from 'src/app/model/categoria';
 import { Search } from 'src/app/model/search';
 import { SearchService } from 'src/app/service/search/search.service';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Loja } from 'src/app/model/loja';
 import { SearchResult } from 'src/app/model/searchresult';
 
 @Component({
@@ -78,7 +77,9 @@ export class PesquisarComponent implements OnInit {
 
     this.searchService.Listar(this.search).subscribe(
       dados => this.resultado = dados
-    );  
+    );
+
+    console.log(this.resultado)
 
     this.pesquisando=false;
   }
@@ -87,7 +88,7 @@ export class PesquisarComponent implements OnInit {
     this.pesquisando=true;
   }
 
-  DetalheLoja(loja: Loja) {
+  DetalheLoja(loja: SearchResult) {
     this.matDialog.open(DetalhelojaComponent, {
       data: loja
     });
@@ -108,7 +109,7 @@ export class PesquisarComponent implements OnInit {
 })
 
 export class DetalhelojaComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Loja) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: SearchResult) {}
 
   FormatarTel(tel: string): string {
     return "(" + tel.substring(0,2) + ")" + tel.substring(2,6) + "-" + tel.substring(6,10) 
