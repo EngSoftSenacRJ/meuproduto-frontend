@@ -3,12 +3,23 @@ import { Categoria } from './categoria';
 import { Loja } from './loja';
 
 export interface SearchResult {
-    "id": number,
-    "nome": string,
-    "descricao": string,
-    "mesesGarantia": number,
-    "marca": Marca,
-    "categoria":Categoria,
-    "preco": number,
-    "lojaResource": Loja
+    "produtoId": number,
+    "produtoNome": string,
+    "produtoDesc": string,
+    "produtoMesesGarantia": number,
+    "marcaNome": string,
+    "categoriaNome": string,
+    "lojaProdutoPreco": number,
+    "lojaNome": string,
+
+    "lojaCnpj": string,
+    "lojaRazaoSocial": string,
+    "lojaRuaEnderecoComercial": string,
+    "lojaNumeroEnderecoComercial": string,
+    "lojaBairroEnderecoComercial": string,
+    "lojaCidadeEnderecoComercial": string,
+    "lojaEstadoEnderecoComercial": string,
+    "lojaCepEnderecoComercial": string,
+    "lojaTelefoneContato": string
+
 }
