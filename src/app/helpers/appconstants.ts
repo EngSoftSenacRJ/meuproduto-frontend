@@ -8,7 +8,7 @@ export class Appconstants {
         
         return 'http://'.concat(environment.apiBaseHost).concat(':8080').concat('/api/');
        */ 
-       return 'http://3.128.231.227:8080/api/';
+       return 'http://18.218.14.149:8080/api/';
     }
 
     public static get baseSearchAPIURL(): string {
@@ -19,7 +19,7 @@ export class Appconstants {
         
         return 'http://'.concat(environment.apiBaseHost).concat(':8082').concat('/searchapi/');
         */
-       return 'http://3.128.231.227:8082/searchapi/';
+       return 'http://18.218.14.149:8082/searchapi/';
     }
 
 }
