@@ -54,7 +54,7 @@ export class SearchService {
         params+='&longitude=' + search.longitude;
         params+='&distanceKM=' + search.distanceKM;
       }
-      console.log(Appconstants.baseSearchAPIURL+'?' + params)
+      console.log(Appconstants.baseSearchAPIURL+'search?' + params)
       return this.http.get(Appconstants.baseSearchAPIURL+'search?'+ params, this.httpOptions )
       //return this.http.post(Appconstants.baseAPIURL+'search', JSON.parse(JSON.stringify(search)), this.ConstroiHeader() )
       .pipe(
