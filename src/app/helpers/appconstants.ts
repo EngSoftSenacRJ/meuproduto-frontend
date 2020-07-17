@@ -2,7 +2,7 @@ import { environment } from 'src/environments/environment';
 export class Appconstants {
     public static get baseAPIURL(): string {
         
-        if (environment.apiBasePort === 'API_BASE_HOST') {
+        if (environment.apiBaseHost === 'API_BASE_HOST') {
             return 'http://localhost:8080/api/';
         }
         
@@ -13,7 +13,7 @@ export class Appconstants {
 
     public static get baseSearchAPIURL(): string {
         
-        if (environment.apiBasePort === 'API_BASE_HOST') {
+        if (environment.apiBaseHost === 'API_BASE_HOST') {
             return 'http://localhost:8082/searchapi/';
         }
         
