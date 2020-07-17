@@ -37,6 +37,9 @@ export class AdministradorService {
 
   // Chama API de Cadastro do Administrador
   Cadastrar(usuarioAdm: Usuarioadministrador): Observable<any> {
+    console.log(Appconstants.baseAPIURL+'register');
+    console.log('usuarioAdm: '+usuarioAdm);
+    console.log('this.httpOptions: '+this.httpOptions);
     return this.httpClient.post(Appconstants.baseAPIURL+'register',usuarioAdm,this.httpOptions)
       .pipe(
         retry(0),
