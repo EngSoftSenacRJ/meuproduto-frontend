@@ -74,6 +74,8 @@ export class LojaService {
     }
     
     listar(): Observable<Loja[]>{
+      console.log("Listando lojas com a url:");
+      console.log(Appconstants.baseAPIURL + 'lojas?listarProdutos=true&usernameAdministrador=' + this.loginService.usuarioLogado.username);
       return this.http.get<Loja[]>(Appconstants.baseAPIURL + 'lojas?listarProdutos=true&usernameAdministrador=' + this.loginService.usuarioLogado.username,this.ConstroiHeader())
       .pipe(
         map(data => data['_embedded']['lojaResources'])
