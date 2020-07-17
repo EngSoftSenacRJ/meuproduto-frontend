@@ -49,6 +49,8 @@ export class LoginService {
     console.log(environment.apiBaseHost);
     console.log(environment.apiBaseHost);
     console.log(environment.apiBasePort);
+    console.log("URL LOGAR: "+Appconstants.baseAPIURL + 'authenticate');
+
     return this.httpClient.post<UsuarioLogado>(Appconstants.baseAPIURL + 'authenticate', {"username":userName,"password":password},this.httpOptions)
       .pipe(
         retry(0),
