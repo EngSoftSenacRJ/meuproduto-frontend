@@ -3,6 +3,8 @@ import { Marca } from 'src/app/model/marca';
 import { MarcaService } from 'src/app/service/marca/marca.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { AlertModalService } from 'src/app/shared/alert-modal.service';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-cadastro-marca',
@@ -12,10 +14,13 @@ import { NgForm } from '@angular/forms';
 export class CadastroMarcaComponent implements OnInit {
 
   marca = {} as Marca;
+  bsModalRef: BsModalRef;
+
 
   constructor(
     private marcaService: MarcaService,
-    private router: Router) { }
+    private router: Router,
+    private alertService: AlertModalService) { }
 
   ngOnInit() {
     if (this.marcaService.marcaSelecionada != undefined){
@@ -24,8 +29,7 @@ export class CadastroMarcaComponent implements OnInit {
         this.marca.id = null;
       },
       err => { 
-        alert('Ocorreu um erro ao carregar marca!');
-        console.error(err);                    
+        this.alertService.showAlertDanger('Ocorreu um erro ao carregar marca! '+err);                    
        });
 
     }
@@ -37,16 +41,15 @@ export class CadastroMarcaComponent implements OnInit {
       this.marcaService.editar(this.marcaService.marcaSelecionada,this.marca).subscribe(
         data =>  {
           this.router.navigate(["home/marcas"]);
-          alert("Dados da marca alterados");
+          this.alertService.showAlertInfo("Dados da marca alterados");
         }
       )
     }else{
       this.marcaService.cadastrar(this.marca).subscribe( data => {
       this.router.navigate(["home/marcas"]);
-      alert("Marca cadastrada!");
+      this.alertService.showAlertSucces("Marca cadastrada!");
     }, err =>{
-      alert("Erro no cadastro!");
-      console.error("Erro: "+err);
+      this.alertService.showAlertDanger("Erro no cadastro!" +err);
     }
   );
 }
