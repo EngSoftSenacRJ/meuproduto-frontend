@@ -55,7 +55,7 @@ export class SearchService {
         params+='&distanceKM=' + search.distanceKM;
       }
       console.log(Appconstants.baseSearchAPIURL+'?' + params)
-      return this.http.get(Appconstants.baseSearchAPIURL+'?'+ params, this.httpOptions )
+      return this.http.get(Appconstants.baseSearchAPIURL+'search?'+ params, this.httpOptions )
       //return this.http.post(Appconstants.baseAPIURL+'search', JSON.parse(JSON.stringify(search)), this.ConstroiHeader() )
       .pipe(
       map(data => data['_embedded']['produtoSearchResponseResources']),
