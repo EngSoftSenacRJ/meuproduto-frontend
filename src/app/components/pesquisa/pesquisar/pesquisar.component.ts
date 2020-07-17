@@ -77,7 +77,9 @@ export class PesquisarComponent implements OnInit {
 
     this.searchService.Listar(this.search).subscribe(
       dados => this.resultado = dados
-    );  
+    );
+
+    console.log(this.resultado)
 
     this.pesquisando=false;
   }
