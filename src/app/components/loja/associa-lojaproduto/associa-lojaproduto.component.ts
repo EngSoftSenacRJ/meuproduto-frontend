@@ -77,11 +77,14 @@ export class AssociaLojaprodutoComponent implements OnInit {
       console.log("res:", this.editProfileForm.getRawValue());
       this.associacao.preco =  this.editProfileForm.value['precoNovo'];
       this.produtoService.editarPrecoByLoja(this.associacao).subscribe(
-        success =>{ this.alertService.showAlertSucces("Preço Alterado com sucesso!");
+        dados =>{ 
+          this.listarProdutosLoja();
+          this.lojaPreco = dados;
+          this.alertService.showAlertSucces("Preço Alterado com sucesso!");
       },err=>{
         this.alertService.showAlertDanger("Alteração não pôde ser realizada!");
       })
-      this.listarProdutosLoja();
+      // this.listarProdutosLoja();
       this.resetar = true;
       this.modalService.hide(1);
      }
@@ -102,7 +105,7 @@ export class AssociaLojaprodutoComponent implements OnInit {
       form.form.get('produto').reset();
       
     }, err =>{
-      alert(err);
+      this.alertService.showAlertDanger("Este produto já está cadastro!")
       console.error("Erro: "+ err);
     });
   }
