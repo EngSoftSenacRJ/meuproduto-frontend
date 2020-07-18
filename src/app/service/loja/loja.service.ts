@@ -61,6 +61,7 @@ export class LojaService {
         retry(0),
         catchError(this.handleError)
       )
+
       
   }
 
