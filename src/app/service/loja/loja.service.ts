@@ -56,7 +56,7 @@ export class LojaService {
 
   CarregarporLojaSelecionada(): Observable<any> {
 
-    return this.http.get('http://localhost:8080/lojas/'+ this.lojaSelecionada, this.ConstroiHeader())
+    return this.http.get(Appconstants.baseAPIURL+'lojas/'+ this.lojaSelecionada, this.ConstroiHeader())
       .pipe(
         retry(0),
         catchError(this.handleError)
