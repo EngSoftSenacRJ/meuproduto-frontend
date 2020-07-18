@@ -63,21 +63,21 @@ export class SearchService {
       //)
     }
 
-    ListarByCategoria(cat:String): Observable<any> {
-
+    ListarByCategoria(cat:number): Observable<any> {
       let params = ""
+      console.log("Categoria: "+cat);
      
-      if (cat != null) {
-        params +='&nomeProduto=' + cat;
-     }
+        params ='&idCategoria=' + cat;
+        console.log("NOME PRODUTO"+params);
+    
    
-     console.log(Appconstants.baseAPIURL+'search' + params)
-     return this.http.get(Appconstants.baseAPIURL+'search?' + params, this.httpOptions )
+     console.log(Appconstants.baseSearchAPIURL+'search?' + params)
+     return this.http.get(Appconstants.baseSearchAPIURL+'search?' + params, this.httpOptions )
      //return this.http.post(Appconstants.baseAPIURL+'search', JSON.parse(JSON.stringify(search)), this.ConstroiHeader() )
-     .pipe(
-     map(data => data['_embedded']['produtoSearchResponseResources']),
-     catchError(this.handleError)
-     )
+    //  .pipe(
+    //  map(data => data['_embedded']['produtoSearchResponseResources']),
+    //  catchError(this.handleError)
+    //  )
    }
 
 

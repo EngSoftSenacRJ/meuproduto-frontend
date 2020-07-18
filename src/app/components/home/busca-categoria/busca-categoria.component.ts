@@ -22,9 +22,11 @@ export class BuscaCategoriaComponent implements OnInit {
       }
     );
     
-    this.searchService.ListarByCategoria(this.categoria).subscribe(
-      dados => this.resultado = dados
-    );
+    this.searchService.ListarByCategoria(8).subscribe(
+      dados =>{ this.resultado = dados;
+        console.log("Retorno: "+this.resultado);
+      }
+      );
 
   }
 

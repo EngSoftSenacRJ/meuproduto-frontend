@@ -44,12 +44,12 @@
           <tbody>
             <tr
               *ngFor="let registro of resultado |filter:filter| orderBy: key : reverse | paginate: { itemsPerPage: 10, currentPage: p }">
-              <td><a (click)="DetalheProduto(registro)">{{registro.nome}}</a></td>
+              <td><a (click)="DetalheProduto(registro)">{{registro.produtoNome}}</a></td>
               <!-- <td>{{registro.categoria.nome}}</td> -->
-              <td>{{registro.marca.nome}}</td>
-              <td ><a (click)="DetalheLoja(registro.lojaResource)">{{registro.lojaResource.nome}}</a></td>
-              <td>{{registro.lojaResource.ruaEnderecoComercial}},{{registro.lojaResource.numeroEnderecoComercial}}</td>
-              <td>{{registro.preco}}</td>
+              <td>{{registro.marcaNome}}</td>
+              <td ><a (click)="DetalheLoja(registro)">{{registro.lojaNome}}</a></td>
+              <td>{{registro.lojaRuaEnderecoComercial}},{{registro.lojaNumeroEnderecoComercial}}</td>
+              <td>{{registro.lojaProdutoPreco}}</td>
   
             </tr>
           </tbody>
